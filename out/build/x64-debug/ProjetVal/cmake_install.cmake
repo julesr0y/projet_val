@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Admin/Repos/projet_val/ProjetVal
+# Install script for directory: C:/Users/Admin/Documents/GitHub/projet_val/ProjetVal
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/Admin/Repos/projet_val/out/install/x64-debug")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/Admin/Documents/GitHub/projet_val/out/install/x64-debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
