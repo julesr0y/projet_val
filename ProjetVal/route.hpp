@@ -12,12 +12,8 @@ private:
 	Station station_arrivee;
 public:
 	Route(int id, float longueur, Station station1, Station station2);
-	void get_id_voie();
-	void get_longueur();
-	void get_position();
-	void set_id_voie();
-	void set_longueur();
-	void set_position();
+	int get_id_voie();
+	int get_longueur();
 	void setRepr();
 	RectangleShape getRepr();
 };
