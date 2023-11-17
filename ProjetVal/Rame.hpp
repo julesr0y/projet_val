@@ -1,8 +1,13 @@
-class Rames
+#include <SFML/Graphics.hpp>
+
+using namespace std;
+using namespace sf;
+
+class Rame
 {
 public:
-	Rames();//constructeur
-	~Rames();//destructeur
+	Rame();//constructeur
+	~Rame();//destructeur
 
 	//methodes de la class
 	void acceleration(int pourcentage);
@@ -15,7 +20,7 @@ public:
 	void set_position_y(int y);
 	void set_passagers(int nb);
 	void set_distance_arret_urgence(int dis);
-	void set_poid(int p);
+	void set_poids(int p);
 
 	//getters
 	int get_numero();
@@ -24,7 +29,7 @@ public:
 	int get_position_y();
 	int get_passagers();
 	float get_distance_arret_urgence();
-	int get_poid();
+	int get_poids();
 
 private:
 	int numero;
@@ -34,7 +39,7 @@ private:
 	int position_y;
 	int nb_passagers;
 	float distance_arret_urgence;
-	int poid;
+	int poids;
 
 
 };

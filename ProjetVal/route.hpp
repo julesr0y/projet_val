@@ -1,4 +1,9 @@
-class route {
+#include <SFML/Graphics.hpp>
+
+using namespace std;
+using namespace sf;
+
+class Route {
 private:
 	int id_voie;
 	float longueur;
