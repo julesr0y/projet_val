@@ -1,16 +1,24 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Rame.hpp"
+#include <thread>
+
 
 using namespace std;
 using namespace sf;
 
+
 //constructeur
-Rame::Rame()
+Rame::Rame() : representation(3)
 {
-	terminus,numero,position_x,position_y,nb_passagers= 0;
+	terminus = 0;
+	numero = 0;
+	position_x = 0;
+	position_y = 0;
+	nb_passagers = 0;
 	vitesse = 0.0;
 	distance_arret_urgence = 3.4;//à voir 
+	poids = 0;
 
 }
 
@@ -55,6 +63,12 @@ void Rame::set_poids(int p) {
 	poids = p;
 }
 
+void Rame::setRepr() {
+	representation.setPoint(0, Vector2f(position_y, 210));
+	representation.setPoint(1, Vector2f(position_y, 230));
+	representation.setPoint(2, Vector2f(position_x, 220));
+	representation.setFillColor(Color::Blue);
+}
 
 
 
@@ -82,6 +96,35 @@ int Rame::get_poids() {
 int Rame::get_numero() {
 	return numero;
 }
+
+ConvexShape Rame::getRepr() {
+	return representation;
+}
+
+//move des triangle entre 2 pos
+//void Rame::move_toi(int x_start, int y_start, int x_end, int y_end) {
+//	if (x_end-x_start>0)
+//	{
+//		while (x_start != x_end && y_start != y_end)
+//		{
+//			representation.move(position_x,position_y);
+//			x_start++;
+//			y_start++;
+//			this_thread::sleep_for(chrono::milliseconds(10)); // Adjust the sleep duration
+//		}
+//	}
+//	if (x_end - x_start < 0)
+//	{
+//		while (x_start != x_end && y_start != y_end)
+//		{
+//			representation.move(position_x, position_y);
+//			x_start--;
+//			y_start--;
+//			this_thread::sleep_for(chrono::milliseconds(10)); // Adjust the sleep duration
+//		}
+//	}
+//
+//}
 
 //destructeur
 Rame::~Rame()
