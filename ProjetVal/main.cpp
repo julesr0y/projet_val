@@ -28,15 +28,18 @@ using namespace sf;
 //    }
 //}
 
-void moveTriangle1(ConvexShape triangle, float base_pos, float end_pos) {
+void moveTriangle1(Rame& rame, float base_pos, float end_pos) {
     while (base_pos != end_pos) {
         //on bouge le triangle
-        triangle.move(1, 0);
+        rame.moveDroite();
+        //cout << rame.get_position_x() << endl;
         base_pos++;
+
         //temps attente entre opérations
         this_thread::sleep_for(chrono::milliseconds(10)); // Adjust the sleep duration
     }
 }
+
 int main()
 {
     //apparition de la fenetre
@@ -84,9 +87,9 @@ int main()
     //triangle2.setFillColor(Color::Blue); // Couleur du triangle
 
     //création des threads
-    thread thread1(moveTriangle1, rame1.getRepr(),rame1.get_position_y(), rame2.get_position_y());
+    thread thread1(moveTriangle1, ref(rame1), 210.0, 730.0);
     //thread thread2(rame2.move_toi(), ref(rame2.getRepr()), 730.0, 210.0);
-
+    
     while (window.isOpen())
     {
         Event event;
@@ -110,6 +113,7 @@ int main()
 
     //destruction des threads
     thread1.join();
+
     //thread2.join();
 
     return 0;

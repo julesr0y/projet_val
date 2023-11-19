@@ -101,6 +101,26 @@ ConvexShape Rame::getRepr() {
 	return representation;
 }
 
+void Rame::moveDroite() {
+	representation.move(1, 0);
+	setRepr();
+}
+
+void Rame::moveGauche() {
+	representation.move(-1, 0);
+	setRepr();
+}
+
+void Rame::moveHaut() {
+	representation.move(0, -1);
+	setRepr();
+}
+
+void Rame::moveBas() {
+	representation.move(0, 1);
+	setRepr();
+}
+
 //move des triangle entre 2 pos
 //void Rame::move_toi(int x_start, int y_start, int x_end, int y_end) {
 //	if (x_end-x_start>0)

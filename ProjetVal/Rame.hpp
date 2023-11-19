@@ -35,6 +35,12 @@ public:
 	int get_poids();
 	ConvexShape getRepr();
 
+	//gestion des déplacements
+	void moveDroite();
+	void moveGauche();
+	void moveHaut();
+	void moveBas();
+
  
 
 	//move des triangle entre entre 2 pos
