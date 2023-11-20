@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Station.hpp"
 
 using namespace std;
@@ -35,8 +34,8 @@ int Station::getNbPassagers() {
 }
 
 void Station::setRepr() {
-	representation.setRadius(20);
-	representation.setPosition(position[0], position[1]);
+	representation.setRadius(rayon);
+	representation.setPosition(position[0] - rayon, position[1] - rayon);
 	representation.setFillColor(Color::Red);
 }
 

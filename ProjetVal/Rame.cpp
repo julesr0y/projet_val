@@ -1,25 +1,25 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
 #include "Rame.hpp"
-#include <thread>
-
 
 using namespace std;
 using namespace sf;
 
-
 //constructeur
 Rame::Rame() : representation(3)
 {
+
+}
+
+Rame::Rame(Station station_depart) : representation(3) {
+	centre_x = station_depart.getPositionX();
+	centre_y = station_depart.getPositionY();
 	terminus = 0;
 	numero = 0;
-	position_x = 0;
-	position_y = 0;
+	position_x = centre_x;
+	position_y = centre_y;
 	nb_passagers = 0;
 	vitesse = 0.0;
 	distance_arret_urgence = 3.4;//à voir 
 	poids = 0;
-
 }
 
 //methodes de la classe
@@ -64,12 +64,10 @@ void Rame::set_poids(int p) {
 }
 
 void Rame::setRepr() {
-	float pos_y = 223;
-	float pos_x = 235;
-
-	representation.setPoint(0, Vector2f(pos_y, 210));
-	representation.setPoint(1, Vector2f(pos_y, 230));
-	representation.setPoint(2, Vector2f(pos_x, 220));
+	Vector2f centre_rame(centre_x, centre_y);
+	representation.setPoint(0, Vector2f(centre_rame.x - taille_cote / 2, centre_rame.y - taille_cote/2));
+	representation.setPoint(1, Vector2f(centre_rame.x + taille_cote / 2, centre_rame.y));
+	representation.setPoint(2, Vector2f(centre_rame.x - taille_cote / 2, centre_rame.y + taille_cote / 2));
 	representation.setFillColor(Color::Blue);
 }
 
@@ -82,7 +80,7 @@ float Rame::get_vitesse() {
 float Rame::get_position_x() {
 	return position_x;
 }
-float Rame::get_position_y(){
+float Rame::get_position_y() {
 	return position_y;
 }
 int Rame::get_passagers() {

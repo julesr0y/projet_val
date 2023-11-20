@@ -1,3 +1,6 @@
+#ifndef STATION_H
+#define STATION_H
+
 #include <SFML/Graphics.hpp>
 
 using namespace std;
@@ -11,6 +14,7 @@ private:
 	int nb_passagers;
 	//float temps;
 	CircleShape representation;
+	float rayon = 20;
 
 public:
 	Station();
@@ -25,3 +29,5 @@ public:
 	void setRepr();
 	CircleShape getRepr();
 };
+
+#endif STATION_H

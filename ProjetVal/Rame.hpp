@@ -1,12 +1,12 @@
-#include <SFML/Graphics.hpp>
+#ifndef RAME_H
+#define RAME_H
+
 #include "Station.hpp"
-using namespace std;
-using namespace sf;
 
 class Rame
 {
 public:
-	Rame(int x, int y);//constructeur
+	Rame(Station station_depart);//constructeur
 	Rame();
 	~Rame();//destructeur
 
@@ -44,12 +44,15 @@ public:
 	void moveDiagonalHautGauche();
 	void moveDiagonalBasDroite();
 	void moveDiagonalBasGauche();
- 
+
 
 	//move des triangle entre entre 2 pos
 	//void move_toi(int x_start, int y_start, int x_end, int y_end);
 
 private:
+	float centre_x;
+	float centre_y;
+	float taille_cote = 25;
 	int numero;
 	float vitesse;
 	int terminus;
@@ -59,9 +62,6 @@ private:
 	float distance_arret_urgence;
 	int poids;
 	ConvexShape representation;
-
-
-
 };
 
-
+#endif RAME_H
