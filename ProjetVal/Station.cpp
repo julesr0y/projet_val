@@ -4,6 +4,8 @@
 using namespace std;
 using namespace sf;
 
+Station::Station() {};
+
 Station::Station(int id, string name, float x, float y, int nbpassagers) {
 	id_station = id;
 	nom = name;

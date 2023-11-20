@@ -13,6 +13,7 @@ private:
 	CircleShape representation;
 
 public:
+	Station();
 	Station(int id, string name, float x, float y, int nbpassagers);
 	//Stations ~Stations();
 	int getIdStation();
