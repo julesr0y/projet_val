@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-
+#include "Station.hpp"
 using namespace std;
 using namespace sf;
 
@@ -28,9 +28,9 @@ public:
 	//getters
 	int get_numero();
 	float get_vitesse();
-	int get_position_x();
-	int get_position_y();
-	int get_passagers();
+	float get_position_x();
+	float get_position_y();
+	int  get_passagers();
 	float get_distance_arret_urgence();
 	int get_poids();
 	ConvexShape getRepr();
@@ -40,11 +40,14 @@ public:
 	void moveGauche();
 	void moveHaut();
 	void moveBas();
-
+	void moveDiagonalHautDroite();
+	void moveDiagonalHautGauche();
+	void moveDiagonalBasDroite();
+	void moveDiagonalBasGauche();
  
 
 	//move des triangle entre entre 2 pos
-	void move_toi(int x_start, int y_start, int x_end, int y_end);
+	//void move_toi(int x_start, int y_start, int x_end, int y_end);
 
 private:
 	int numero;

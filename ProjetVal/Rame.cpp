@@ -64,9 +64,12 @@ void Rame::set_poids(int p) {
 }
 
 void Rame::setRepr() {
-	representation.setPoint(0, Vector2f(position_y, 210));
-	representation.setPoint(1, Vector2f(position_y, 230));
-	representation.setPoint(2, Vector2f(position_x, 220));
+	float pos_y = 223;
+	float pos_x = 235;
+
+	representation.setPoint(0, Vector2f(pos_y, 210));
+	representation.setPoint(1, Vector2f(pos_y, 230));
+	representation.setPoint(2, Vector2f(pos_x, 220));
 	representation.setFillColor(Color::Blue);
 }
 
@@ -76,10 +79,10 @@ void Rame::setRepr() {
 float Rame::get_vitesse() {
 	return vitesse;
 }
-int Rame::get_position_x() {
+float Rame::get_position_x() {
 	return position_x;
 }
-int Rame::get_position_y(){
+float Rame::get_position_y(){
 	return position_y;
 }
 int Rame::get_passagers() {
@@ -101,6 +104,7 @@ ConvexShape Rame::getRepr() {
 	return representation;
 }
 
+//les moves 
 void Rame::moveDroite() {
 	representation.move(1, 0);
 	setRepr();
@@ -121,30 +125,25 @@ void Rame::moveBas() {
 	setRepr();
 }
 
-//move des triangle entre 2 pos
-//void Rame::move_toi(int x_start, int y_start, int x_end, int y_end) {
-//	if (x_end-x_start>0)
-//	{
-//		while (x_start != x_end && y_start != y_end)
-//		{
-//			representation.move(position_x,position_y);
-//			x_start++;
-//			y_start++;
-//			this_thread::sleep_for(chrono::milliseconds(10)); // Adjust the sleep duration
-//		}
-//	}
-//	if (x_end - x_start < 0)
-//	{
-//		while (x_start != x_end && y_start != y_end)
-//		{
-//			representation.move(position_x, position_y);
-//			x_start--;
-//			y_start--;
-//			this_thread::sleep_for(chrono::milliseconds(10)); // Adjust the sleep duration
-//		}
-//	}
-//
-//}
+void Rame::moveDiagonalHautDroite() {
+	representation.move(1, -1);
+	setRepr();
+}
+
+void Rame::moveDiagonalHautGauche() {
+	representation.move(-1, -1);
+	setRepr();
+}
+
+void Rame::moveDiagonalBasDroite() {
+	representation.move(1, 1);
+	setRepr();
+}
+
+void Rame::moveDiagonalBasGauche() {
+	representation.move(-1, 1);
+	setRepr();
+}
 
 //destructeur
 Rame::~Rame()
