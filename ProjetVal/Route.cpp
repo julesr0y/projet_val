@@ -1,8 +1,11 @@
-#include <iostream>
 #include "Route.hpp"
 
 using namespace std;
 using namespace sf;
+
+Route::Route() {
+
+}
 
 Route::Route(int id, Station station1, Station station2) {
 	id_voie = id;
@@ -25,7 +28,7 @@ int Route::get_longueur() {
 
 void Route::setRepr() {
 	representation.setSize(Vector2f(longueur, epaisseur));
-	representation.setPosition(station1_x, station1_y + 20);
+	representation.setPosition(station1_x, station1_y);
 	representation.setFillColor(Color::Red);
 }
 

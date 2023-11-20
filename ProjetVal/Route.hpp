@@ -1,5 +1,8 @@
-#include <SFML/Graphics.hpp>
-#include "Station.hpp"
+#ifndef ROUTE_H
+#define ROUTE_H
+
+#include "Rame.hpp"
+
 using namespace std;
 using namespace sf;
 
@@ -16,9 +19,12 @@ private:
 	float station2_x;
 	float station2_y;
 public:
+	Route();
 	Route(int id, Station station1, Station station2);
 	int get_id_voie();
 	int get_longueur();
 	void setRepr();
 	RectangleShape getRepr();
 };
+
+#endif ROUTE_H
