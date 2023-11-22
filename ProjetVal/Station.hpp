@@ -15,10 +15,11 @@ private:
 	//float temps;
 	CircleShape representation;
 	float rayon = 20;
+	Color couleur;
 
 public:
 	Station();
-	Station(int id, string name, float x, float y, int nbpassagers);
+	Station(int id, string name, float x, float y, int nbpassagers, Color color);
 	//Stations ~Stations();
 	int getIdStation();
 	string getNom();

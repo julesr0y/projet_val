@@ -18,9 +18,10 @@ private:
 	float station1_y;
 	float station2_x;
 	float station2_y;
+	Color couleur;
 public:
 	Route();
-	Route(int id, Station station1, Station station2);
+	Route(int id, Station station1, Station station2, Color color);
 	int get_id_voie();
 	int get_longueur();
 	void setRepr();

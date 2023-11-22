@@ -4,9 +4,32 @@
 #include "Rame.hpp"
 #include "Route.hpp"
 #include <thread>
+#include <vector>
 
 using namespace std;
 using namespace sf;
+
+//LISTE DES STATIONS
+//L1
+Station station1_1(1, "Station1", 100, 300, 10, Color::Red);
+Station station1_2(2, "Station2", 300, 300, 10, Color::Red);
+Station station1_3(3, "Station3", 500, 300, 10, Color::Red);
+Station station1_4(4, "Station4", 700, 300, 10, Color::Red);
+Station station1_5(5, "Station5", 900, 300, 10, Color::Red);
+Station station1_6(6, "Station6", 1100, 300, 10, Color::Red);
+
+//L2
+Station station2_1(1, "Station1", 100, 600, 10, Color::Yellow);
+Station station2_2(2, "Station2", 300, 600, 10, Color::Yellow);
+Station station2_3(3, "Station3", 500, 600, 10, Color::Yellow);
+Station station2_4(4, "Station4", 700, 600, 10, Color::Yellow);
+Station station2_5(5, "Station5", 900, 600, 10, Color::Yellow);
+Station station2_6(6, "Station6", 1100, 600, 10, Color::Yellow);
+Station station2_7(7, "Station6", 1300, 600, 10, Color::Yellow);
+
+//on regroupe les stations des lignes dans des tableau
+vector<Station> listeStationsl1 = {station1_1, station1_2, station1_3, station1_4, station1_5, station1_6};
+vector<Station> listeStationsl2 = { station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7 };
 
 //fonctions des threads
 void moveRame(Rame& rame, float end_pos_x, float end_pos_y) {
@@ -84,28 +107,13 @@ int main()
     //apparition de la fenetre
     RenderWindow window(VideoMode(1500, 800), "VAL");
 
-    //rond 1
-    Station station1(1, "Station1", 200, 200, 10); //classe station
-    station1.setRepr(); //on set la représentation graphique
-
-    //rond 2
-    Station station2(2, "Station2", 700, 200, 10); //classe station
-    station2.setRepr(); //on set la représentation graphique
-
-    //rond 3 de test
-    Station station3(3, "Station3", 750, 400, 10);
-    station3.setRepr();
-
     //rame1
-    Rame rame1(station3);
+    Rame rame1(station1_1);
     rame1.setRepr();
-
-    Route route1(1, station1, station2);
-    route1.setRepr();
     
     //threads gestion
     //test1 : ligne vers la droite
-    thread thread1(moveRame, ref(rame1), 1000, 400);
+    //thread thread1(moveRame, ref(rame1), 1000, 400);
 
     //test2 : ligne vers la gauche
     //thread thread1(moveRame, ref(rame1), 500, 400);
@@ -137,21 +145,37 @@ int main()
                 window.close();
             }
         }
+
         window.clear(Color::White);
-        window.draw(station1.getRepr());
-        window.draw(station2.getRepr());
-        window.draw(station3.getRepr());
-        window.draw(route1.getRepr());
-        //window.draw(triangle);
-        //window.draw(triangle2);
+
+        //PARTIE AFFICHAGE DES STATIONS + ROUTES
+        for (int i = 0; i < listeStationsl1.size(); i++) {
+            listeStationsl1[i].setRepr();
+            if (i != listeStationsl1.size() - 1) {
+                Route route(i + 1, listeStationsl1[i], listeStationsl1[i + 1], Color::Red);
+                route.setRepr();
+                window.draw(route.getRepr());
+            }
+            window.draw(listeStationsl1[i].getRepr());
+        }
+
+        for (int i = 0; i < listeStationsl2.size(); i++) {
+            listeStationsl2[i].setRepr();
+            if (i != listeStationsl2.size() - 1) {
+                Route route(i + 1, listeStationsl2[i], listeStationsl2[i + 1], Color::Yellow);
+                route.setRepr();
+                window.draw(route.getRepr());
+            }
+            window.draw(listeStationsl2[i].getRepr());
+        }
+
         window.draw(rame1.getRepr());
-        //window.draw(rame2.getRepr());
 
         window.display();
     }
 
     //destruction des threads
-    thread1.join();
+    //thread1.join();
 
     return 0;
 }
