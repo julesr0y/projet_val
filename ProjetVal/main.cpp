@@ -18,14 +18,12 @@ void moveRame(Rame& rame, float end_pos_x, float end_pos_y) {
             {
                 rame.moveHaut();
                 rame.set_position_y(rame.get_position_y() - 1);
-                cout << "Haut" << endl;
 
             }
             if (end_pos_y > rame.get_position_y())
             {
                 rame.moveBas();
                 rame.set_position_y(rame.get_position_y() + 1);
-                cout << "bas" << endl;
             }
         }
         if (rame.get_position_y() == end_pos_y)
@@ -34,13 +32,11 @@ void moveRame(Rame& rame, float end_pos_x, float end_pos_y) {
             {
                 rame.moveGauche();
                 rame.set_position_x(rame.get_position_x() - 1);
-                cout << "gauche" << endl;
             }
             if (end_pos_x > rame.get_position_x())
             {
                 rame.moveDroite();
                 rame.set_position_x(rame.get_position_x() + 1);
-                cout << "droite" << endl;
             }
         }
         else
@@ -50,32 +46,57 @@ void moveRame(Rame& rame, float end_pos_x, float end_pos_y) {
                 rame.moveDiagonalHautDroite();
                 rame.set_position_y(rame.get_position_y() - 1);
                 rame.set_position_x(rame.get_position_x() + 1);
-                cout << "haut/droite" << endl;
             }
             if (end_pos_y > rame.get_position_y() && end_pos_x > rame.get_position_x())
             {
                 rame.moveDiagonalBasDroite();
                 rame.set_position_y(rame.get_position_y() + 1);
                 rame.set_position_x(rame.get_position_x() + 1);
-                cout << "bas/droite" << endl;
             }
             if (end_pos_y < rame.get_position_y() && end_pos_x < rame.get_position_x())
             {
                 rame.moveDiagonalHautGauche();
                 rame.set_position_y(rame.get_position_y() - 1);
                 rame.set_position_x(rame.get_position_x() - 1);
-                cout << "haut/gauche" << endl;
             }
             if (end_pos_y > rame.get_position_y() && end_pos_x < rame.get_position_x())
             {
                 rame.moveDiagonalBasGauche();
                 rame.set_position_y(rame.get_position_y() + 1);
                 rame.set_position_x(rame.get_position_x() - 1);
-                cout << "bas/gauche" << endl;
+                
             }
         }
         //temps attente entre opérations
         this_thread::sleep_for(chrono::milliseconds(10)); // Adjust the sleep duration
+    }
+}
+
+
+vector<Rame> get_rames_avant_apres(vector<Rame>liste ,Rame& rame) {
+    int i = 0;//recupere l'indice du rame dans la liste 
+    vector<Rame> rame_avant_apres(2);
+    while (liste[i].get_numero() == rame.get_numero() || i <= liste.size())
+    {
+        i++;
+    }
+
+    if (i==0)
+    {
+        rame_avant_apres[0]= *liste.end() ;
+        rame_avant_apres[1] = liste[i + 1];
+        return rame_avant_apres;
+    }
+    if (i == liste.size()) {
+        rame_avant_apres[1] = *liste.begin();
+        rame_avant_apres[0] = liste[i - 1];
+        return rame_avant_apres;
+    }
+    else
+    {
+        rame_avant_apres[0] = liste[i - 1];
+        rame_avant_apres[1] = liste[i + 1];
+        return rame_avant_apres;
     }
 }
 
@@ -97,9 +118,13 @@ int main()
     station3.setRepr();
 
     //rame1
-    Rame rame1(station3);
-    rame1.setRepr();
+    Rame rame1(station3,0);
+    Rame rame2(station3, 1);
+    Rame rame3(station3, 2);
+    Rame rame4(station3, 3);
+    //rame1.setRepr();
 
+    //route1
     Route route1(1, station1, station2);
     route1.setRepr();
     
@@ -127,6 +152,26 @@ int main()
 
     //test8 : ligne bas/droite 
     //thread thread1(moveRame, ref(rame1), 1000, 600);
+
+
+    vector<Rame> rames_sur_ligne_1(4);
+    rames_sur_ligne_1[0] = rame1;
+    rames_sur_ligne_1[1] = rame2;
+    rames_sur_ligne_1[2] = rame3;
+    rames_sur_ligne_1[3] = rame4;
+    for (size_t i = 0; i <rames_sur_ligne_1.size(); i++)
+    {
+        cout << rames_sur_ligne_1[i].get_numero() << "||";
+    }
+    cout << endl;
+    for (size_t i = 0; i < get_rames_avant_apres(rames_sur_ligne_1, rame2).size(); i++)
+    {
+        cout << get_rames_avant_apres(rames_sur_ligne_1, rame2)[i].get_numero() << "||";
+    }
+
+    
+
+
 
     while (window.isOpen())
     {

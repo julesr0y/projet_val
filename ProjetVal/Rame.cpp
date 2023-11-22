@@ -9,6 +9,20 @@ Rame::Rame() : representation(3)
 
 }
 
+Rame::Rame(Station station_depart,int num) : representation(3)
+{
+	centre_x = station_depart.getPositionX();
+	centre_y = station_depart.getPositionY();
+	terminus = 0;
+	numero = num;
+	position_x = centre_x;
+	position_y = centre_y;
+	nb_passagers = 0;
+	vitesse = 1;
+	distance_arret_urgence = 3.4;//à voir 
+	poids = 0;
+}
+
 Rame::Rame(Station station_depart) : representation(3) {
 	centre_x = station_depart.getPositionX();
 	centre_y = station_depart.getPositionY();
@@ -17,18 +31,18 @@ Rame::Rame(Station station_depart) : representation(3) {
 	position_x = centre_x;
 	position_y = centre_y;
 	nb_passagers = 0;
-	vitesse = 0.0;
+	vitesse = 1;
 	distance_arret_urgence = 3.4;//à voir 
 	poids = 0;
 }
 
 //methodes de la classe
-void Rame::acceleration(int pourcentage) {
+void Rame::vitesse_plus(int pourcentage) {
 	vitesse += vitesse * (pourcentage / 100);
 }
 
 
-void Rame::deceleration(int pourcentage) {
+void Rame::vitesse_moins(int pourcentage) {
 	vitesse -= vitesse * (pourcentage / 100);
 }
 
@@ -104,42 +118,42 @@ ConvexShape Rame::getRepr() {
 
 //les moves 
 void Rame::moveDroite() {
-	representation.move(1, 0);
+	representation.move(vitesse, 0);
 	setRepr();
 }
 
 void Rame::moveGauche() {
-	representation.move(-1, 0);
+	representation.move(-vitesse, 0);
 	setRepr();
 }
 
 void Rame::moveHaut() {
-	representation.move(0, -1);
+	representation.move(0, -vitesse);
 	setRepr();
 }
 
 void Rame::moveBas() {
-	representation.move(0, 1);
+	representation.move(0, vitesse);
 	setRepr();
 }
 
 void Rame::moveDiagonalHautDroite() {
-	representation.move(1, -1);
+	representation.move(vitesse, -vitesse);
 	setRepr();
 }
 
 void Rame::moveDiagonalHautGauche() {
-	representation.move(-1, -1);
+	representation.move(-vitesse, -vitesse);
 	setRepr();
 }
 
 void Rame::moveDiagonalBasDroite() {
-	representation.move(1, 1);
+	representation.move(vitesse, vitesse);
 	setRepr();
 }
 
 void Rame::moveDiagonalBasGauche() {
-	representation.move(-1, 1);
+	representation.move(-vitesse, vitesse);
 	setRepr();
 }
 
