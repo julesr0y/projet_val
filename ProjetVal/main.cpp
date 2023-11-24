@@ -3,130 +3,45 @@
 #include "Station.hpp"
 #include "Rame.hpp"
 #include "Route.hpp"
+#include "fonction_rames.hpp"
 #include <thread>
+#include <vector>
 
 using namespace std;
 using namespace sf;
 
-//fonctions des threads
-void moveRame(Rame& rame, float end_pos_x, float end_pos_y) {
-    //cout << "(" << rame.get_position_x() << ";" << rame.get_position_y() << ")" << endl;
-    while ((rame.get_position_x() != end_pos_x) || (rame.get_position_y() != end_pos_y)) {
-        if (rame.get_position_x() == end_pos_x)
-        {
-            if (end_pos_y < rame.get_position_y())
-            {
-                rame.moveHaut();
-                rame.set_position_y(rame.get_position_y() - 1);
+//LISTE DES STATIONS
+//L1
+Station station1_1(1, "Station1", 100, 300, 10, Color::Red);
+Station station1_2(2, "Station2", 300, 300, 10, Color::Red);
+Station station1_3(3, "Station3", 500, 300, 10, Color::Red);
+Station station1_4(4, "Station4", 700, 300, 10, Color::Red);
+Station station1_5(5, "Station5", 900, 300, 10, Color::Red);
+Station station1_6(6, "Station6", 1100, 300, 10, Color::Red);
 
-            }
-            if (end_pos_y > rame.get_position_y())
-            {
-                rame.moveBas();
-                rame.set_position_y(rame.get_position_y() + 1);
-            }
-        }
-        if (rame.get_position_y() == end_pos_y)
-        {
-            if (end_pos_x < rame.get_position_x())
-            {
-                rame.moveGauche();
-                rame.set_position_x(rame.get_position_x() - 1);
-            }
-            if (end_pos_x > rame.get_position_x())
-            {
-                rame.moveDroite();
-                rame.set_position_x(rame.get_position_x() + 1);
-            }
-        }
-        else
-        {
-            if (end_pos_y < rame.get_position_y() && end_pos_x > rame.get_position_x())
-            {
-                rame.moveDiagonalHautDroite();
-                rame.set_position_y(rame.get_position_y() - 1);
-                rame.set_position_x(rame.get_position_x() + 1);
-            }
-            if (end_pos_y > rame.get_position_y() && end_pos_x > rame.get_position_x())
-            {
-                rame.moveDiagonalBasDroite();
-                rame.set_position_y(rame.get_position_y() + 1);
-                rame.set_position_x(rame.get_position_x() + 1);
-            }
-            if (end_pos_y < rame.get_position_y() && end_pos_x < rame.get_position_x())
-            {
-                rame.moveDiagonalHautGauche();
-                rame.set_position_y(rame.get_position_y() - 1);
-                rame.set_position_x(rame.get_position_x() - 1);
-            }
-            if (end_pos_y > rame.get_position_y() && end_pos_x < rame.get_position_x())
-            {
-                rame.moveDiagonalBasGauche();
-                rame.set_position_y(rame.get_position_y() + 1);
-                rame.set_position_x(rame.get_position_x() - 1);
-                
-            }
-        }
-        //temps attente entre opérations
-        this_thread::sleep_for(chrono::milliseconds(10)); // Adjust the sleep duration
-    }
-}
+//L2
+Station station2_1(1, "Station1", 100, 600, 10, Color::Yellow);
+Station station2_2(2, "Station2", 300, 600, 10, Color::Yellow);
+Station station2_3(3, "Station3", 500, 600, 10, Color::Yellow);
+Station station2_4(4, "Station4", 700, 600, 10, Color::Yellow);
+Station station2_5(5, "Station5", 900, 600, 10, Color::Yellow);
+Station station2_6(6, "Station6", 1100, 600, 10, Color::Yellow);
+Station station2_7(7, "Station6", 1300, 600, 10, Color::Yellow);
 
-
-Rame get_rames_apres(vector<Rame>& liste ,Rame& rame) {
-    int i = 0;//recupere l'indice du rame dans la liste 
-    while (liste[i].get_numero() == rame.get_numero())
-    {
-        i++;
-    }
-
-    if (i==0)
-    {
-        return liste.back();
-        //rame_avant_apres[1] = liste[i + 1];
-        //return rame_avant_apres;
-    }
-    if (i == liste.size()) {
-        //rame_avant_apres[1] = *liste.begin();
-        return liste[i - 1];
-        //return rame_avant_apres;
-    }
-    else
-    {
-        return liste[i - 1];
-        //rame_avant_apres[1] = liste[i + 1];
-        //return rame_avant_apres;
-    }
-}
+//on regroupe les stations des lignes dans des tableau
+vector<Station> listeStationsl1 = { station1_1, station1_2, station1_3, station1_4, station1_5, station1_6 };
+vector<Station> listeStationsl2 = { station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7 };
 
 int main()
 {
     //apparition de la fenetre
     RenderWindow window(VideoMode(1500, 800), "VAL");
-
-    //rond 1
-    Station station1(1, "Station1", 200, 200, 10); //classe station
-    station1.setRepr(); //on set la représentation graphique
-
-    //rond 2
-    Station station2(2, "Station2", 700, 200, 10); //classe station
-    station2.setRepr(); //on set la représentation graphique
-
-    //rond 3 de test
-    Station station3(3, "Station3", 750, 400, 10);
-    station3.setRepr();
-
-    //rame1
-    Rame rame1(station3,0);
-    Rame rame2(station3, 1);
-    Rame rame3(station3, 2);
-    Rame rame4(station3, 3);
-    //rame1.setRepr();
-
-    //route1
-    Route route1(1, station1, station2);
-    route1.setRepr();
     
+    Rame rame1(station1_3, 0);
+    Rame rame2(station1_3, 1);
+    Rame rame3(station1_3, 2);
+    Rame rame4(station1_3, 3);
+
     //threads gestion
     //test1 : ligne vers la droite
     //thread thread1(moveRame, ref(rame1), 1000, 400);
@@ -175,14 +90,28 @@ int main()
             }
         }
         window.clear(Color::White);
-        window.draw(station1.getRepr());
-        window.draw(station2.getRepr());
-        window.draw(station3.getRepr());
-        window.draw(route1.getRepr());
-        //window.draw(triangle);
-        //window.draw(triangle2);
+        //PARTIE AFFICHAGE DES STATIONS + ROUTES
+        for (int i = 0; i < listeStationsl1.size(); i++) {
+            listeStationsl1[i].setRepr();
+            if (i != listeStationsl1.size() - 1) {
+                Route route(i + 1, listeStationsl1[i], listeStationsl1[i + 1], Color::Red);
+                route.setRepr();
+                window.draw(route.getRepr());
+            }
+            window.draw(listeStationsl1[i].getRepr());
+        }
+
+        for (int i = 0; i < listeStationsl2.size(); i++) {
+            listeStationsl2[i].setRepr();
+            if (i != listeStationsl2.size() - 1) {
+                Route route(i + 1, listeStationsl2[i], listeStationsl2[i + 1], Color::Yellow);
+                route.setRepr();
+                window.draw(route.getRepr());
+            }
+            window.draw(listeStationsl2[i].getRepr());
+        }
+
         window.draw(rame1.getRepr());
-        //window.draw(rame2.getRepr());
 
         window.display();
     }
