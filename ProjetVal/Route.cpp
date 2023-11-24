@@ -15,7 +15,6 @@ Route::Route(int id, Station station1, Station station2) {
 	station2_x = station2.getPositionX();
 	station2_y = station2.getPositionY();
 	longueur = station2_x - station1_x;
-	//longueur = sqrt(((int)station2_x - (int)station1_x)^2 + ((int)station1_y - (int)station2_y)^2);
 }
 
 int Route::get_id_voie() {
@@ -28,8 +27,14 @@ int Route::get_longueur() {
 
 void Route::setRepr() {
 	representation.setSize(Vector2f(longueur, epaisseur));
-	representation.setPosition(station1_x, station1_y);
+	representation.setPosition(station1_x, station1_y + 10);
 	representation.setFillColor(Color::Red);
+}
+
+void Route::setReprRetour() {
+	representation.setSize(Vector2f(longueur, epaisseur));
+	representation.setPosition(station1_x, station1_y - 20);
+	representation.setFillColor(Color::Green);
 }
 
 RectangleShape Route::getRepr() {

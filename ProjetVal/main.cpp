@@ -100,8 +100,11 @@ int main()
     Rame rame1(station3);
     rame1.setRepr();
 
-    Route route1(1, station1, station2);
-    route1.setRepr();
+    Route route1_allé(1, station1, station2);
+    route1_allé.setRepr();
+
+    Route route1_retour(9, station1, station2);
+    route1_retour.setReprRetour();
     
     //threads gestion
     //test1 : ligne vers la droite
@@ -141,7 +144,8 @@ int main()
         window.draw(station1.getRepr());
         window.draw(station2.getRepr());
         window.draw(station3.getRepr());
-        window.draw(route1.getRepr());
+        window.draw(route1_allé.getRepr());
+        window.draw(route1_retour.getRepr());
         //window.draw(triangle);
         //window.draw(triangle2);
         window.draw(rame1.getRepr());
