@@ -37,14 +37,21 @@ int main()
     //apparition de la fenetre
     RenderWindow window(VideoMode(1500, 800), "VAL");
     
-    Rame rame1(station1_3, 0);
-    Rame rame2(station1_3, 1);
-    Rame rame3(station1_3, 2);
-    Rame rame4(station1_3, 3);
+    Rame rame1(station1_3, 1);
+    Rame rame2(station1_3, 2);
+    Rame rame3(station1_3, 3);
+    Rame rame4(station1_3, 4);
 
+    std::cout << "rame3_x " << rame3.get_position_x() << endl;
+    std::cout << "rame3_y " << rame3.get_position_y() << endl;
+    rame3.set_position_x(station1_6.getPositionX());
+    rame3.set_position_y(station1_6.getPositionY());
+
+    std::cout << "rame3_x " << rame3.get_position_x() << endl;
+    std::cout << "rame3_y " << rame3.get_position_y() << endl;
     //threads gestion
     //test1 : ligne vers la droite
-    //thread thread1(moveRame, ref(rame1), 1000, 400);
+    thread thread1(moveRame, ref(rame1), 700, 300);
 
     //test2 : ligne vers la gauche
     //thread thread1(moveRame, ref(rame1), 500, 400);
@@ -56,7 +63,7 @@ int main()
     //thread thread1(moveRame, ref(rame1), 750, 600);
 
     //test5 : ligne haut/droite
-    thread thread1(moveRame, ref(rame1), 1000, 200);
+    //thread thread1(moveRame, ref(rame1), 1000, 200);
 
     //test6 : ligne haut/gauche
     //thread thread1(moveRame, ref(rame1), 500, 200);
@@ -67,16 +74,26 @@ int main()
     //test8 : ligne bas/droite 
     //thread thread1(moveRame, ref(rame1), 1000, 600);
 
+    std::cout << "mon tableau de rames" << endl;
 
     vector<Rame> rames_sur_ligne_1 = { rame1, rame2, rame3, rame4 };
     for (int i = 0; i < rames_sur_ligne_1.size(); i++)
     {
         cout << rames_sur_ligne_1[i].get_numero() << "||";
     }
-    cout << endl;
-    cout << get_rames_apres(rames_sur_ligne_1, rame2).get_numero();
 
-    
+    std::cout << "numero de rame qui est apres la rame 1 " << endl;
+
+    cout << endl;
+    cout << get_rames_apres(rames_sur_ligne_1, rame1).get_numero();
+    cout << endl;
+    std::cout << "vitesses" << endl;
+
+    cout << rame2.get_vitesse();
+    cout << endl;
+    acceleration(rames_sur_ligne_1, rame2);
+    cout << rame2.get_vitesse();
+    cout << endl;
 
 
 

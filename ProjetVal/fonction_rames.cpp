@@ -1,3 +1,4 @@
+#include <iostream>
 #include "fonction_rames.hpp"
 
 void moveRame(Rame& rame, float end_pos_x, float end_pos_y) {
@@ -70,7 +71,8 @@ Rame get_rames_apres(vector<Rame>& liste, Rame& rame) {
     {
         i++;
     }
-
+    //i++;
+    //std::cout << i;
     if (i == 0)
     {
         return liste.back();
@@ -87,5 +89,28 @@ Rame get_rames_apres(vector<Rame>& liste, Rame& rame) {
         return liste[i - 1];
         //rame_avant_apres[1] = liste[i + 1];
         //return rame_avant_apres;
+    }
+}
+
+void acceleration(vector<Rame>& liste, Rame& rame) {
+    std::cout << "acceleration" << endl;
+    Rame rame_apres = get_rames_apres(liste, rame);
+    std::cout << "rame_id " << rame_apres.get_numero() << endl;
+
+    std::cout << "rame3x " << rame_apres.get_position_x()<< endl;
+    std::cout << "rame3y " << rame_apres.get_position_y() << endl;
+    std::cout << "rame2x " << rame.get_position_x() << endl;
+    std::cout << "rame2y " << rame.get_position_y() << endl;
+    float distance_rame1_2_x = rame_apres.get_position_x() - rame.get_position_x();
+    std::cout << "distance_x " << distance_rame1_2_x << endl;
+
+    float distance_rame1_2_y = rame_apres.get_position_y() - rame.get_position_y();
+    std::cout << "distance_y " << distance_rame1_2_y << endl;
+
+    float distance = (distance_rame1_2_x * distance_rame1_2_x) + (distance_rame1_2_y * distance_rame1_2_y);
+    std::cout << "distance "<<distance<<endl;
+    if (distance > 2 * rame.get_distance_arret_urgence())
+    {
+        rame.vitesse_plus(30);
     }
 }

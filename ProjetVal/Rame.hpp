@@ -19,8 +19,8 @@ public:
 	//setter
 	void set_numero(int nb);
 	void set_vitesse(int v);
-	void set_position_x(int x);
-	void set_position_y(int y);
+	void set_position_x(float x);
+	void set_position_y(float y);
 	void set_passagers(int nb);
 	void set_distance_arret_urgence(int dis);
 	void set_poids(int p);
