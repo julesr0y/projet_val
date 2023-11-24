@@ -1,11 +1,10 @@
 #include "Route.hpp"
+#include <cmath>
 
 using namespace std;
 using namespace sf;
 
-Route::Route() {
-
-}
+Route::Route() {}
 
 Route::Route(int id, Station station1, Station station2) {
 	id_voie = id;
@@ -16,6 +15,7 @@ Route::Route(int id, Station station1, Station station2) {
 	station2_x = station2.getPositionX();
 	station2_y = station2.getPositionY();
 	longueur = station2_x - station1_x;
+	//longueur = sqrt(((int)station2_x - (int)station1_x)^2 + ((int)station1_y - (int)station2_y)^2);
 }
 
 int Route::get_id_voie() {
