@@ -1,6 +1,8 @@
 #include "fonction_rames.hpp"
 
-void moveRame(Rame& rame, float end_pos_x, float end_pos_y) {
+void moveRame(Rame& rame, Station& destination) {
+    float end_pos_x = destination.getPositionX();
+    float end_pos_y = destination.getPositionY();
     //cout << "(" << rame.get_position_x() << ";" << rame.get_position_y() << ")" << endl;
     while ((rame.get_position_x() != end_pos_x) || (rame.get_position_y() != end_pos_y)) {
         if (rame.get_position_x() == end_pos_x)

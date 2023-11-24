@@ -44,28 +44,28 @@ int main()
 
     //threads gestion
     //test1 : ligne vers la droite
-    //thread thread1(moveRame, ref(rame1), 1000, 400);
+    thread thread1(moveRame, ref(rame1), ref(station1_6));
 
     //test2 : ligne vers la gauche
-    //thread thread1(moveRame, ref(rame1), 500, 400);
+    //thread thread1(moveRame, ref(rame1), ref(station1_2));
 
     //test3 : ligne vers le haut
-    //thread thread1(moveRame, ref(rame1), 750, 200);
+    //thread thread1(moveRame, ref(rame1), ref(station1_4));
 
     //test4 : ligne vers le bas
-    //thread thread1(moveRame, ref(rame1), 750, 600);
+    //thread thread1(moveRame, ref(rame1), ref(station1_4));
 
     //test5 : ligne haut/droite
-    thread thread1(moveRame, ref(rame1), 1000, 200);
+    //thread thread1(moveRame, ref(rame1), ref(station1_4));
 
     //test6 : ligne haut/gauche
-    //thread thread1(moveRame, ref(rame1), 500, 200);
+    //thread thread1(moveRame, ref(rame1), ref(station1_4));
 
     //test7 : ligne bas/gauche
-    //thread thread1(moveRame, ref(rame1), 500, 600);
+    //thread thread1(moveRame, ref(rame1), ref(station2_7));
 
     //test8 : ligne bas/droite 
-    //thread thread1(moveRame, ref(rame1), 1000, 600);
+    //thread thread1(moveRame, ref(rame1), ref(station2_3));
 
 
     vector<Rame> rames_sur_ligne_1 = { rame1, rame2, rame3, rame4 };
