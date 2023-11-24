@@ -7,13 +7,14 @@ class Rame
 {
 public:
 	Rame(Station station_depart);//constructeur
+	Rame(Station station_depart,int numero);
 	Rame();
 	~Rame();//destructeur
 
 
 	//methodes de la class
-	void acceleration(int pourcentage);
-	void deceleration(int pourcentage);
+	void vitesse_plus(int pourcentage);
+	void vitesse_moins(int pourcentage);
 
 	//setter
 	void set_numero(int nb);
