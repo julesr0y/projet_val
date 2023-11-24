@@ -10,7 +10,7 @@ using namespace sf;
 
 //fonctions des threads
 void moveRame(Rame& rame, float end_pos_x, float end_pos_y) {
-    cout << "(" << rame.get_position_x() << ";" << rame.get_position_y() << ")" << endl;
+    //cout << "(" << rame.get_position_x() << ";" << rame.get_position_y() << ")" << endl;
     while ((rame.get_position_x() != end_pos_x) || (rame.get_position_y() != end_pos_y)) {
         if (rame.get_position_x() == end_pos_x)
         {
@@ -73,30 +73,29 @@ void moveRame(Rame& rame, float end_pos_x, float end_pos_y) {
 }
 
 
-vector<Rame> get_rames_avant_apres(vector<Rame>liste ,Rame& rame) {
+Rame get_rames_apres(vector<Rame>& liste ,Rame& rame) {
     int i = 0;//recupere l'indice du rame dans la liste 
-    vector<Rame> rame_avant_apres(2);
-    while (liste[i].get_numero() == rame.get_numero() || i <= liste.size())
+    while (liste[i].get_numero() == rame.get_numero())
     {
         i++;
     }
 
     if (i==0)
     {
-        rame_avant_apres[0]= *liste.end() ;
-        rame_avant_apres[1] = liste[i + 1];
-        return rame_avant_apres;
+        return liste.back();
+        //rame_avant_apres[1] = liste[i + 1];
+        //return rame_avant_apres;
     }
     if (i == liste.size()) {
-        rame_avant_apres[1] = *liste.begin();
-        rame_avant_apres[0] = liste[i - 1];
-        return rame_avant_apres;
+        //rame_avant_apres[1] = *liste.begin();
+        return liste[i - 1];
+        //return rame_avant_apres;
     }
     else
     {
-        rame_avant_apres[0] = liste[i - 1];
-        rame_avant_apres[1] = liste[i + 1];
-        return rame_avant_apres;
+        return liste[i - 1];
+        //rame_avant_apres[1] = liste[i + 1];
+        //return rame_avant_apres;
     }
 }
 
@@ -130,7 +129,7 @@ int main()
     
     //threads gestion
     //test1 : ligne vers la droite
-    thread thread1(moveRame, ref(rame1), 1000, 400);
+    //thread thread1(moveRame, ref(rame1), 1000, 400);
 
     //test2 : ligne vers la gauche
     //thread thread1(moveRame, ref(rame1), 500, 400);
@@ -142,7 +141,7 @@ int main()
     //thread thread1(moveRame, ref(rame1), 750, 600);
 
     //test5 : ligne haut/droite
-    //thread thread1(moveRame, ref(rame1), 1000, 200);
+    thread thread1(moveRame, ref(rame1), 1000, 200);
 
     //test6 : ligne haut/gauche
     //thread thread1(moveRame, ref(rame1), 500, 200);
@@ -154,20 +153,13 @@ int main()
     //thread thread1(moveRame, ref(rame1), 1000, 600);
 
 
-    vector<Rame> rames_sur_ligne_1(4);
-    rames_sur_ligne_1[0] = rame1;
-    rames_sur_ligne_1[1] = rame2;
-    rames_sur_ligne_1[2] = rame3;
-    rames_sur_ligne_1[3] = rame4;
-    for (size_t i = 0; i <rames_sur_ligne_1.size(); i++)
+    vector<Rame> rames_sur_ligne_1 = { rame1, rame2, rame3, rame4 };
+    for (int i = 0; i < rames_sur_ligne_1.size(); i++)
     {
         cout << rames_sur_ligne_1[i].get_numero() << "||";
     }
     cout << endl;
-    for (size_t i = 0; i < get_rames_avant_apres(rames_sur_ligne_1, rame2).size(); i++)
-    {
-        cout << get_rames_avant_apres(rames_sur_ligne_1, rame2)[i].get_numero() << "||";
-    }
+    cout << get_rames_apres(rames_sur_ligne_1, rame2).get_numero();
 
     
 
