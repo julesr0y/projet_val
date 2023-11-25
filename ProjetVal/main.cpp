@@ -37,10 +37,10 @@ int main()
     //apparition de la fenetre
     RenderWindow window(VideoMode(1500, 800), "VAL");
     
-    Rame rame1(station1_3, 0);
-    Rame rame2(station1_3, 1);
-    Rame rame3(station1_3, 2);
-    Rame rame4(station1_3, 3);
+    Rame rame1(station1_1, 1);
+    Rame rame2(station1_1, 2);
+    Rame rame3(station1_1, 3);
+    Rame rame4(station1_1, 4);
 
     //threads gestion
     //test1 : ligne vers la droite

@@ -48,7 +48,7 @@ void Rame::vitesse_moins(int pourcentage) {
 
 
 //les setters
-void Rame::set_distance_arret_urgence(int dis) {
+void Rame::set_distance_arret_urgence(float dis) {
 	distance_arret_urgence = dis;
 }
 
@@ -69,11 +69,11 @@ void Rame::set_position_y(int y) {
 	position_y = y;
 }
 
-void Rame::set_vitesse(int v) {
+void Rame::set_vitesse(float v) {
 	vitesse = v;
 }
 
-void Rame::set_poids(int p) {
+void Rame::set_poids(float p) {
 	poids = p;
 }
 
