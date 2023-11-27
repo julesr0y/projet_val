@@ -1,12 +1,40 @@
 #include "fonction_rames.hpp"
+#include <iostream>
 
 void moveRame(Rame& rame, Station& destination) {
     float end_pos_x = destination.getPositionX();
     float end_pos_y = destination.getPositionY();
+    float distance_x = end_pos_x - rame.get_position_x();
+    float distance_y = end_pos_y - rame.get_position_y();
+    const float distance = abs(distance_x * distance_x + distance_y * distance_y);
+    int v;
     //cout << "(" << rame.get_position_x() << ";" << rame.get_position_y() << ")" << endl;
     while ((rame.get_position_x() != end_pos_x) || (rame.get_position_y() != end_pos_y)) {
+        distance_x = end_pos_x - rame.get_position_x();
+        distance_y = end_pos_y - rame.get_position_y();
+        float distance_var = abs(distance_x * distance_x + distance_y * distance_y);
+        if (distance_var>=(1/3)* distance)
+        {
+            std::cout << 1 / 3 << endl;
+            v = 1;
+            //rame.set_vitesse(1);
+        }
+        if (distance_var <= (1 / 3) * distance && distance_var >= (2 / 3) * distance)
+        {
+            std::cout << 2 / 3 << endl;
+            v = 10;
+            //rame.set_vitesse(10);
+        }
+        if (distance_var <= (2/ 3) * distance && distance_var >=distance)
+        {
+            std::cout << 1  << endl;
+            v = 1000;
+            //rame.set_vitesse(1000);
+        }
+
         if (rame.get_position_x() == end_pos_x)
         {
+            
             if (end_pos_y < rame.get_position_y())
             {
                 rame.moveHaut();
@@ -61,7 +89,7 @@ void moveRame(Rame& rame, Station& destination) {
             }
         }
         //temps attente entre opérations
-        this_thread::sleep_for(chrono::milliseconds(10)); // Adjust the sleep duration
+        this_thread::sleep_for(chrono::milliseconds(v)); // Adjust the sleep duration
     }
 }
 

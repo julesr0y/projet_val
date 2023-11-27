@@ -35,6 +35,7 @@ public:
 	float get_distance_arret_urgence();
 	int get_poids();
 	ConvexShape getRepr();
+	int get_vitesse_int();
 
 	//gestion des déplacements
 	void moveDroite();
@@ -51,7 +52,7 @@ private:
 	float centre_y;
 	float taille_cote = 25;
 	int numero;
-	float vitesse;
+	float vitesse = 10;
 	int terminus;
 	float position_x;
 	float position_y;

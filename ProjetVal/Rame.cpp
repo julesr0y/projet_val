@@ -61,11 +61,11 @@ void Rame::set_passagers(int nb) {
 }
 
 
-void Rame::set_position_x(float x) {
+void Rame::set_position_x(int x) {
 	position_x = x;
 }
 
-void Rame::set_position_y(float y) {
+void Rame::set_position_y(int y) {
 	position_y = y;
 }
 
