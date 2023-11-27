@@ -3,26 +3,40 @@
 
 #include "Station.hpp"
 
-class Rame
-{
+class Rame {
+private:
+	float centre_x;
+	float centre_y;
+	float taille_cote = 25;
+	int numero;
+	float vitesse = 10;
+	int terminus;
+	float position_x;
+	float position_y;
+	int nb_passagers;
+	float distance_arret_urgence;
+	float poids;
+	ConvexShape representation;
+
 public:
 	Rame(Station station_depart);//constructeur
+	Rame(Station station_depart,int numero);
 	Rame();
 	~Rame();//destructeur
 
 
 	//methodes de la class
-	void acceleration(int pourcentage);
-	void deceleration(int pourcentage);
+	void vitesse_plus(int pourcentage);
+	void vitesse_moins(int pourcentage);
 
 	//setter
 	void set_numero(int nb);
-	void set_vitesse(int v);
+	void set_vitesse(float v);
 	void set_position_x(int x);
 	void set_position_y(int y);
 	void set_passagers(int nb);
-	void set_distance_arret_urgence(int dis);
-	void set_poids(int p);
+	void set_distance_arret_urgence(float dis);
+	void set_poids(float p);
 	void setRepr();
 
 	//getters
@@ -34,6 +48,7 @@ public:
 	float get_distance_arret_urgence();
 	int get_poids();
 	ConvexShape getRepr();
+	int get_vitesse_int();
 
 	//gestion des déplacements
 	void moveDroite();
@@ -44,24 +59,6 @@ public:
 	void moveDiagonalHautGauche();
 	void moveDiagonalBasDroite();
 	void moveDiagonalBasGauche();
-
-
-	//move des triangle entre entre 2 pos
-	//void move_toi(int x_start, int y_start, int x_end, int y_end);
-
-private:
-	float centre_x;
-	float centre_y;
-	float taille_cote = 25;
-	int numero;
-	float vitesse;
-	int terminus;
-	float position_x;
-	float position_y;
-	int nb_passagers;
-	float distance_arret_urgence;
-	int poids;
-	ConvexShape representation;
 };
 
 #endif RAME_H

@@ -1,12 +1,11 @@
 #include "Route.hpp"
-#include <cmath>
 
 using namespace std;
 using namespace sf;
 
 Route::Route() {}
 
-Route::Route(int id, Station station1, Station station2) {
+Route::Route(int id, Station station1, Station station2, Color color) {
 	id_voie = id;
 	station_depart = station1;
 	station_arrivee = station2;
@@ -15,6 +14,7 @@ Route::Route(int id, Station station1, Station station2) {
 	station2_x = station2.getPositionX();
 	station2_y = station2.getPositionY();
 	longueur = station2_x - station1_x;
+	couleur = color;
 }
 
 int Route::get_id_voie() {
@@ -28,13 +28,13 @@ int Route::get_longueur() {
 void Route::setRepr() {
 	representation.setSize(Vector2f(longueur, epaisseur));
 	representation.setPosition(station1_x, station1_y + 10);
-	representation.setFillColor(Color::Red);
+	representation.setFillColor(couleur);
 }
 
 void Route::setReprRetour() {
 	representation.setSize(Vector2f(longueur, epaisseur));
-	representation.setPosition(station1_x, station1_y - 20);
-	representation.setFillColor(Color::Green);
+	representation.setPosition(station1_x, station1_y - 10);
+	representation.setFillColor(couleur);
 }
 
 RectangleShape Route::getRepr() {
