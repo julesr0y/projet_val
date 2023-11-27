@@ -1,7 +1,8 @@
-#include <iostream>
 #include "fonction_rames.hpp"
 
-void moveRame(Rame& rame, float end_pos_x, float end_pos_y) {
+void moveRame(Rame& rame, Station& destination) {
+    float end_pos_x = destination.getPositionX();
+    float end_pos_y = destination.getPositionY();
     //cout << "(" << rame.get_position_x() << ";" << rame.get_position_y() << ")" << endl;
     while ((rame.get_position_x() != end_pos_x) || (rame.get_position_y() != end_pos_y)) {
         if (rame.get_position_x() == end_pos_x)
@@ -60,14 +61,14 @@ void moveRame(Rame& rame, float end_pos_x, float end_pos_y) {
             }
         }
         //temps attente entre opérations
-        this_thread::sleep_for(chrono::milliseconds(rame.get_vitesse_int())); // Adjust the sleep duration
+        this_thread::sleep_for(chrono::milliseconds(10)); // Adjust the sleep duration
     }
 }
 
 
 Rame get_rames_apres(vector<Rame>& liste, Rame& rame) {
     int i = 0;//recupere l'indice du rame dans la liste
-
+    
     //tant que le numéro dans la liste ne correspond pas au numéro de la rame actuelle
     while (liste[i].get_numero() != rame.get_numero())
     {
@@ -81,23 +82,5 @@ Rame get_rames_apres(vector<Rame>& liste, Rame& rame) {
     else
     {
         return liste[i - 1]; //sinon, on récupère l'élément d'indice moins un
-    }
-}
-
-void acceleration(Station& station, Rame& rame) {
-    std::cout << "acceleration" << endl;
-    std::cout << "rame_x " << rame.get_position_x() << endl;
-    std::cout << "rame_y " << rame.get_position_y() << endl;
-    float distance_rame1_2_x = station.getPositionX() - rame.get_position_x();
-    std::cout << "distance_x " << distance_rame1_2_x << endl;
-
-    float distance_rame1_2_y = station.getPositionY() - rame.get_position_y();
-    std::cout << "distance_y " << distance_rame1_2_y << endl;
-
-    float distance = (distance_rame1_2_x * distance_rame1_2_x) + (distance_rame1_2_y * distance_rame1_2_y);
-    std::cout << "distance "<<distance<<endl;
-    if (distance > 2 * rame.get_distance_arret_urgence())
-    {
-        rame.set_vitesse(10000);
     }
 }

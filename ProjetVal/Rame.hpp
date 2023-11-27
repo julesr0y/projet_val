@@ -18,12 +18,12 @@ public:
 
 	//setter
 	void set_numero(int nb);
-	void set_vitesse(int v);
-	void set_position_x(float x);
-	void set_position_y(float y);
+	void set_vitesse(float v);
+	void set_position_x(int x);
+	void set_position_y(int y);
 	void set_passagers(int nb);
-	void set_distance_arret_urgence(int dis);
-	void set_poids(int p);
+	void set_distance_arret_urgence(float dis);
+	void set_poids(float p);
 	void setRepr();
 
 	//getters
@@ -34,7 +34,6 @@ public:
 	int  get_passagers();
 	float get_distance_arret_urgence();
 	int get_poids();
-	int get_vitesse_int();
 	ConvexShape getRepr();
 
 	//gestion des déplacements
@@ -47,10 +46,6 @@ public:
 	void moveDiagonalBasDroite();
 	void moveDiagonalBasGauche();
 
-
-	//move des triangle entre entre 2 pos
-	//void move_toi(int x_start, int y_start, int x_end, int y_end);
-
 private:
 	float centre_x;
 	float centre_y;
@@ -62,7 +57,7 @@ private:
 	float position_y;
 	int nb_passagers;
 	float distance_arret_urgence;
-	int poids;
+	float poids;
 	ConvexShape representation;
 };
 

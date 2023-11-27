@@ -1,6 +1,5 @@
 #include "Rame.hpp"
 #include <thread>
 
-void moveRame(Rame& rame, float end_pos_x, float end_pos_y);
+void moveRame(Rame& rame, Station& destination);
 Rame get_rames_apres(vector<Rame>& liste, Rame& rame);
-void acceleration(Station& station, Rame& rame);
