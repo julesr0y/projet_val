@@ -38,35 +38,15 @@ int main()
     RenderWindow window(VideoMode(1500, 800), "VAL");
     
     Rame rame1(station1_1, 1);
-    Rame rame2(station1_2, 2);
+    Rame rame2(station1_3, 2);
     Rame rame3(station1_1, 3);
     Rame rame4(station1_1, 4);
 
     //threads gestion
     //test1 : ligne vers la droite
-    thread thread1(moveRame, ref(rame1), ref(station1_5));
-    thread thread2(moveRame, ref(rame2), ref(station1_6));
-    //test2 : ligne vers la gauche
-    //thread thread1(moveRame, ref(rame1), ref(station1_2));
 
-    //test3 : ligne vers le haut
-    //thread thread1(moveRame, ref(rame1), ref(station1_4));
-
-    //test4 : ligne vers le bas
-    //thread thread1(moveRame, ref(rame1), ref(station1_4));
-
-    //test5 : ligne haut/droite
-    //thread thread1(moveRame, ref(rame1), ref(station1_4));
-
-    //test6 : ligne haut/gauche
-    //thread thread1(moveRame, ref(rame1), ref(station1_4));
-
-    //test7 : ligne bas/gauche
-    //thread thread1(moveRame, ref(rame1), ref(station2_7));
-
-    //test8 : ligne bas/droite 
-    //thread thread1(moveRame, ref(rame1), ref(station2_3));
-
+    thread thread1(moveRame, ref(rame1), ref(station1_2), station1_2.getPositionX() - rame1.get_position_x());
+    //thread thread2(moveRame, ref(rame2), ref(station1_4), station1_4.getPositionX() - rame2.get_position_x());
 
     vector<Rame> rames_sur_ligne_1 = { rame1, rame2, rame3, rame4 };
     for (int i = 0; i < rames_sur_ligne_1.size(); i++)
@@ -77,9 +57,6 @@ int main()
     cout << get_rames_apres(rames_sur_ligne_1, rame2).get_numero();
 
     
-
-
-
     while (window.isOpen())
     {
         Event event;
@@ -119,7 +96,7 @@ int main()
 
     //destruction des threads
     thread1.join();
-    thread2.join();
+    //thread2.join();
 
     return 0;
 }

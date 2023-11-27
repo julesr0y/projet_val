@@ -29,6 +29,7 @@ public:
 	//bool estVide();
 	void setRepr();
 	CircleShape getRepr();
+	void setNbPassagers(int nb);
 };
 
 #endif STATION_H

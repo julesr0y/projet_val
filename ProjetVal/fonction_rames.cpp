@@ -1,35 +1,33 @@
 #include "fonction_rames.hpp"
 #include <iostream>
+#include <vector>
 
-void moveRame(Rame& rame, Station& destination) {
+using namespace std;
+
+void moveRame(Rame& rame, Station& destination, float distance_totale) {
     float end_pos_x = destination.getPositionX();
     float end_pos_y = destination.getPositionY();
     float distance_x = end_pos_x - rame.get_position_x();
     float distance_y = end_pos_y - rame.get_position_y();
-    const float distance = abs(distance_x * distance_x + distance_y * distance_y);
     int v;
     //cout << "(" << rame.get_position_x() << ";" << rame.get_position_y() << ")" << endl;
     while ((rame.get_position_x() != end_pos_x) || (rame.get_position_y() != end_pos_y)) {
         distance_x = end_pos_x - rame.get_position_x();
         distance_y = end_pos_y - rame.get_position_y();
-        float distance_var = abs(distance_x * distance_x + distance_y * distance_y);
-        if (distance_var>=(1/3)* distance)
+        float distance_var = abs(distance_x);
+        if (distance_var >= (2.0 / 3.0) * distance_totale)
         {
-            std::cout << 1 / 3 << endl;
+            cout << "acceleration" << endl;
             v = 1;
-            //rame.set_vitesse(1);
         }
-        if (distance_var <= (1 / 3) * distance && distance_var >= (2 / 3) * distance)
+        else if (distance_var >= (1.0 / 3.0) * distance_totale)
         {
-            std::cout << 2 / 3 << endl;
+            cout << "constant" << endl;
             v = 10;
-            //rame.set_vitesse(10);
         }
-        if (distance_var <= (2/ 3) * distance && distance_var >=distance)
-        {
-            std::cout << 1  << endl;
-            v = 1000;
-            //rame.set_vitesse(1000);
+        else {
+            cout << "freinage" << endl;
+            v = 30;
         }
 
         if (rame.get_position_x() == end_pos_x)

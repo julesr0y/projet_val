@@ -43,3 +43,7 @@ void Station::setRepr() {
 CircleShape Station::getRepr() {
 	return representation;
 }
+
+void Station::setNbPassagers(int nb) {
+	nb_passagers = nb;
+}
