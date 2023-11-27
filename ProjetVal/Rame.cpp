@@ -116,6 +116,10 @@ ConvexShape Rame::getRepr() {
 	return representation;
 }
 
+int Rame::get_vitesse_int() {
+	return (int)vitesse;
+}
+
 //les moves 
 void Rame::moveDroite() {
 	representation.move(vitesse, 0);

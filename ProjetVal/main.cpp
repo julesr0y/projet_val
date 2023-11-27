@@ -37,22 +37,15 @@ int main()
     //apparition de la fenetre
     RenderWindow window(VideoMode(1500, 800), "VAL");
     
-    Rame rame1(station1_3, 1);
-    Rame rame2(station1_3, 2);
+    Rame rame1(station1_1, 1);
+    Rame rame2(station1_2, 2);
     Rame rame3(station1_3, 3);
     Rame rame4(station1_3, 4);
 
-    std::cout << "rame3_x " << rame3.get_position_x() << endl;
-    std::cout << "rame3_y " << rame3.get_position_y() << endl;
-    rame3.set_position_x(station1_6.getPositionX());
-    rame3.set_position_y(station1_6.getPositionY());
-
-    std::cout << "rame3_x " << rame3.get_position_x() << endl;
-    std::cout << "rame3_y " << rame3.get_position_y() << endl;
     //threads gestion
     //test1 : ligne vers la droite
-    thread thread1(moveRame, ref(rame1), 700, 300);
-
+    thread thread1(moveRame, ref(rame1), station1_6.getPositionX(), station1_6.getPositionY());
+    thread thread2(moveRame, ref(rame2), station1_5.getPositionX(), station1_5.getPositionY());
     //test2 : ligne vers la gauche
     //thread thread1(moveRame, ref(rame1), 500, 400);
 
@@ -91,7 +84,7 @@ int main()
 
     cout << rame2.get_vitesse();
     cout << endl;
-    acceleration(rames_sur_ligne_1, rame2);
+    acceleration(station1_6, rame2);
     cout << rame2.get_vitesse();
     cout << endl;
 
@@ -106,7 +99,7 @@ int main()
                 window.close();
             }
         }
-        window.clear(Color::White);
+        window.clear(Color::Black);
         //PARTIE AFFICHAGE DES STATIONS + ROUTES
         for (int i = 0; i < listeStationsl1.size(); i++) {
             listeStationsl1[i].setRepr();
@@ -128,13 +121,17 @@ int main()
             window.draw(listeStationsl2[i].getRepr());
         }
 
-        window.draw(rame1.getRepr());
+        //window.draw(rame1.getRepr());
+        //window.draw(rame1.getRepr());
+        rame2.setRepr();
+        window.draw(rame2.getRepr());
 
         window.display();
     }
 
     //destruction des threads
     thread1.join();
+    thread2.join();
 
     return 0;
 }

@@ -34,6 +34,7 @@ public:
 	int  get_passagers();
 	float get_distance_arret_urgence();
 	int get_poids();
+	int get_vitesse_int();
 	ConvexShape getRepr();
 
 	//gestion des déplacements
