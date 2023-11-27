@@ -38,15 +38,15 @@ int main()
     RenderWindow window(VideoMode(1500, 800), "VAL");
     
     Rame rame1(station1_1, 1);
-    Rame rame2(station1_3, 2);
+    Rame rame2(station2_1, 2);
     Rame rame3(station1_1, 3);
     Rame rame4(station1_1, 4);
 
     //threads gestion
     //test1 : ligne vers la droite
 
-    thread thread1(moveRame, ref(rame1), ref(station1_2), station1_2.getPositionX() - rame1.get_position_x());
-    //thread thread2(moveRame, ref(rame2), ref(station1_4), station1_4.getPositionX() - rame2.get_position_x());
+    thread thread1(moveRame, ref(rame1), ref(listeStationsl1));
+    thread thread2(moveRame, ref(rame2), ref(listeStationsl2));
 
     vector<Rame> rames_sur_ligne_1 = { rame1, rame2, rame3, rame4 };
     for (int i = 0; i < rames_sur_ligne_1.size(); i++)
@@ -96,7 +96,7 @@ int main()
 
     //destruction des threads
     thread1.join();
-    //thread2.join();
+    thread2.join();
 
     return 0;
 }
