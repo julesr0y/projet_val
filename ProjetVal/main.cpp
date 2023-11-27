@@ -38,14 +38,14 @@ int main()
     RenderWindow window(VideoMode(1500, 800), "VAL");
     
     Rame rame1(station1_1, 1);
-    Rame rame2(station1_1, 2);
+    Rame rame2(station1_2, 2);
     Rame rame3(station1_1, 3);
     Rame rame4(station1_1, 4);
 
     //threads gestion
     //test1 : ligne vers la droite
-    thread thread1(moveRame, ref(rame1), ref(station1_6));
-
+    thread thread1(moveRame, ref(rame1), ref(station1_5));
+    thread thread2(moveRame, ref(rame2), ref(station1_6));
     //test2 : ligne vers la gauche
     //thread thread1(moveRame, ref(rame1), ref(station1_2));
 
@@ -89,7 +89,7 @@ int main()
                 window.close();
             }
         }
-        window.clear(Color::White);
+        window.clear(Color::Black);
         //PARTIE AFFICHAGE DES STATIONS + ROUTES
         for (int i = 0; i < listeStationsl1.size(); i++) {
             listeStationsl1[i].setRepr();
@@ -112,12 +112,14 @@ int main()
         }
 
         window.draw(rame1.getRepr());
+        window.draw(rame2.getRepr());
 
         window.display();
     }
 
     //destruction des threads
     thread1.join();
+    thread2.join();
 
     return 0;
 }
