@@ -3,8 +3,21 @@
 
 #include "Station.hpp"
 
-class Rame
-{
+class Rame {
+private:
+	float centre_x;
+	float centre_y;
+	float taille_cote = 25;
+	int numero;
+	float vitesse = 10;
+	int terminus;
+	float position_x;
+	float position_y;
+	int nb_passagers;
+	float distance_arret_urgence;
+	float poids;
+	ConvexShape representation;
+
 public:
 	Rame(Station station_depart);//constructeur
 	Rame(Station station_depart,int numero);
@@ -46,20 +59,6 @@ public:
 	void moveDiagonalHautGauche();
 	void moveDiagonalBasDroite();
 	void moveDiagonalBasGauche();
-
-private:
-	float centre_x;
-	float centre_y;
-	float taille_cote = 25;
-	int numero;
-	float vitesse = 10;
-	int terminus;
-	float position_x;
-	float position_y;
-	int nb_passagers;
-	float distance_arret_urgence;
-	float poids;
-	ConvexShape representation;
 };
 
 #endif RAME_H

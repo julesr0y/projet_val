@@ -3,9 +3,7 @@
 using namespace std;
 using namespace sf;
 
-Route::Route() {
-
-}
+Route::Route() {}
 
 Route::Route(int id, Station station1, Station station2, Color color) {
 	id_voie = id;
@@ -29,7 +27,13 @@ int Route::get_longueur() {
 
 void Route::setRepr() {
 	representation.setSize(Vector2f(longueur, epaisseur));
-	representation.setPosition(station1_x, station1_y);
+	representation.setPosition(station1_x, station1_y + 10);
+	representation.setFillColor(couleur);
+}
+
+void Route::setReprRetour() {
+	representation.setSize(Vector2f(longueur, epaisseur));
+	representation.setPosition(station1_x, station1_y - 10);
 	representation.setFillColor(couleur);
 }
 

@@ -4,10 +4,7 @@ using namespace std;
 using namespace sf;
 
 //constructeur
-Rame::Rame() : representation(3)
-{
-
-}
+Rame::Rame() : representation(3){}
 
 Rame::Rame(Station station_depart,int num) : representation(3)
 {
@@ -78,7 +75,7 @@ void Rame::set_poids(float p) {
 }
 
 void Rame::setRepr() {
-	Vector2f centre_rame(centre_x, centre_y);
+	Vector2f centre_rame(centre_x, centre_y + 15);
 	representation.setPoint(0, Vector2f(centre_rame.x - taille_cote / 2, centre_rame.y - taille_cote/2));
 	representation.setPoint(1, Vector2f(centre_rame.x + taille_cote / 2, centre_rame.y));
 	representation.setPoint(2, Vector2f(centre_rame.x - taille_cote / 2, centre_rame.y + taille_cote / 2));
