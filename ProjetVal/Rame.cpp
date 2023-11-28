@@ -88,10 +88,10 @@ void Rame::setRepr() {
 float Rame::get_vitesse() {
 	return vitesse;
 }
-float Rame::get_position_x() {
+int Rame::get_position_x() {
 	return position_x;
 }
-float Rame::get_position_y() {
+int Rame::get_position_y() {
 	return position_y;
 }
 int Rame::get_passagers() {
@@ -156,6 +156,19 @@ void Rame::moveDiagonalBasDroite() {
 void Rame::moveDiagonalBasGauche() {
 	representation.move(-vitesse, vitesse);
 	setRepr();
+}
+
+bool Rame::estArrete() {
+	if (est_Arrete) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Rame::setArrete(bool etat) {
+	est_Arrete = etat;
 }
 
 //destructeur

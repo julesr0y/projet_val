@@ -37,15 +37,25 @@ int main()
     vector<Station> listeStationsL2 = { station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7 };
 
     //définition des rames (station d'apparition, id)
-    Rame rame1(station1_1, 1);
-    Rame rame2(station2_1, 2);
+    Rame rame1_1(station1_1, 1);
+    Rame rame1_2(station1_1, 2);
+    Rame rame1_3(station1_1, 3);
+    Rame rame2_1(station2_1, 4);
+    Rame rame2_2(station2_1, 5);
+    Rame rame2_3(station2_1, 6);
     //tableau des rames (un tableau de rames par ligne)
-    vector<Rame> ramesL1 = { rame1 };
-    vector<Rame> ramesL2 = { rame2 };
+    vector<Rame> ramesL1 = { rame1_1, rame1_2, rame1_3 };
+    vector<Rame> ramesL2 = { rame2_1, rame2_2, rame2_3 };
 
-    //création des threads (fonction de déplacement, rame concernée, ligne concernée)
-    thread thread1(moveRame, ref(rame1), ref(listeStationsL1));
-    thread thread2(moveRame, ref(rame2), ref(listeStationsL2));
+    //création des threads (fonction de déplacement, rame concernée, rame suivante, ligne concernée)
+    thread thread1_1(moveRame, ref(rame1_1), ref(rame1_3), ref(listeStationsL1), true);
+    thread thread2_1(moveRame, ref(rame2_1), ref(rame2_3), ref(listeStationsL2), true);
+
+    thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false);
+    thread thread1_3(moveRame, ref(rame1_3), ref(rame1_2), ref(listeStationsL1), false);
+
+    thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false);
+    thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false);
     
     //création et gestion de la fenêtre
     RenderWindow window(VideoMode(WINDOW_X, WINDOW_Y), WINDOW_NAME);
@@ -90,15 +100,23 @@ int main()
         }
 
         //on dessine les rames
-        window.draw(rame1.getRepr());
-        window.draw(rame2.getRepr());
+        window.draw(rame1_1.getRepr());
+        window.draw(rame1_2.getRepr());
+        window.draw(rame1_3.getRepr());
+        //window.draw(rame2_1.getRepr());
+        //window.draw(rame2_2.getRepr());
+        //window.draw(rame2_3.getRepr());
 
         window.display(); //affichage de la fenêtre
     }
 
     //destruction des threads
-    thread1.join();
-    thread2.join();
+    thread1_1.join();
+    thread1_2.join();
+    thread1_3.join();
+    thread2_1.join();
+    thread2_2.join();
+    thread2_3.join();
 
     return 0;
 }

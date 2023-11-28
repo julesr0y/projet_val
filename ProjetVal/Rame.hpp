@@ -16,6 +16,7 @@ private:
 	int nb_passagers;
 	float distance_arret_urgence;
 	float poids;
+	bool est_Arrete = true;
 	ConvexShape representation;
 
 public:
@@ -42,11 +43,12 @@ public:
 	//getters
 	int get_numero();
 	float get_vitesse();
-	float get_position_x();
-	float get_position_y();
+	int get_position_x();
+	int get_position_y();
 	int  get_passagers();
 	float get_distance_arret_urgence();
 	int get_poids();
+	bool estArrete();
 	ConvexShape getRepr();
 	int get_vitesse_int();
 
@@ -59,6 +61,7 @@ public:
 	void moveDiagonalHautGauche();
 	void moveDiagonalBasDroite();
 	void moveDiagonalBasGauche();
+	void setArrete(bool etat);
 };
 
 #endif RAME_H
