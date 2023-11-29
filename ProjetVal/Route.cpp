@@ -14,6 +14,7 @@ Route::Route(int id, Station station1, Station station2, Color color) {
 	station2_x = station2.getPositionX();
 	station2_y = station2.getPositionY();
 	longueur = station2_x - station1_x;
+	hauteur = station1_y - station2_y;
 	couleur = color;
 }
 
@@ -25,14 +26,44 @@ int Route::get_longueur() {
 	return longueur;
 }
 
+int Route::get_hauteur() {
+	return hauteur;
+}
+
 void Route::setRepr() {
-	representation.setSize(Vector2f(longueur, epaisseur));
+	if (hauteur == 0) {
+		representation.setSize(Vector2f(longueur, epaisseur));
+	}
+	if (longueur == 0) {
+		representation.setSize(Vector2f(hauteur, epaisseur));
+	}
+	if (hauteur < 0) {
+		representation.setSize(Vector2f(-hauteur, epaisseur));
+		representation.setSize(Vector2f(longueur, epaisseur));
+	}
+	if (hauteur > 0) {
+		representation.setSize(Vector2f(hauteur, epaisseur));
+		representation.setSize(Vector2f(longueur, epaisseur));
+	}
 	representation.setPosition(station1_x, station1_y + 10);
 	representation.setFillColor(couleur);
 }
 
 void Route::setReprRetour() {
-	representation.setSize(Vector2f(longueur, epaisseur));
+	if (hauteur == 0) {
+		representation.setSize(Vector2f(longueur, epaisseur));
+	}
+	if (longueur == 0) {
+		representation.setSize(Vector2f(hauteur, epaisseur));
+	}
+	if (hauteur < 0) {
+		representation.setSize(Vector2f(-hauteur, epaisseur));
+		representation.setSize(Vector2f(longueur, epaisseur));
+	}
+	if (hauteur > 0) {
+		representation.setSize(Vector2f(hauteur, epaisseur));
+		representation.setSize(Vector2f(longueur, epaisseur));
+	}
 	representation.setPosition(station1_x, station1_y - 10);
 	representation.setFillColor(couleur);
 }

@@ -9,6 +9,7 @@ using namespace sf;
 class Route {
 private:
 	int id_voie;
+	float hauteur;
 	float longueur;
 	RectangleShape representation;
 	int epaisseur = 8;
@@ -24,6 +25,7 @@ public:
 	Route(int id, Station station1, Station station2, Color color);
 	int get_id_voie();
 	int get_longueur();
+	int get_hauteur();
 	void setRepr();
 	void Route::setReprRetour();
 	RectangleShape getRepr();

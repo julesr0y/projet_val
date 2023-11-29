@@ -31,10 +31,14 @@ int main()
     Station station2_4(4, "Station4", 700, 600, 10, Color::Yellow);
     Station station2_5(5, "Station5", 900, 600, 10, Color::Yellow);
     Station station2_6(6, "Station6", 1100, 600, 10, Color::Yellow);
-    Station station2_7(7, "Station6", 1300, 600, 10, Color::Yellow);
+    Station station2_7(7, "Station7", 1300, 600, 10, Color::Yellow);
+
+    Station station2_8(8, "Station8", 100, 450, 10, Color::Yellow);
+    Station station2_9(9, "Station9", 400, 450, 10, Color::Yellow);
+    Station station2_10(10, "Station10", 400, 750, 10, Color::Yellow);
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
     vector<Station> listeStationsL1 = { station1_1, station1_2, station1_3, station1_4, station1_5, station1_6 };
-    vector<Station> listeStationsL2 = { station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7 };
+    vector<Station> listeStationsL2 = { station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7, station2_8,station2_9,station2_10};
 
     //définition des rames (station d'apparition, id)
     Rame rame1_1(station1_1, 1);
