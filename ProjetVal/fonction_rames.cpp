@@ -45,11 +45,11 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station>& listeStations, bool
                 //cout << "constant" << endl;
                 v = 10;
             }
-            if (dist < 60 || distance_var < (1.0 / 3.0) * distance_totale) { //|| abs(rame_apres.get_position_x() - rame.get_position_x()) < 150
+            if (dist < 150 || distance_var < (1.0 / 3.0) * distance_totale) { //|| abs(rame_apres.get_position_x() - rame.get_position_x()) < 150
                 //cout << "freinage" << endl;
                 v = 30;
             }
-            if (dist < 30 && beginning == false) {
+            if (dist < 100 && beginning == false) {
                 authorize_move = false;
             }
 
