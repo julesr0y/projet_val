@@ -27,13 +27,13 @@ int Route::get_longueur() {
 
 void Route::setRepr() {
 	representation.setSize(Vector2f(longueur, epaisseur));
-	representation.setPosition(station1_x, station1_y + 10);
+	representation.setPosition(station1_x, station1_y + 12);
 	representation.setFillColor(couleur);
 }
 
 void Route::setReprRetour() {
 	representation.setSize(Vector2f(longueur, epaisseur));
-	representation.setPosition(station1_x, station1_y - 10);
+	representation.setPosition(station1_x, station1_y - 20);
 	representation.setFillColor(couleur);
 }
 
