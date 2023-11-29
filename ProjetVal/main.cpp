@@ -48,7 +48,7 @@ int main()
     vector<Rame> ramesL2 = { rame2_1, rame2_2, rame2_3 };
 
     //création des threads (fonction de déplacement, rame concernée, rame suivante, ligne concernée)
-    thread thread1_1(moveRame, ref(rame1_1), ref(rame1_3), ref(listeStationsL1), true);
+    thread thread1_1(moveRame, ref(rame1_1), ref(rame1_2), ref(listeStationsL1), true);
     thread thread2_1(moveRame, ref(rame2_1), ref(rame2_3), ref(listeStationsL2), true);
 
     thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false);
@@ -103,9 +103,9 @@ int main()
         window.draw(rame1_1.getRepr());
         window.draw(rame1_2.getRepr());
         window.draw(rame1_3.getRepr());
-        //window.draw(rame2_1.getRepr());
-        //window.draw(rame2_2.getRepr());
-        //window.draw(rame2_3.getRepr());
+        window.draw(rame2_1.getRepr());
+        window.draw(rame2_2.getRepr());
+        window.draw(rame2_3.getRepr());
 
         window.display(); //affichage de la fenêtre
     }
@@ -113,10 +113,10 @@ int main()
     //destruction des threads
     thread1_1.join();
     thread1_2.join();
-    thread1_3.join();
-    thread2_1.join();
-    thread2_2.join();
-    thread2_3.join();
+    //thread1_3.join();
+    //thread2_1.join();
+    //thread2_2.join();
+    //thread2_3.join();
 
     return 0;
 }
