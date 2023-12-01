@@ -18,7 +18,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
 
     bool reverseOrder = false; //par défaut, on inverse pas la liste des stations de la ligne
 
-    while (true) {
+    while (true) { //boucle infinie, pour recommencer indéfiniment le parcours de la ligne pour la rame
 
         if (reverseOrder) { //si l'inversement de liste des stations de la ligne est activé
             reverse(listeStations.begin(), listeStations.end()); //on inverse la liste
@@ -28,10 +28,10 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             float dist_entre_2_stations; //initialisation de la distance entre la station en cours et la suivante
 
             if (i == listeStations.size() - 1) { //si on est à la dernière station
-                dist_entre_2_stations = listeStations.back().getPositionX() - listeStations[listeStations.size() - 2].getPositionX();
+                dist_entre_2_stations = abs(listeStations.back().getPositionX() - listeStations[listeStations.size() - 2].getPositionX());
             }
             else { //sinon
-                dist_entre_2_stations = listeStations[i + 1].getPositionX() - listeStations[i].getPositionX();
+                dist_entre_2_stations = abs(listeStations[i + 1].getPositionX() - listeStations[i].getPositionX());
             }
 
             float end_pos_x = listeStations[i].getPositionX(); //position x à atteindre (station suivante)
@@ -47,14 +47,20 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 if (distanceToSation_x >= (2.0 / 3.0) * dist_entre_2_stations) {
                     //on accélère la rame sur le premier tiers de la distance
                     v = 1;
+                   //cout << "Accelere" << endl;
                 }
-                if (distanceToSation_x >= (1.0 / 3.0) * dist_entre_2_stations) {
+                else if (distanceToSation_x >= (1.0 / 3.0) * dist_entre_2_stations) {
                     //on maintient une vitesse constante pour la rame sur le deuxième tiers de la distance
                     v = 10;
+                    //cout << "Constant" << endl;
                 }
-                if ((dist_entre_rames < 150 || distanceToSation_x < (1.0 / 3.0) * dist_entre_2_stations) && rame_apres.getRetour() == rame.getRetour()) {
+                else if (distanceToSation_x < (1.0 / 3.0) * dist_entre_2_stations) {
+                    //si une rame se rapproche d'une station (dernier tiers de la distance), on freine son déplacement
+                    v = 30;
+                    //cout << "Freine" << endl;
+                }
+                if (dist_entre_rames < 150 && rame_apres.getRetour() == rame.getRetour()) {
                     //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
-                    //ou si une rame se rapproche s'une station (dernier tiers de la distance), on freine son déplacement
                     v = 30;
                 }
                 if (dist_entre_rames < 100 && beginning == false && rame_apres.getRetour() == rame.getRetour()) {
@@ -135,6 +141,8 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 }
                 this_thread::sleep_for(chrono::milliseconds(v)); //réglage de la vitesse de la rame
             }
+            /*cout << "STOP" << endl;
+            cout << dist_entre_2_stations << endl;*/
             this_thread::sleep_for(chrono::seconds(2)); //pause dans les stations
 
             if (i == listeStations.size() - 1) { //si on est au bout de la ligne
