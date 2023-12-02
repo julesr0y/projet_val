@@ -1,4 +1,4 @@
-add_executable(ProjetVal main main.cpp "Station.cpp" "Rame.cpp" "Route.cpp" "fonction_rames")
+add_executable(ProjetVal main main.cpp "Station.cpp" "Rame.cpp" "Route.cpp" "fonction_rames" "fonction_station")
 target_link_libraries(ProjetVal ${CMAKE_SOURCE_DIR}/library/sfml-audio.lib)
 target_link_libraries(ProjetVal ${CMAKE_SOURCE_DIR}/library/sfml-graphics.lib)
 target_link_libraries(ProjetVal ${CMAKE_SOURCE_DIR}/library/sfml-network.lib)

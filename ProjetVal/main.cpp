@@ -6,6 +6,7 @@
 #include "Rame.hpp"
 #include "Route.hpp"
 #include "fonction_rames.hpp"
+#include "fonction_station.hpp"
 
 using namespace std;
 using namespace sf;
@@ -13,6 +14,11 @@ using namespace sf;
 #define WINDOW_X 1500 //largeur de la fenêtre
 #define WINDOW_Y 800 //hauteur de la fenêtre
 #define WINDOW_NAME "VAL" //nom de la fenêtre
+
+void loadfont();
+
+//variabal global 
+Font font;// permet de stocker la police d'écriture 
 
 int main()
 {
@@ -34,7 +40,7 @@ int main()
     Station station2_7(7, "Station6", 1300, 600, 10, Color::Yellow);
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
     vector<Station> listeStationsL1 = { station1_1, station1_2, station1_3, station1_4, station1_5, station1_6 };
-    vector<Station> listeStationsL2 = { station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7 };
+    //vector<Station> listeStationsL2 = { station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7 };
 
     //définition des rames (station d'apparition, id)
     Rame rame1_1(station1_1, 1);
@@ -45,20 +51,39 @@ int main()
     Rame rame2_3(station2_1, 6);
     //tableau des rames (un tableau de rames par ligne)
     vector<Rame> ramesL1 = { rame1_1, rame1_2, rame1_3 };
-    vector<Rame> ramesL2 = { rame2_1, rame2_2, rame2_3 };
+    //vector<Rame> ramesL2 = { rame2_1, rame2_2, rame2_3 };
 
     //création des threads (fonction de déplacement, rame concernée, rame suivante, ligne concernée)
     thread thread1_1(moveRame, ref(rame1_1), ref(rame1_2), ref(listeStationsL1), true);
-    thread thread2_1(moveRame, ref(rame2_1), ref(rame2_3), ref(listeStationsL2), true);
+    //thread thread2_1(moveRame, ref(rame2_1), ref(rame2_3), ref(listeStationsL2), true);
 
     thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false);
     thread thread1_3(moveRame, ref(rame1_3), ref(rame1_2), ref(listeStationsL1), false);
 
-    thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false);
-    thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false);
+   // thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false);
+    //thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false);
     
+
+    rame1_1.set_passagers(rand() % 51);
+    rame1_2.set_passagers(rand() % 51);
+    rame1_3.set_passagers(rand() % 51);
+
     //création et gestion de la fenêtre
     RenderWindow window(VideoMode(WINDOW_X, WINDOW_Y), WINDOW_NAME);
+    //chargement fonte 
+    loadfont();
+    //creation d'un text
+    Text txt;
+    //on lui indique quelle police utiliser
+    txt.setFont(font);
+    //on lui indique la chaine de caractére à afficher 
+    txt.setString("hello world!");
+    //on indique la taille de la police
+    txt.setCharacterSize(26);
+    //on indique la couleur
+    //txt.getFillColor(Color::White);
+
+
     while (window.isOpen())
     {
         //gestion de la destruction de la fenêtre
@@ -71,7 +96,7 @@ int main()
         }
 
         window.clear(Color::Black); //couleur d'arrière plan
-
+        window.draw(txt);
         //PARTIE AFFICHAGE DES STATIONS + ROUTES
         for (int i = 0; i < listeStationsL1.size(); i++) { //pour la L1
             listeStationsL1[i].setRepr(); //on set la représentation de la station en cours
@@ -86,18 +111,18 @@ int main()
             window.draw(listeStationsL1[i].getRepr()); //on dessine la station
         }
 
-        for (int i = 0; i < listeStationsL2.size(); i++) { //pour la L2
-            listeStationsL2[i].setRepr(); //on set la représentation de la station en cours
-            if (i != listeStationsL2.size() - 1) { //la dernière station ne peut avoir de route à sa droite
-                Route route(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::Yellow); //on crée une route de cette station à la suivante
-                Route route_r(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::White); //on crée une route de retour
-                route.setRepr(); //on set la représentation de la route
-                route_r.setReprRetour(); //on set la représentation de la route de retour
-                window.draw(route.getRepr()); //on dessine la route
-                window.draw(route_r.getRepr()); //on dessine la route de retour
-            }
-            window.draw(listeStationsL2[i].getRepr()); //on dessine la station
-        }
+        //for (int i = 0; i < listeStationsL2.size(); i++) { //pour la L2
+        //    listeStationsL2[i].setRepr(); //on set la représentation de la station en cours
+        //    if (i != listeStationsL2.size() - 1) { //la dernière station ne peut avoir de route à sa droite
+        //        Route route(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::Yellow); //on crée une route de cette station à la suivante
+        //        Route route_r(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::White); //on crée une route de retour
+        //        route.setRepr(); //on set la représentation de la route
+        //        route_r.setReprRetour(); //on set la représentation de la route de retour
+        //        window.draw(route.getRepr()); //on dessine la route
+        //        window.draw(route_r.getRepr()); //on dessine la route de retour
+        //    }
+        //    window.draw(listeStationsL2[i].getRepr()); //on dessine la station
+        //}
 
         //on dessine les rames
         window.draw(rame1_1.getRepr());
@@ -119,4 +144,14 @@ int main()
     //thread2_3.join();
 
     return 0;
+}
+
+//fonction qui permet de charger ma police d'ecriture 
+void loadfont() {
+    //verification que la police est bien charger
+    if (!font.loadFromFile("res/merienda.ttf"))
+    {
+        //si erreur
+        cout << "erreur chargement police" << endl;
+    }
 }

@@ -1,7 +1,9 @@
 #include "fonction_rames.hpp"
+#include "fonction_station.hpp"
 #include <iostream>
 #include <random>
 #include <ctime>
+
 
 using namespace std;
 
@@ -11,9 +13,10 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station>& listeStations, bool
         //int randomNum = 7 + (rand() % 4); // 7 + (0 to 3)
         default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
         uniform_int_distribution<int> randomNum{ 7, 10 };
-        cout << randomNum(re) << endl;
+        //cout << randomNum(re) << endl;
         this_thread::sleep_for(chrono::seconds(randomNum(re)));
     }
+    //remplire_rame(rame, listeStations[0]);
     while (true) {
         for (int i = 0; i < listeStations.size(); i++) {
             float distance_totale;
@@ -129,9 +132,22 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station>& listeStations, bool
                 //temps attente entre opérations
                 this_thread::sleep_for(chrono::milliseconds(v));
             }
-            if (i >= 0) {
+            if (i > 0) {
+                cout << "nb passager dans la rame  " << rame.get_numero() << " avant entrer : " << rame.get_passagers()<<endl;
+                int nb_entrant = remplire_rame(rame, listeStations[i]);
+                cout << "numero de rame " << rame.get_numero() << " nb entrant : " << nb_entrant << endl;
+                int nb_sortant = sortire(rame);
+                cout << "numero de rame " << rame.get_numero() << " nb sortant : " << nb_sortant << endl;
+                cout << "nb passager dans la rame  " << rame.get_numero() << " apres entrer : " << rame.get_passagers()<<endl;
+
                 rame.setArrete(true); //on set la rame en mode d'arret
-                this_thread::sleep_for(chrono::seconds(2)); //pause dans les stations
+                int temp_attente = (int)(nb_entrant + nb_sortant)/10;
+                if (temp_attente < 2)
+                {
+                    temp_attente = 2;
+                }
+                cout << "temp attente : " << temp_attente << endl;
+                this_thread::sleep_for(chrono::seconds(temp_attente)); //pause dans les stations
             }
             //remonte
             if (rame.estArrete() && i == listeStations.size() - 1 && !rame.getRetour()) {
@@ -146,7 +162,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station>& listeStations, bool
                 rame.setRetour(false);
             }
             //cout << "en retour: " << rame.getRetour() << endl;
-            cout << rame.get_numero() << " : " << rame.get_position_y() << endl;
+           // cout << rame.get_numero() << " : " << rame.get_position_y() << endl;
         }
     }
 }
