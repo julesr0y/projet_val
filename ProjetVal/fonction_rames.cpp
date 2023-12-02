@@ -19,7 +19,8 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
     bool reverseOrder = false; //par défaut, on inverse pas la liste des stations de la ligne
 
     while (true) { //boucle infinie, pour recommencer indéfiniment le parcours de la ligne pour la rame
-
+        rame.setStarted(true); //on set la rame comme démarrée
+        rame.setFreinage(false); //par défaut, on set la rame comme sur la voie (pas en direction de station blanche)
         if (reverseOrder) { //si l'inversement de liste des stations de la ligne est activé
             reverse(listeStations.begin(), listeStations.end()); //on inverse la liste
         }
@@ -28,7 +29,10 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             float dist_entre_2_stations; //initialisation de la distance entre la station en cours et la suivante
 
             if (i == listeStations.size() - 1) { //si on est à la dernière station
-                dist_entre_2_stations = abs(listeStations.back().getPositionX() - listeStations[listeStations.size() - 2].getPositionX());
+                rame.setFreinage(true); //si la rame se dirige vers une station blanche, on la set en mode freinage
+            }
+            else if (i == listeStations.size() - 2) { //si on est à la dernière station avant le terminus
+                dist_entre_2_stations = abs(listeStations[listeStations.size() - 2].getPositionX() - listeStations[listeStations.size() - 3].getPositionX());
             }
             else { //sinon
                 dist_entre_2_stations = abs(listeStations[i + 1].getPositionX() - listeStations[i].getPositionX());
@@ -59,11 +63,15 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     v = 30;
                     //cout << "Freine" << endl;
                 }
-                if (dist_entre_rames < 150 && rame_apres.getRetour() == rame.getRetour()) {
+                if (rame.isFreinage()) {
+                    //si la rame se dirige vers une station blanche, on ralentit sa vitesse
+                    v = 30;
+                }
+                if (dist_entre_rames < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
                     //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
                     v = 30;
                 }
-                if (dist_entre_rames < 100 && beginning == false && rame_apres.getRetour() == rame.getRetour()) {
+                if (dist_entre_rames < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
                     //si 2 rames se suivant sur une même voie ont une distance trop faible, on interdit le deplacement de la rame derrière
                     authorize_move = false;
                 }

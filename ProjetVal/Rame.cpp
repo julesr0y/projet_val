@@ -212,6 +212,32 @@ void Rame::setRetour(bool etat) {
 	retour = etat;
 }
 
+bool Rame::hasStarted() {
+	if (hasStarted_) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Rame::setFreinage(bool etat) {
+	en_freinage = etat;
+}
+
+bool Rame::isFreinage() {
+	if (en_freinage) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Rame::setStarted(bool etat) {
+	hasStarted_ = etat;
+}
+
 //destructeur
 Rame::~Rame()
 {
