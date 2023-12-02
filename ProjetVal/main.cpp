@@ -16,6 +16,16 @@ using namespace sf;
 
 int main()
 {
+    Font font;
+    if (!font.loadFromFile("arial.ttf")) {
+        // Gestion de l'erreur si la police ne peut pas être chargée
+        return -1;
+    }
+    Text text;
+    text.setFont(font); // Définir la police
+    text.setString("Projet VAL"); // Définir le texte
+    text.setCharacterSize(24); // Définir la taille du texte
+    text.setFillColor(Color::White); // Définir la couleur du texte
     //STATIONS (id, nom, position x, position y, nombre de passagers, couleur)
     //L1
     Station station1_begin(0, "Station Debut", 50, 300, 0, Color::White);
@@ -130,6 +140,7 @@ int main()
         window.draw(rame2_1.getRepr());
         window.draw(rame2_2.getRepr());
         window.draw(rame2_3.getRepr());
+        window.draw(text);
 
         window.display(); //affichage de la fenêtre
     }

@@ -25,7 +25,7 @@ public:
 	int get_id_voie();
 	int get_longueur();
 	void setRepr();
-	void Route::setReprRetour();
+	void setReprRetour();
 	RectangleShape getRepr();
 };
 
