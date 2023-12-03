@@ -11,15 +11,16 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
         //srand(static_cast<unsigned int>(time(0)));
         //int randomNum = 7 + (rand() % 4); // 7 + (0 to 3)
         default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
-        uniform_int_distribution<int> randomNum{ 7, 10 };
+        uniform_int_distribution<int> randomNum{ 4, 10 };
         //cout << randomNum(re) << endl;
         this_thread::sleep_for(chrono::seconds(randomNum(re)));
     }
 
+    cout << rame.get_numero() << endl;
+
     bool reverseOrder = false; //par défaut, on inverse pas la liste des stations de la ligne
 
     while (true) { //boucle infinie, pour recommencer indéfiniment le parcours de la ligne pour la rame
-        rame.setStarted(true); //on set la rame comme démarrée
         rame.setFreinage(false); //par défaut, on set la rame comme sur la voie (pas en direction de station blanche)
         if (reverseOrder) { //si l'inversement de liste des stations de la ligne est activé
             reverse(listeStations.begin(), listeStations.end()); //on inverse la liste
@@ -48,6 +49,9 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 rame.setArrete(false); //la rame n'est pas en etat d'arret
                 int dist_entre_rames = abs(rame_apres.get_position_x() - rame.get_position_x()); //distance entre la rame actuelle et celle devant
 
+                if (dist_entre_rames == 0 && beginning == false) { //évite que des rames partent dans le mauvais ordre lors de la génération des threads
+                    authorize_move = false;
+                }
                 if (distanceToSation_x >= (2.0 / 3.0) * dist_entre_2_stations) {
                     //on accélère la rame sur le premier tiers de la distance
                     v = 1;
@@ -77,6 +81,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 }
 
                 if (authorize_move) {
+                    rame.setStarted(true); //on set la rame comme démarrée
                     //si déplacement vertical
                     if (rame.get_position_x() == end_pos_x)
                     {
