@@ -16,10 +16,11 @@ private:
 	CircleShape representation;
 	float rayon = 20;
 	Color couleur;
+	bool terminus;
 
 public:
 	Station();
-	Station(int id, string name, float x, float y, int nbpassagers, Color color);
+	Station(int id, string name, float x, float y, int nbpassagers, Color color, bool terminus_);
 	//Stations ~Stations();
 	int getIdStation();
 	string getNom();
@@ -30,6 +31,7 @@ public:
 	void setRepr();
 	CircleShape getRepr();
 	void setNbPassagers(int nb);
+	bool get_terminus();
 };
 
 #endif STATION_H
