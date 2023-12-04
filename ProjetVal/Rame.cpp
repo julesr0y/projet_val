@@ -75,11 +75,26 @@ void Rame::set_poids(float p) {
 }
 
 void Rame::setRepr() {
-	Vector2f centre_rame(centre_x, centre_y + 15);
+	Vector2f centre_rame(centre_x, centre_y);
 	representation.setPoint(0, Vector2f(centre_rame.x - taille_cote / 2, centre_rame.y - taille_cote/2));
 	representation.setPoint(1, Vector2f(centre_rame.x + taille_cote / 2, centre_rame.y));
 	representation.setPoint(2, Vector2f(centre_rame.x - taille_cote / 2, centre_rame.y + taille_cote / 2));
 	representation.setFillColor(Color::Blue);
+	float angleRad = angleRotation * (3.14159 / 180.0); // Convertir l'angle en radians
+
+	for (int i = 0; i < 3; ++i) {
+		float newX = (representation.getPoint(i).x - centre_x) * cos(angleRad) - (representation.getPoint(i).y - centre_y) * sin(angleRad) + centre_x;
+		float newY = (representation.getPoint(i).x - centre_x) * sin(angleRad) + (representation.getPoint(i).y - centre_y) * cos(angleRad) + centre_y;
+		representation.setPoint(i, Vector2f(newX, newY + 15));
+	}
+}
+
+void Rame::rotate180() {
+	angleRotation += 180.0;
+	if (angleRotation >= 360.0) {
+		angleRotation -= 360.0;
+	}
+	setRepr();
 }
 
 
@@ -169,6 +184,58 @@ bool Rame::estArrete() {
 
 void Rame::setArrete(bool etat) {
 	est_Arrete = etat;
+}
+
+bool Rame::getTerminus() {
+	if (terminus) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Rame::setTerminus(bool etat) {
+	terminus = etat;
+}
+
+bool Rame::getRetour() {
+	if (retour) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Rame::setRetour(bool etat) {
+	retour = etat;
+}
+
+bool Rame::hasStarted() {
+	if (hasStarted_) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Rame::setFreinage(bool etat) {
+	en_freinage = etat;
+}
+
+bool Rame::isFreinage() {
+	if (en_freinage) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Rame::setStarted(bool etat) {
+	hasStarted_ = etat;
 }
 
 //destructeur

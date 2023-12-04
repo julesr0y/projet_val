@@ -27,7 +27,7 @@ public:
 	int get_longueur();
 	int get_hauteur();
 	void setRepr();
-	void Route::setReprRetour();
+	void setReprRetour();
 	RectangleShape getRepr();
 };
 

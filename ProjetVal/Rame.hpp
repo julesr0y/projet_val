@@ -10,18 +10,22 @@ private:
 	float taille_cote = 25;
 	int numero;
 	float vitesse = 10;
-	int terminus;
 	float position_x;
 	float position_y;
 	int nb_passagers;
 	float distance_arret_urgence;
 	float poids;
 	bool est_Arrete = true;
+	bool terminus = false;
+	bool retour = false;
+	bool hasStarted_ = false;
+	bool en_freinage = false;
+	float angleRotation = 0.0;
 	ConvexShape representation;
 
 public:
 	Rame(Station station_depart);//constructeur
-	Rame(Station station_depart,int numero);
+	Rame(Station station_depart, int numero);
 	Rame();
 	~Rame();//destructeur
 
@@ -39,6 +43,11 @@ public:
 	void set_distance_arret_urgence(float dis);
 	void set_poids(float p);
 	void setRepr();
+	void setArrete(bool etat);
+	void setTerminus(bool etat);
+	void setRetour(bool etat);
+	void setStarted(bool etat);
+	void setFreinage(bool etat);
 
 	//getters
 	int get_numero();
@@ -51,6 +60,10 @@ public:
 	bool estArrete();
 	ConvexShape getRepr();
 	int get_vitesse_int();
+	bool getTerminus();
+	bool getRetour();
+	bool hasStarted();
+	bool isFreinage();
 
 	//gestion des déplacements
 	void moveDroite();
@@ -61,7 +74,7 @@ public:
 	void moveDiagonalHautGauche();
 	void moveDiagonalBasDroite();
 	void moveDiagonalBasGauche();
-	void setArrete(bool etat);
+	void rotate180();
 };
 
 #endif RAME_H

@@ -31,40 +31,14 @@ int Route::get_hauteur() {
 }
 
 void Route::setRepr() {
-	if (hauteur == 0) {
-		representation.setSize(Vector2f(longueur, epaisseur));
-	}
-	if (longueur == 0) {
-		representation.setSize(Vector2f(hauteur, epaisseur));
-	}
-	if (hauteur < 0) {
-		representation.setSize(Vector2f(-hauteur, epaisseur));
-		representation.setSize(Vector2f(longueur, epaisseur));
-	}
-	if (hauteur > 0) {
-		representation.setSize(Vector2f(hauteur, epaisseur));
-		representation.setSize(Vector2f(longueur, epaisseur));
-	}
-	representation.setPosition(station1_x, station1_y + 10);
+	representation.setSize(Vector2f(longueur, epaisseur));
+	representation.setPosition(station1_x, station1_y + 12);
 	representation.setFillColor(couleur);
 }
 
 void Route::setReprRetour() {
-	if (hauteur == 0) {
-		representation.setSize(Vector2f(longueur, epaisseur));
-	}
-	if (longueur == 0) {
-		representation.setSize(Vector2f(hauteur, epaisseur));
-	}
-	if (hauteur < 0) {
-		representation.setSize(Vector2f(-hauteur, epaisseur));
-		representation.setSize(Vector2f(longueur, epaisseur));
-	}
-	if (hauteur > 0) {
-		representation.setSize(Vector2f(hauteur, epaisseur));
-		representation.setSize(Vector2f(longueur, epaisseur));
-	}
-	representation.setPosition(station1_x, station1_y - 10);
+	representation.setSize(Vector2f(longueur, epaisseur));
+	representation.setPosition(station1_x, station1_y - 20);
 	representation.setFillColor(couleur);
 }
 
