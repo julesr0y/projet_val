@@ -27,7 +27,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
         }
 
         for (int i = 0; i < listeStations.size(); i++) {
-            float dist_entre_2_stations; //initialisation de la distance entre la station en cours et la suivante
+            float dist_entre_2_stations = 0.0; //initialisation de la distance entre la station en cours et la suivante
 
             if (i == listeStations.size() - 1) { //si on est à la dernière station
                 rame.setFreinage(true); //si la rame se dirige vers une station blanche, on la set en mode freinage
