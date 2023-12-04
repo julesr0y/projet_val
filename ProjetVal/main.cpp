@@ -38,7 +38,7 @@ int main()
     Station station2_10(10, "Station10", 400, 750, 10, Color::Yellow);
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
     vector<Station> listeStationsL1 = { station1_1, station1_2, station1_3, station1_4, station1_5, station1_6 };
-    vector<Station> listeStationsL2 = { station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7, station2_8,station2_9,station2_10};
+    vector<Station> listeStationsL2 = { station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7, station2_8,station2_9,station2_10 };
 
     //définition des rames (station d'apparition, id)
     Rame rame1_1(station1_1, 1);
@@ -60,7 +60,7 @@ int main()
 
     thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false);
     thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false);
-    
+
     //création et gestion de la fenêtre
     RenderWindow window(VideoMode(WINDOW_X, WINDOW_Y), WINDOW_NAME);
     while (window.isOpen())
