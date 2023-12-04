@@ -158,7 +158,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             }
             /*cout << "STOP" << endl;
             cout << dist_entre_2_stations << endl;*/
-            if (listeStations[i].get_terminus() == false) {
+            if (i > 1 && i < listeStations.size() - 2) {
                 cout << "nb passager dans la rame  " << rame.get_numero() << " avant entrer : " << rame.get_passagers() << endl;
                 int nb_entrant = remplire_rame(rame, listeStations[i]);
                 cout << "numero de rame " << rame.get_numero() << " nb entrant : " << nb_entrant << endl;
@@ -173,10 +173,15 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     temp_attente = 2;
                 }
                 cout << "temp attente : " << temp_attente << endl;
+                
+                //si on est sur une station blanche
+                if (i == 0 || i == listeStations.size() - 1) {
+                    temp_attente = 2;
+                }
                 this_thread::sleep_for(chrono::seconds(temp_attente)); //pause dans les stations
             }
             //this_thread::sleep_for(chrono::seconds(2)); //pause dans les stations
-            if (i == 1) {
+            else if (i == 1) {
                 int nb_entrant = remplire_rame(rame, listeStations[i]);
                 cout << "nb dans la rame  " << rame.get_numero() << "terminus depart : " << rame.get_passagers() << endl;
                 int temp_attente = (int)(nb_entrant) / 10;
@@ -188,7 +193,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 
                 this_thread::sleep_for(chrono::seconds(temp_attente)); //pause dans les stations
             }
-            if (i == listeStations.size() - 2 && listeStations[i].get_terminus() == true) {
+            else if (i == listeStations.size() - 2) {
                 int nb_attente = (int)(rame.get_passagers()) / 10;
                 rame.set_passagers(0);
                 if (nb_attente < 2)

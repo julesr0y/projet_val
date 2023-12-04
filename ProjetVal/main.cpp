@@ -21,12 +21,12 @@ int main()
 //L1
     Station station1_begin(0, "Station Debut", 50, 300, 0, Color::White, false);
     Station station1_1(1, "Station1", 100, 300, 10, Color::Red, true);
-    Station station1_2(2, "Station2", 300, 300, 10, Color::Red, true);
-    Station station1_3(3, "Station3", 500, 300, 10, Color::Red, false);
+    Station station1_2(2, "Station2", 300, 300, 10, Color::Red, false);
+    Station station1_3(3, "Station3", 500, 300, 10, Color::Red, true);
     Station station1_4(4, "Station4", 700, 300, 10, Color::Red, false);
     Station station1_5(5, "Station5", 900, 300, 10, Color::Red, false);
     Station station1_6(6, "Station6", 1100, 300, 10, Color::Red, true);
-    Station station1_end(7, "Station Fin", 350, 300, 0, Color::White, false);
+    Station station1_end(7, "Station Fin", 550, 300, 0, Color::White, false);
     //L2
     Station station2_begin(0, "Station Debut", 50, 600, 0, Color::White, false);
     Station station2_1(1, "Station1", 100, 600, 10, Color::Yellow, true);
@@ -38,7 +38,7 @@ int main()
     Station station2_7(7, "Station6", 1300, 600, 10, Color::Yellow, true);
     Station station2_end(8, "Station Fin", 1350, 600, 0, Color::White, false);
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
-    vector<Station> listeStationsL1 = { station1_begin, station1_1, station1_2, station1_end };
+    vector<Station> listeStationsL1 = { station1_begin, station1_1, station1_2, station1_3, station1_end };
     vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7, station2_end };
 
     //définition des rames (station d'apparition, id)
