@@ -19,26 +19,26 @@ int main()
 {
     //STATIONS (id, nom, position x, position y, nombre de passagers, couleur)
 //L1
-    Station station1_begin(0, "Station Debut", 50, 300, 0, Color::White);
-    Station station1_1(1, "Station1", 100, 300, 10, Color::Red);
-    Station station1_2(2, "Station2", 300, 300, 10, Color::Red);
-    Station station1_3(3, "Station3", 500, 300, 10, Color::Red);
-    Station station1_4(4, "Station4", 700, 300, 10, Color::Red);
-    Station station1_5(5, "Station5", 900, 300, 10, Color::Red);
-    Station station1_6(6, "Station6", 1100, 300, 10, Color::Red);
-    Station station1_end(7, "Station Fin", 1150, 300, 0, Color::White);
+    Station station1_begin(0, "Station Debut", 50, 300, 0, Color::White, false);
+    Station station1_1(1, "Station1", 100, 300, 10, Color::Red, true);
+    Station station1_2(2, "Station2", 300, 300, 10, Color::Red, true);
+    Station station1_3(3, "Station3", 500, 300, 10, Color::Red, false);
+    Station station1_4(4, "Station4", 700, 300, 10, Color::Red, false);
+    Station station1_5(5, "Station5", 900, 300, 10, Color::Red, false);
+    Station station1_6(6, "Station6", 1100, 300, 10, Color::Red, true);
+    Station station1_end(7, "Station Fin", 350, 300, 0, Color::White, false);
     //L2
-    Station station2_begin(0, "Station Debut", 50, 600, 0, Color::White);
-    Station station2_1(1, "Station1", 100, 600, 10, Color::Yellow);
-    Station station2_2(2, "Station2", 300, 600, 10, Color::Yellow);
-    Station station2_3(3, "Station3", 500, 600, 10, Color::Yellow);
-    Station station2_4(4, "Station4", 700, 600, 10, Color::Yellow);
-    Station station2_5(5, "Station5", 900, 600, 10, Color::Yellow);
-    Station station2_6(6, "Station6", 1100, 600, 10, Color::Yellow);
-    Station station2_7(7, "Station6", 1300, 600, 10, Color::Yellow);
-    Station station2_end(8, "Station Fin", 1350, 600, 0, Color::White);
+    Station station2_begin(0, "Station Debut", 50, 600, 0, Color::White, false);
+    Station station2_1(1, "Station1", 100, 600, 10, Color::Yellow, true);
+    Station station2_2(2, "Station2", 300, 600, 10, Color::Yellow, false);
+    Station station2_3(3, "Station3", 500, 600, 10, Color::Yellow, false);
+    Station station2_4(4, "Station4", 700, 600, 10, Color::Yellow, false);
+    Station station2_5(5, "Station5", 900, 600, 10, Color::Yellow, false);
+    Station station2_6(6, "Station6", 1100, 600, 10, Color::Yellow, false);
+    Station station2_7(7, "Station6", 1300, 600, 10, Color::Yellow, true);
+    Station station2_end(8, "Station Fin", 1350, 600, 0, Color::White, false);
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
-    vector<Station> listeStationsL1 = { station1_begin, station1_1, station1_2, station1_3, station1_4, station1_5, station1_6, station1_end };
+    vector<Station> listeStationsL1 = { station1_begin, station1_1, station1_2, station1_end };
     vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7, station2_end };
 
     //définition des rames (station d'apparition, id)
@@ -57,19 +57,19 @@ int main()
 
     //création des threads (fonction de déplacement, rame concernée, rame suivante, ligne concernée)
     thread thread1_1(moveRame, ref(rame1_1), ref(rame1_6), ref(listeStationsL1), true);
-    thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true);
+    //thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true);
 
     thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false);
     thread thread1_3(moveRame, ref(rame1_3), ref(rame1_2), ref(listeStationsL1), false);
-    thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeStationsL1), false);
-    thread thread1_5(moveRame, ref(rame1_5), ref(rame1_4), ref(listeStationsL1), false);
-    thread thread1_6(moveRame, ref(rame1_6), ref(rame1_5), ref(listeStationsL1), false);
+    //thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeStationsL1), false);
+    //thread thread1_5(moveRame, ref(rame1_5), ref(rame1_4), ref(listeStationsL1), false);
+    //thread thread1_6(moveRame, ref(rame1_6), ref(rame1_5), ref(listeStationsL1), false);
 
-    thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false);
-    thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false);
-    thread thread2_4(moveRame, ref(rame2_4), ref(rame2_3), ref(listeStationsL2), false);
-    thread thread2_5(moveRame, ref(rame2_5), ref(rame2_4), ref(listeStationsL2), false);
-    thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeStationsL2), false);
+    //thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false);
+    //thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false);
+    //thread thread2_4(moveRame, ref(rame2_4), ref(rame2_3), ref(listeStationsL2), false);
+    //thread thread2_5(moveRame, ref(rame2_5), ref(rame2_4), ref(listeStationsL2), false);
+    //thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeStationsL2), false);
 
     Font font;
     if (!font.loadFromFile(FONT)) {
@@ -166,15 +166,15 @@ int main()
     thread1_1.join();
     thread1_2.join();
     thread1_3.join();
-    thread1_4.join();
-    thread1_5.join();
-    thread1_6.join();
-    thread2_1.join();
-    thread2_2.join();
-    thread2_3.join();
-    thread2_4.join();
-    thread2_5.join();
-    thread2_6.join();
+    //thread1_4.join();
+    //thread1_5.join();
+    //thread1_6.join();
+    //thread2_1.join();
+    //thread2_2.join();
+    //thread2_3.join();
+    //thread2_4.join();
+    //thread2_5.join();
+    //thread2_6.join();
 
     return 0;
 }

@@ -17,7 +17,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
         this_thread::sleep_for(chrono::seconds(randomNum(re)));
     }
 
-    cout << rame.get_numero() << endl;
+    //cout << rame.get_numero() << endl;
 
     bool reverseOrder = false; //par défaut, on inverse pas la liste des stations de la ligne
 
@@ -28,6 +28,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
         }
 
         for (int i = 0; i < listeStations.size(); i++) {
+            cout << "est terminus" << listeStations[i].get_terminus() << endl;
             float dist_entre_2_stations = 0.0; //initialisation de la distance entre la station en cours et la suivante
 
             if (i == listeStations.size() - 1) { //si on est à la dernière station
@@ -157,7 +158,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             }
             /*cout << "STOP" << endl;
             cout << dist_entre_2_stations << endl;*/
-            if (i > 0) {
+            if (listeStations[i].get_terminus() == false) {
                 cout << "nb passager dans la rame  " << rame.get_numero() << " avant entrer : " << rame.get_passagers() << endl;
                 int nb_entrant = remplire_rame(rame, listeStations[i]);
                 cout << "numero de rame " << rame.get_numero() << " nb entrant : " << nb_entrant << endl;
@@ -165,8 +166,8 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 cout << "numero de rame " << rame.get_numero() << " nb sortant : " << nb_sortant << endl;
                 cout << "nb passager dans la rame  " << rame.get_numero() << " apres entrer : " << rame.get_passagers() << endl;
 
-                rame.setArrete(true); //on set la rame en mode d'arret
                 int temp_attente = (int)(nb_entrant + nb_sortant) / 10;
+                cout << temp_attente << endl;
                 if (temp_attente < 2)
                 {
                     temp_attente = 2;
@@ -175,9 +176,38 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 this_thread::sleep_for(chrono::seconds(temp_attente)); //pause dans les stations
             }
             //this_thread::sleep_for(chrono::seconds(2)); //pause dans les stations
+            if (i == 1) {
+                int nb_entrant = remplire_rame(rame, listeStations[i]);
+                cout << "nb dans la rame  " << rame.get_numero() << "terminus depart : " << rame.get_passagers() << endl;
+                int temp_attente = (int)(nb_entrant) / 10;
+               
+                if (temp_attente < 2)
+                {
+                    temp_attente = 2;
+                }
+                
+                this_thread::sleep_for(chrono::seconds(temp_attente)); //pause dans les stations
+            }
+            if (i == listeStations.size() - 2 && listeStations[i].get_terminus() == true) {
+                int nb_attente = (int)(rame.get_passagers()) / 10;
+                rame.set_passagers(0);
+                if (nb_attente < 2)
+                {
+                    nb_attente = 2;
+                }
+                cout << "nb dans la rame  " << rame.get_numero() << "terminus arriver : " << rame.get_passagers() << endl;
 
+                this_thread::sleep_for(chrono::seconds(nb_attente)); //pause dans les stations
+
+            }
             if (i == listeStations.size() - 1) { //si on est au bout de la ligne
                 rame.setArrete(true); //on met la rame en mode arret
+                cout << "--------------------------------------" << endl;
+
+                cout << "on va a l'oppose ouuuuu" << endl;
+
+                cout << "--------------------------------------" << endl;
+
             }
             //monte
             if (rame.estArrete() && i == listeStations.size() - 1 && !rame.getRetour()) {

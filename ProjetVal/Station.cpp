@@ -5,13 +5,14 @@ using namespace sf;
 
 Station::Station() {};
 
-Station::Station(int id, string name, float x, float y, int nbpassagers, Color color) {
+Station::Station(int id, string name, float x, float y, int nbpassagers, Color color, bool terminus_) {
 	id_station = id;
 	nom = name;
 	position[0] = x;
 	position[1] = y;
 	nb_passagers = nbpassagers;
 	couleur = color;
+	terminus = terminus_;
 }
 
 int Station::getIdStation() {
@@ -46,4 +47,8 @@ CircleShape Station::getRepr() {
 
 void Station::setNbPassagers(int nb) {
 	nb_passagers = nb;
+}
+
+bool Station::get_terminus() {
+	return terminus;
 }
