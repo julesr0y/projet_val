@@ -14,7 +14,6 @@ private:
 	float position_y;
 	int nb_passagers;
 	float distance_arret_urgence;
-	float poids;
 	bool est_Arrete = true;
 	bool terminus = false;
 	bool retour;
@@ -30,18 +29,17 @@ public:
 	~Rame();//destructeur
 
 
-	//methodes de la class
+	//methodes de la classe
 	void vitesse_plus(int pourcentage);
 	void vitesse_moins(int pourcentage);
 
-	//setter
+	//setters
 	void set_numero(int nb);
 	void set_vitesse(float v);
 	void set_position_x(int x);
 	void set_position_y(int y);
 	void set_passagers(int nb);
 	void set_distance_arret_urgence(float dis);
-	void set_poids(float p);
 	void setRepr();
 	void setArrete(bool etat);
 	void setTerminus(bool etat);

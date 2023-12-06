@@ -20,8 +20,7 @@ Rame::Rame(Station station_depart,int num, bool etat) : representation(3)
 	}
 	nb_passagers = 0;
 	vitesse = 1;
-	distance_arret_urgence = 3.4;//à voir 
-	poids = 0;
+	distance_arret_urgence = 3.4;//à voir
 	retour = etat;
 }
 
@@ -35,7 +34,6 @@ Rame::Rame(Station station_depart) : representation(3) {
 	nb_passagers = 0;
 	vitesse = 1;
 	distance_arret_urgence = 3.4;//à voir 
-	poids = 0;
 }
 
 //methodes de la classe
@@ -73,10 +71,6 @@ void Rame::set_position_y(int y) {
 
 void Rame::set_vitesse(float v) {
 	vitesse = v;
-}
-
-void Rame::set_poids(float p) {
-	poids = p;
 }
 
 void Rame::setRepr() {
@@ -119,10 +113,6 @@ int Rame::get_passagers() {
 }
 float Rame::get_distance_arret_urgence() {
 	return distance_arret_urgence;
-}
-
-int Rame::get_poids() {
-	return poids;
 }
 
 int Rame::get_numero() {
