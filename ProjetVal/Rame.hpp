@@ -17,7 +17,7 @@ private:
 	float poids;
 	bool est_Arrete = true;
 	bool terminus = false;
-	bool retour = false;
+	bool retour;
 	bool hasStarted_ = false;
 	bool en_freinage = false;
 	float angleRotation = 0.0;
@@ -25,7 +25,7 @@ private:
 
 public:
 	Rame(Station station_depart);//constructeur
-	Rame(Station station_depart, int numero);
+	Rame(Station station_depart, int numero, bool etat);
 	Rame();
 	~Rame();//destructeur
 

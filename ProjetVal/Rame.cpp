@@ -6,7 +6,7 @@ using namespace sf;
 //constructeur
 Rame::Rame() : representation(3){}
 
-Rame::Rame(Station station_depart,int num) : representation(3)
+Rame::Rame(Station station_depart,int num, bool etat) : representation(3)
 {
 	centre_x = station_depart.getPositionX();
 	centre_y = station_depart.getPositionY();
@@ -14,10 +14,15 @@ Rame::Rame(Station station_depart,int num) : representation(3)
 	numero = num;
 	position_x = centre_x;
 	position_y = centre_y;
+	if (etat == true) {
+		position_y += 30;
+		angleRotation += 180.0;
+	}
 	nb_passagers = 0;
 	vitesse = 1;
 	distance_arret_urgence = 3.4;//à voir 
 	poids = 0;
+	retour = etat;
 }
 
 Rame::Rame(Station station_depart) : representation(3) {

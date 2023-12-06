@@ -7,7 +7,25 @@
 
 using namespace std;
 
-void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool beginning) {
+void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x) {
+    string tableauTexte;
+    for (size_t i = 0; i < tabRame.size(); i++) {
+        if (rame.get_numero() == tabRame[i].get_numero())
+        {
+            tabRame[i].set_passagers(rame.get_passagers());
+            tableauTexte += "Rame N° : " + to_string(tabRame[i].get_numero()) + " nb passager : " + to_string(rame.get_passagers()) + "\n";
+        }
+        else
+        {
+            tableauTexte += "Rame N° : " + to_string(tabRame[i].get_numero()) + " nb passager : " + to_string(tabRame[i].get_passagers()) + "\n";
+        }
+
+    }
+    text.setString(tableauTexte);
+    text.setPosition(pos_x, 0);
+}
+
+void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool beginning, vector<Rame>& tabRame, Text& text) {
     if (!beginning) {
         default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
         uniform_int_distribution<int> randomNum{ 4, 10 };
