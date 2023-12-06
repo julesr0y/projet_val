@@ -10,15 +10,30 @@
 using namespace std;
 using namespace sf;
 
-#define WINDOW_X 1500 //largeur de la fenêtre
-#define WINDOW_Y 800 //hauteur de la fenêtre
+#define WINDOW_X 1750 //largeur de la fenêtre
+#define WINDOW_Y 900 //hauteur de la fenêtre
 #define WINDOW_NAME "VAL" //nom de la fenêtre
-#define FONT "arial.ttf"
+#define FONT "merienda.ttf"
+#define ICON "icon.png"
 
 int main()
 {
+    //légende
+    CircleShape legende_station;
+    legende_station.setRadius(20);
+    legende_station.setPosition(50 - 15, 850 - 15);
+    legende_station.setFillColor(Color::Red);
+    CircleShape legende_retour;
+    legende_retour.setRadius(20);
+    legende_retour.setPosition(175 - 15, 850 - 15);
+    legende_retour.setFillColor(Color::White);
+    RectangleShape legende_route;
+    legende_route.setSize(Vector2f(75, 8));
+    legende_route.setPosition(300, 850);
+    legende_route.setFillColor(Color::Yellow);
+
     //STATIONS (id, nom, position x, position y, nombre de passagers, couleur)
-//L1
+    //L1
     Station station1_begin(0, "Station Debut", 50, 300, 0, Color::White, false);
     Station station1_1(1, "Station1", 100, 300, 10, Color::Red, true);
     Station station1_2(2, "Station2", 300, 300, 10, Color::Red, false);
@@ -57,19 +72,19 @@ int main()
 
     //création des threads (fonction de déplacement, rame concernée, rame suivante, ligne concernée)
     thread thread1_1(moveRame, ref(rame1_1), ref(rame1_6), ref(listeStationsL1), true);
-    //thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true);
+    thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true);
 
     thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false);
     thread thread1_3(moveRame, ref(rame1_3), ref(rame1_2), ref(listeStationsL1), false);
-    //thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeStationsL1), false);
-    //thread thread1_5(moveRame, ref(rame1_5), ref(rame1_4), ref(listeStationsL1), false);
-    //thread thread1_6(moveRame, ref(rame1_6), ref(rame1_5), ref(listeStationsL1), false);
+    thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeStationsL1), false);
+    thread thread1_5(moveRame, ref(rame1_5), ref(rame1_4), ref(listeStationsL1), false);
+    thread thread1_6(moveRame, ref(rame1_6), ref(rame1_5), ref(listeStationsL1), false);
 
-    //thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false);
-    //thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false);
-    //thread thread2_4(moveRame, ref(rame2_4), ref(rame2_3), ref(listeStationsL2), false);
-    //thread thread2_5(moveRame, ref(rame2_5), ref(rame2_4), ref(listeStationsL2), false);
-    //thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeStationsL2), false);
+    thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false);
+    thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false);
+    thread thread2_4(moveRame, ref(rame2_4), ref(rame2_3), ref(listeStationsL2), false);
+    thread thread2_5(moveRame, ref(rame2_5), ref(rame2_4), ref(listeStationsL2), false);
+    thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeStationsL2), false);
 
     Font font;
     if (!font.loadFromFile(FONT)) {
@@ -82,8 +97,17 @@ int main()
     text.setCharacterSize(24); // Définir la taille du texte
     text.setFillColor(Color::White); // Définir la couleur du texte
     
+    Image icon;
+    if (!icon.loadFromFile(ICON)) {
+        return EXIT_FAILURE;
+    }
+
     //création et gestion de la fenêtre
     RenderWindow window(VideoMode(WINDOW_X, WINDOW_Y), WINDOW_NAME);
+
+    // Définir l'icône de la fenêtre
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
     while (window.isOpen())
     {
         //gestion de la destruction de la fenêtre
@@ -158,6 +182,9 @@ int main()
         window.draw(rame2_5.getRepr());
         window.draw(rame2_6.getRepr());
         window.draw(text);
+        window.draw(legende_station);
+        window.draw(legende_retour);
+        window.draw(legende_route);
 
         window.display(); //affichage de la fenêtre
     }
@@ -166,15 +193,15 @@ int main()
     thread1_1.join();
     thread1_2.join();
     thread1_3.join();
-    //thread1_4.join();
-    //thread1_5.join();
-    //thread1_6.join();
-    //thread2_1.join();
-    //thread2_2.join();
-    //thread2_3.join();
-    //thread2_4.join();
-    //thread2_5.join();
-    //thread2_6.join();
+    thread1_4.join();
+    thread1_5.join();
+    thread1_6.join();
+    thread2_1.join();
+    thread2_2.join();
+    thread2_3.join();
+    thread2_4.join();
+    thread2_5.join();
+    thread2_6.join();
 
     return 0;
 }

@@ -9,15 +9,11 @@ using namespace std;
 
 void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool beginning) {
     if (!beginning) {
-        //srand(static_cast<unsigned int>(time(0)));
-        //int randomNum = 7 + (rand() % 4); // 7 + (0 to 3)
         default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
         uniform_int_distribution<int> randomNum{ 4, 10 };
         //cout << randomNum(re) << endl;
         this_thread::sleep_for(chrono::seconds(randomNum(re)));
     }
-
-    //cout << rame.get_numero() << endl;
 
     bool reverseOrder = false; //par défaut, on inverse pas la liste des stations de la ligne
 
@@ -28,7 +24,6 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
         }
 
         for (int i = 0; i < listeStations.size(); i++) {
-            cout << "est terminus" << listeStations[i].get_terminus() << endl;
             float dist_entre_2_stations = 0.0; //initialisation de la distance entre la station en cours et la suivante
 
             if (i == listeStations.size() - 1) { //si on est à la dernière station
@@ -156,9 +151,8 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 }
                 this_thread::sleep_for(chrono::milliseconds(v)); //réglage de la vitesse de la rame
             }
-            /*cout << "STOP" << endl;
-            cout << dist_entre_2_stations << endl;*/
-            if (i > 1 && i < listeStations.size() - 2) {
+
+            if (i > 1 && i < listeStations.size() - 2) { //si on ne se situe pas sur un terminus
                 cout << "nb passager dans la rame  " << rame.get_numero() << " avant entrer : " << rame.get_passagers() << endl;
                 int nb_entrant = remplire_rame(rame, listeStations[i]);
                 cout << "numero de rame " << rame.get_numero() << " nb entrant : " << nb_entrant << endl;
@@ -229,25 +223,5 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 reverseOrder = true; //on active l'inversion de la liste des stations
             }
         }
-    }
-}
-
-
-Rame get_rames_apres(vector<Rame>& liste, Rame& rame) {
-    int i = 0;//recupere l'indice du rame dans la liste
-    
-    //tant que le numéro dans la liste ne correspond pas au numéro de la rame actuelle
-    while (liste[i].get_numero() != rame.get_numero())
-    {
-        i++; //on incrémente i
-    }
-
-    if (i == 0)
-    {
-        return liste.back(); //alors la rame suivante correspond au dernier élément de la liste
-    }
-    else
-    {
-        return liste[i - 1]; //sinon, on récupère l'élément d'indice moins un
     }
 }
