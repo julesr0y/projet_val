@@ -3,10 +3,12 @@
 #include <random>
 #include <ctime>
 #include<chrono>
+
 using namespace std;
+
 int remplire_rame(Rame& rame, Station& station) {
-    cout << "======================================================================================" << endl;
-    cout << endl;
+    //cout << "======================================================================================" << endl;
+    //cout << endl;
 
     int nb_max = 100;
     default_random_engine re(chrono::system_clock::now().time_since_epoch().count());

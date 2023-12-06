@@ -15,6 +15,7 @@ using namespace sf;
 #define WINDOW_NAME "VAL" //nom de la fenêtre
 #define FONT "merienda.ttf"
 #define ICON "icon.png"
+bool arret_urgence = false;
 
 int main()
 {
@@ -122,6 +123,18 @@ int main()
         {
             if (event.type == Event::Closed) {
                 window.close();
+            }
+
+            if (event.type == Event::MouseButtonPressed) {
+                if (event.mouseButton.button == Mouse::Left) {
+                    Vector2i mousePosition = Mouse::getPosition(window);
+                    Vector2f circlePosition = legende_station.getPosition();
+                    float circleRadius = legende_station.getRadius();
+                    float distance = sqrt(pow(mousePosition.x - (circlePosition.x + circleRadius), 2) + pow(mousePosition.y - (circlePosition.y + circleRadius), 2));
+                    if (distance <= circleRadius) {
+                        arret_urgence = !arret_urgence;
+                    }
+                }
             }
         }
 
