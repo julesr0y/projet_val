@@ -1,0 +1,43 @@
+\doxysection{Station.\+hpp}
+\hypertarget{_station_8hpp_source}{}\label{_station_8hpp_source}\index{C:/Users/jules/ISEN/projet\_val/ProjetVal/Station.hpp@{C:/Users/jules/ISEN/projet\_val/ProjetVal/Station.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STATION\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STATION\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ namespace\ }sf;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_station}{Station}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ id\_station;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{string}\ nom;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{float}\ position[2];}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{int}\ nb\_passagers;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//float\ temps;}}
+\DoxyCodeLine{00016\ \ \ \ \ CircleShape\ representation;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{float}\ rayon\ =\ 20;}
+\DoxyCodeLine{00018\ \ \ \ \ Color\ couleur;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ terminus;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_station}{Station}}();}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_station}{Station}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{string}\ name,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{int}\ nbpassagers,\ Color\ color,\ \textcolor{keywordtype}{bool}\ terminus\_);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//Stations\ \string~Stations();}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ getIdStation();}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{string}\ getNom();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{float}\ getPositionX();}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{float}\ getPositionY();}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ getNbPassagers();}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//bool\ estVide();}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ setRepr();}
+\DoxyCodeLine{00032\ \ \ \ \ CircleShape\ getRepr();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ setNbPassagers(\textcolor{keywordtype}{int}\ nb);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ get\_terminus();}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif\ STATION\_H}}
+
+\end{DoxyCode}

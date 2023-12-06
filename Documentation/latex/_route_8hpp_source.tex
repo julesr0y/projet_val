@@ -1,0 +1,40 @@
+\doxysection{Route.\+hpp}
+\hypertarget{_route_8hpp_source}{}\label{_route_8hpp_source}\index{C:/Users/jules/ISEN/projet\_val/ProjetVal/Route.hpp@{C:/Users/jules/ISEN/projet\_val/ProjetVal/Route.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ROUTE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ROUTE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Rame.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ namespace\ }sf;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_route}{Route}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ id\_voie;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{float}\ hauteur;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{float}\ longueur;}
+\DoxyCodeLine{00014\ \ \ \ \ RectangleShape\ representation;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ epaisseur\ =\ 8;}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_station}{Station}}\ station\_depart;}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_station}{Station}}\ station\_arrivee;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{float}\ station1\_x;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ station1\_y;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{float}\ station2\_x;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ station2\_y;}
+\DoxyCodeLine{00022\ \ \ \ \ Color\ couleur;}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_route}{Route}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_route}{Route}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_station}{Station}}\ station1,\ \mbox{\hyperlink{class_station}{Station}}\ station2,\ Color\ color);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ get\_id\_voie();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ get\_longueur();}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ get\_hauteur();}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ setRepr();}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ setReprRetour();}
+\DoxyCodeLine{00031\ \ \ \ \ RectangleShape\ getRepr();}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif\ ROUTE\_H}}
+
+\end{DoxyCode}

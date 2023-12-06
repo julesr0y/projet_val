@@ -1,0 +1,86 @@
+\doxysection{Rame.\+hpp}
+\hypertarget{_rame_8hpp_source}{}\label{_rame_8hpp_source}\index{C:/Users/jules/ISEN/projet\_val/ProjetVal/Rame.hpp@{C:/Users/jules/ISEN/projet\_val/ProjetVal/Rame.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ RAME\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ RAME\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Station.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_rame}{Rame}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{float}\ centre\_x;}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{float}\ centre\_y;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{float}\ taille\_cote\ =\ 25;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ numero;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{float}\ vitesse\ =\ 10;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{float}\ position\_x;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ position\_y;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ nb\_passagers;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{float}\ distance\_arret\_urgence;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{float}\ poids;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ est\_Arrete\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ terminus\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ retour;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasStarted\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ en\_freinage\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ angleRotation\ =\ 0.0;}
+\DoxyCodeLine{00024\ \ \ \ \ ConvexShape\ representation;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_rame}{Rame}}(\mbox{\hyperlink{class_station}{Station}}\ station\_depart);\textcolor{comment}{//constructeur}}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_rame}{Rame}}(\mbox{\hyperlink{class_station}{Station}}\ station\_depart,\ \textcolor{keywordtype}{int}\ numero,\ \textcolor{keywordtype}{bool}\ etat);}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_rame}{Rame}}();}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_rame}{\string~Rame}}();\textcolor{comment}{//destructeur}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//methodes\ de\ la\ class}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ vitesse\_plus(\textcolor{keywordtype}{int}\ pourcentage);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ vitesse\_moins(\textcolor{keywordtype}{int}\ pourcentage);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//setter}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ set\_numero(\textcolor{keywordtype}{int}\ nb);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ set\_vitesse(\textcolor{keywordtype}{float}\ v);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ set\_position\_x(\textcolor{keywordtype}{int}\ x);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ set\_position\_y(\textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ set\_passagers(\textcolor{keywordtype}{int}\ nb);}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ set\_distance\_arret\_urgence(\textcolor{keywordtype}{float}\ dis);}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ set\_poids(\textcolor{keywordtype}{float}\ p);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ setRepr();}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ setArrete(\textcolor{keywordtype}{bool}\ etat);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ setTerminus(\textcolor{keywordtype}{bool}\ etat);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ setRetour(\textcolor{keywordtype}{bool}\ etat);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ setStarted(\textcolor{keywordtype}{bool}\ etat);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ setFreinage(\textcolor{keywordtype}{bool}\ etat);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//getters}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{int}\ get\_numero();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{float}\ get\_vitesse();}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{int}\ get\_position\_x();}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ get\_position\_y();}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ \ get\_passagers();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{float}\ get\_distance\_arret\_urgence();}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ get\_poids();}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{bool}\ estArrete();}
+\DoxyCodeLine{00061\ \ \ \ \ ConvexShape\ getRepr();}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{int}\ get\_vitesse\_int();}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{bool}\ getTerminus();}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ getRetour();}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasStarted();}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ isFreinage();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//gestion\ des\ déplacements}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ moveDroite();}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ moveGauche();}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ moveHaut();}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ moveBas();}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ moveDiagonalHautDroite();}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ moveDiagonalHautGauche();}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ moveDiagonalBasDroite();}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ moveDiagonalBasGauche();}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ rotate180();}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif\ RAME\_H}}
+
+\end{DoxyCode}
