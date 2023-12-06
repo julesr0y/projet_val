@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void updateRameText(Text& text, vector<Rame>& tabRame,Rame rame) {
+void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x) {
     string tableauTexte;
     for (size_t i = 0; i < tabRame.size(); i++) {
         if (rame.get_numero() == tabRame[i].get_numero())
@@ -19,14 +19,13 @@ void updateRameText(Text& text, vector<Rame>& tabRame,Rame rame) {
         {
             tableauTexte += "Rame N° : " + to_string(tabRame[i].get_numero()) + " nb passager : " + to_string(tabRame[i].get_passagers()) + "\n";
         }
-        
+
     }
     text.setString(tableauTexte);
+    text.setPosition(pos_x, 0);
 }
 
 void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool beginning, vector<Rame>& tabRame, Text& text) {
-    
-
     if (!beginning) {
         default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
         uniform_int_distribution<int> randomNum{ 4, 10 };
@@ -38,15 +37,11 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
 
     while (true) { //boucle infinie, pour recommencer indéfiniment le parcours de la ligne pour la rame
         rame.setFreinage(false); //par défaut, on set la rame comme sur la voie (pas en direction de station blanche)
-
         if (reverseOrder) { //si l'inversement de liste des stations de la ligne est activé
             reverse(listeStations.begin(), listeStations.end()); //on inverse la liste
         }
 
         for (int i = 0; i < listeStations.size(); i++) {
-            //updateRameText(text, tabRame);
-            //text.setString("Rame N° : " + to_string(rame.get_numero()) + " nb passager : " + to_string(rame.get_passagers()) + "\n");
-
             float dist_entre_2_stations = 0.0; //initialisation de la distance entre la station en cours et la suivante
 
             if (i == listeStations.size() - 1) { //si on est à la dernière station
@@ -245,8 +240,6 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 rame.setRetour(false); //on enleve le mode retour (voie inférieure)
                 reverseOrder = true; //on active l'inversion de la liste des stations
             }
-
         }
-
     }
 }
