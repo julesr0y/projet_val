@@ -16,8 +16,18 @@ using namespace sf;
 #define FONT "merienda.ttf"
 #define ICON "icon.png"
 
+
+
 int main()
 {
+    Font font;
+    if (!font.loadFromFile(FONT)) {
+        // Gestion de l'erreur si la police ne peut pas être chargée
+        return -1;
+    }
+    Text text;
+    text.setFont(font); // Définir la police
+
     //légende
     CircleShape legende_station;
     legende_station.setRadius(20);
@@ -70,30 +80,36 @@ int main()
     Rame rame2_5(station2_begin, 11);
     Rame rame2_6(station2_begin, 12);
 
+    vector<Rame> tabRame_L1 = { rame1_1,rame1_2,rame1_3,rame1_4,rame1_5,rame1_6 };
+    vector<Rame> tabRame_L2 = { rame2_1,rame2_2,rame2_3,rame2_4,rame2_5,rame2_6 };
+
     //création des threads (fonction de déplacement, rame concernée, rame suivante, ligne concernée)
-    thread thread1_1(moveRame, ref(rame1_1), ref(rame1_6), ref(listeStationsL1), true);
-    thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true);
+    thread thread1_1(moveRame, ref(rame1_1), ref(rame1_6), ref(listeStationsL1), true,ref(tabRame_L1),ref(text));
+    //thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true,ref(tabRame_L2), ref(text));
 
-    thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false);
-    thread thread1_3(moveRame, ref(rame1_3), ref(rame1_2), ref(listeStationsL1), false);
-    thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeStationsL1), false);
-    thread thread1_5(moveRame, ref(rame1_5), ref(rame1_4), ref(listeStationsL1), false);
-    thread thread1_6(moveRame, ref(rame1_6), ref(rame1_5), ref(listeStationsL1), false);
+    thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false, ref(tabRame_L1), ref(text));
+    thread thread1_3(moveRame, ref(rame1_3), ref(rame1_2), ref(listeStationsL1), false,ref(tabRame_L1), ref(text));
+    thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeStationsL1), false,ref(tabRame_L1), ref(text));
+    thread thread1_5(moveRame, ref(rame1_5), ref(rame1_4), ref(listeStationsL1), false,ref(tabRame_L1), ref(text));
+    thread thread1_6(moveRame, ref(rame1_6), ref(rame1_5), ref(listeStationsL1), false,ref(tabRame_L1), ref(text));
 
-    thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false);
-    thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false);
-    thread thread2_4(moveRame, ref(rame2_4), ref(rame2_3), ref(listeStationsL2), false);
-    thread thread2_5(moveRame, ref(rame2_5), ref(rame2_4), ref(listeStationsL2), false);
-    thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeStationsL2), false);
+    //thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false, ref(tabRame_L2), ref(text));
+    //thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false, ref(tabRame_L2), ref(text));
+    //thread thread2_4(moveRame, ref(rame2_4), ref(rame2_3), ref(listeStationsL2), false, ref(tabRame_L2), ref(text));
+    //thread thread2_5(moveRame, ref(rame2_5), ref(rame2_4), ref(listeStationsL2), false, ref(tabRame_L2), ref(text));
+    //thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeStationsL2), false, ref(tabRame_L2), ref(text));
 
-    Font font;
-    if (!font.loadFromFile(FONT)) {
-        // Gestion de l'erreur si la police ne peut pas être chargée
-        return -1;
-    }
-    Text text;
-    text.setFont(font); // Définir la police
-    text.setString("Projet VAL"); // Définir le texte
+ 
+    //string tableauTexte;
+    //for (size_t i = 0; i < tabRame_L1.size(); i++)
+    //{
+    //    tableauTexte +="Rame N° : " + to_string(tabRame_L1[i].get_numero()) +" nb passager : "+ to_string(tabRame_L1[i].get_passagers()) +"\n"; // Définir le texte
+
+    //}
+    //text.setString(tableauTexte);
+
+
+    //text.setString("Projet VAL"); // Définir le texte
     text.setCharacterSize(24); // Définir la taille du texte
     text.setFillColor(Color::White); // Définir la couleur du texte
     
@@ -142,31 +158,38 @@ int main()
                     window.draw(route_r.getRepr()); //on dessine la route de retour
                 }
             }
+
+            updateRameText(text, tabRame_L1, rame1_1);
+            updateRameText(text, tabRame_L1, rame1_2);
+            updateRameText(text, tabRame_L1, rame1_3);
+            updateRameText(text, tabRame_L1, rame1_4);
+            updateRameText(text, tabRame_L1, rame1_5);
+            updateRameText(text, tabRame_L1, rame1_6);
             window.draw(listeStationsL1[i].getRepr()); //on dessine la station
         }
 
-        for (int i = 0; i < listeStationsL2.size(); i++) { //pour la L2
-            listeStationsL2[i].setRepr(); //on set la représentation de la station en cours
-            if (i != listeStationsL2.size() - 1) { //la dernière station ne peut avoir de route à sa droite
-                if (i == 0 || i == listeStationsL2.size() - 2) {
-                    Route route(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::White); //on crée une route de cette station à la suivante
-                    Route route_r(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::White); //on crée une route de retour
-                    route.setRepr(); //on set la représentation de la route
-                    route_r.setReprRetour(); //on set la représentation de la route de retour
-                    window.draw(route.getRepr()); //on dessine la route
-                    window.draw(route_r.getRepr()); //on dessine la route de retour
-                }
-                else {
-                    Route route(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::Yellow); //on crée une route de cette station à la suivante
-                    Route route_r(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::Yellow); //on crée une route de retour
-                    route.setRepr(); //on set la représentation de la route
-                    route_r.setReprRetour(); //on set la représentation de la route de retour
-                    window.draw(route.getRepr()); //on dessine la route
-                    window.draw(route_r.getRepr()); //on dessine la route de retour
-                }
-            }
-            window.draw(listeStationsL2[i].getRepr()); //on dessine la station
-        }
+        //for (int i = 0; i < listeStationsL2.size(); i++) { //pour la L2
+        //    listeStationsL2[i].setRepr(); //on set la représentation de la station en cours
+        //    if (i != listeStationsL2.size() - 1) { //la dernière station ne peut avoir de route à sa droite
+        //        if (i == 0 || i == listeStationsL2.size() - 2) {
+        //            Route route(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::White); //on crée une route de cette station à la suivante
+        //            Route route_r(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::White); //on crée une route de retour
+        //            route.setRepr(); //on set la représentation de la route
+        //            route_r.setReprRetour(); //on set la représentation de la route de retour
+        //            window.draw(route.getRepr()); //on dessine la route
+        //            window.draw(route_r.getRepr()); //on dessine la route de retour
+        //        }
+        //        else {
+        //            Route route(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::Yellow); //on crée une route de cette station à la suivante
+        //            Route route_r(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::Yellow); //on crée une route de retour
+        //            route.setRepr(); //on set la représentation de la route
+        //            route_r.setReprRetour(); //on set la représentation de la route de retour
+        //            window.draw(route.getRepr()); //on dessine la route
+        //            window.draw(route_r.getRepr()); //on dessine la route de retour
+        //        }
+        //    }
+        //    window.draw(listeStationsL2[i].getRepr()); //on dessine la station
+        //}
 
         //on dessine les rames
         window.draw(rame1_1.getRepr());
@@ -175,12 +198,12 @@ int main()
         window.draw(rame1_4.getRepr());
         window.draw(rame1_5.getRepr());
         window.draw(rame1_6.getRepr());
-        window.draw(rame2_1.getRepr());
+       /* window.draw(rame2_1.getRepr());
         window.draw(rame2_2.getRepr());
         window.draw(rame2_3.getRepr());
         window.draw(rame2_4.getRepr());
         window.draw(rame2_5.getRepr());
-        window.draw(rame2_6.getRepr());
+        window.draw(rame2_6.getRepr());*/
         window.draw(text);
         window.draw(legende_station);
         window.draw(legende_retour);
@@ -196,12 +219,12 @@ int main()
     thread1_4.join();
     thread1_5.join();
     thread1_6.join();
-    thread2_1.join();
+    /*thread2_1.join();
     thread2_2.join();
     thread2_3.join();
     thread2_4.join();
     thread2_5.join();
-    thread2_6.join();
+    thread2_6.join();*/
 
     return 0;
 }
