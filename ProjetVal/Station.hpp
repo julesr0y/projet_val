@@ -32,6 +32,8 @@ public:
 	CircleShape getRepr();
 	void setNbPassagers(int nb);
 	bool get_terminus();
+	void set_nom(string Snom);
+	string get_nom();
 };
 
 #endif STATION_H

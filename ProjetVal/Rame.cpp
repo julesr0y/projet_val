@@ -6,12 +6,13 @@ using namespace sf;
 //constructeur
 Rame::Rame() : representation(3){}
 
-Rame::Rame(Station station_depart,int num, bool etat) : representation(3)
+Rame::Rame(Station station_depart,int num , int L,bool etat) : representation(3)
 {
 	centre_x = station_depart.getPositionX();
 	centre_y = station_depart.getPositionY();
 	terminus = 0;
 	numero = num;
+	ligne = L;
 	position_x = centre_x;
 	position_y = centre_y;
 	if (etat == true) {
@@ -20,7 +21,7 @@ Rame::Rame(Station station_depart,int num, bool etat) : representation(3)
 	}
 	nb_passagers = 0;
 	vitesse = 1;
-	distance_arret_urgence = 3.4;//à voir 
+	distance_arret_urgence = 3.4;//ï¿½ voir 
 	poids = 0;
 	retour = etat;
 }
@@ -34,7 +35,7 @@ Rame::Rame(Station station_depart) : representation(3) {
 	position_y = centre_y;
 	nb_passagers = 0;
 	vitesse = 1;
-	distance_arret_urgence = 3.4;//à voir 
+	distance_arret_urgence = 3.4;//ï¿½ voir 
 	poids = 0;
 }
 
@@ -243,6 +244,9 @@ void Rame::setStarted(bool etat) {
 	hasStarted_ = etat;
 }
 
+int Rame::get_ligne(){
+	return ligne;
+}
 //destructeur
 Rame::~Rame()
 {
