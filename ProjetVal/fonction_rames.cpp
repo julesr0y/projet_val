@@ -13,11 +13,11 @@ void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x) {
         if (rame.get_numero() == tabRame[i].get_numero())
         {
             tabRame[i].set_passagers(rame.get_passagers());
-            tableauTexte += "ligne N° : "+ to_string(rame.get_ligne()) + "Rame N° : " + to_string(tabRame[i].get_numero()) + " nb passager : " + to_string(rame.get_passagers()) + "\n";
+            tableauTexte += "ligne N° : "+ to_string(rame.get_ligne()) + " Rame N° : " + to_string(tabRame[i].get_numero()) + " nb passager : " + to_string(rame.get_passagers()) + "\n";
         }
         else
         {
-            tableauTexte += "ligne N° : " + to_string(rame.get_ligne()) + "Rame N° : " + to_string(tabRame[i].get_numero()) + " nb passager : " + to_string(tabRame[i].get_passagers()) + "\n";
+            tableauTexte += "ligne N° : " + to_string(rame.get_ligne()) + " Rame N° : " + to_string(tabRame[i].get_numero()) + " nb passager : " + to_string(tabRame[i].get_passagers()) + "\n";
         }
 
     }

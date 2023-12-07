@@ -27,8 +27,11 @@ int main()
     text.setFont(font);
     Text text2;
     text2.setFont(font);// D�finir la police
-    text.setFont(font); // D�finir la police
-    text.setCharacterSize(24); // D�finir la taille du texte
+    text2.setCharacterSize(17); // D�finir la taille du texte
+
+    text2.setFillColor(Color::White); // D�finir la couleur du texte
+
+    text.setCharacterSize(17); // D�finir la taille du texte
     text.setFillColor(Color::White); // D�finir la couleur du texte
 
     //l�gende
@@ -233,12 +236,12 @@ int main()
 
             }
 
-            updateRameText(text, tabRame_L2, rame2_1,500);
-            updateRameText(text, tabRame_L2, rame2_2,500);
-            updateRameText(text, tabRame_L2, rame2_3,500);
-            updateRameText(text, tabRame_L2, rame2_4,500);
-            updateRameText(text, tabRame_L2, rame2_5,500);
-            updateRameText(text, tabRame_L2, rame2_6,500);
+            updateRameText(text2, tabRame_L2, rame2_1,500);
+            updateRameText(text2, tabRame_L2, rame2_2,500);
+            updateRameText(text2, tabRame_L2, rame2_3,500);
+            updateRameText(text2, tabRame_L2, rame2_4,500);
+            updateRameText(text2, tabRame_L2, rame2_5,500);
+            updateRameText(text2, tabRame_L2, rame2_6,500);
             Text text_S;
             text_S.setFont(font);
             text_S.setCharacterSize(15);
