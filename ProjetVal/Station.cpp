@@ -52,3 +52,10 @@ void Station::setNbPassagers(int nb) {
 bool Station::get_terminus() {
 	return terminus;
 }
+
+void Station::set_nom(string Snom) {
+	nom = Snom;
+}
+string Station::get_nom() {
+	return nom;
+}

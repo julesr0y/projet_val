@@ -9,6 +9,7 @@ private:
 	float centre_y;
 	float taille_cote = 25;
 	int numero;
+	int ligne;
 	float vitesse = 10;
 	float position_x;
 	float position_y;
@@ -24,7 +25,7 @@ private:
 
 public:
 	Rame(Station station_depart);//constructeur
-	Rame(Station station_depart, int numero, bool etat);
+	Rame(Station station_depart, int numero,int ligen,bool etat);
 	Rame();
 	~Rame();//destructeur
 
@@ -49,6 +50,7 @@ public:
 
 	//getters
 	int get_numero();
+	int get_ligne();
 	float get_vitesse();
 	int get_position_x();
 	int get_position_y();
@@ -63,7 +65,7 @@ public:
 	bool hasStarted();
 	bool isFreinage();
 
-	//gestion des déplacements
+	//gestion des dï¿½placements
 	void moveDroite();
 	void moveGauche();
 	void moveHaut();
