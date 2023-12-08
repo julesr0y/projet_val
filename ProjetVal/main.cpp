@@ -55,10 +55,10 @@ int main()
     Station station2_1(1, "Station1", 100, 300, 10, Color::Red, true);
     Station station2_2(2, "Station2", 300, 300, 10, Color::Red, false);
     Station station2_3(3, "Station3", 500, 300, 10, Color::Red, true);
-    Station station2_4(4, "Station4", 700, 300, 10, Color::Red, false);
-    Station station2_5(5, "Station5", 900, 300, 10, Color::Red, false);
+    Station station2_4(4, "Station4", 500, 200, 10, Color::Red, false);
+    Station station2_5(5, "Station5", 700, 200, 10, Color::Red, false);
     Station station2_6(6, "Station6", 1100, 300, 10, Color::Red, true);
-    Station station2_end(7, "Station Fin", 550, 300, 0, Color::White, false);
+    Station station2_end(7, "Station Fin", 750, 200, 0, Color::White, false);
     
     //L1
     Station station1_begin(0, "Station Debut", 50, 600, 0, Color::White, false);
@@ -83,7 +83,7 @@ int main()
 
     Station station1_end(8, "Station Fin", 1779, 600, 0, Color::White, false);
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
-    vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_end };
+    vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_4, station2_5, station2_end };
     vector<Station> listeRStationsL2 = listeStationsL2;
 
     reverse(listeRStationsL2.begin(), listeRStationsL2.end());
