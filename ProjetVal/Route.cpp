@@ -31,14 +31,34 @@ int Route::get_hauteur() {
 }
 
 void Route::setRepr() {
-	representation.setSize(Vector2f(longueur, epaisseur));
-	representation.setPosition(station1_x, station1_y + 12);
+	if (hauteur == 0) {
+		representation.setSize(Vector2f(longueur, epaisseur));
+		representation.setPosition(station1_x, station1_y + 12);
+	}
+	if (longueur == 0 && station1_y < station2_y) {
+		representation.setSize(Vector2f(hauteur, epaisseur));
+		representation.setPosition(station1_x - 12, station1_y);
+	}
+	if (longueur == 0 && station1_y > station2_y) {
+		representation.setSize(Vector2f(hauteur, epaisseur));
+		representation.setPosition(station1_x + 12, station1_y);
+	}
 	representation.setFillColor(couleur);
 }
 
 void Route::setReprRetour() {
-	representation.setSize(Vector2f(longueur, epaisseur));
-	representation.setPosition(station1_x, station1_y - 20);
+	if (hauteur == 0) {
+		representation.setSize(Vector2f(longueur, epaisseur));
+		representation.setPosition(station1_x, station1_y - 20);
+	}
+	if (longueur == 0 && station1_y < station2_y) {
+		representation.setSize(Vector2f(hauteur, epaisseur));
+		representation.setPosition(station1_x + 20, station1_y);
+	}
+	if (longueur == 0 && station1_y > station2_y) {
+		representation.setSize(Vector2f(hauteur, epaisseur));
+		representation.setPosition(station1_x - 20, station1_y);
+	}
 	representation.setFillColor(couleur);
 }
 
