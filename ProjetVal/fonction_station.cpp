@@ -3,7 +3,6 @@
 #include <random>
 #include <ctime>
 #include<chrono>
-
 using namespace std;
 
 int remplire_rame(Rame& rame, Station& station) {
@@ -20,11 +19,11 @@ int remplire_rame(Rame& rame, Station& station) {
         return  nb; 
     }
     else {
-        int nb_à_entrer = nb_max - rame.get_passagers();
-        rame.set_passagers(rame.get_passagers() + nb_à_entrer);
-        station.setNbPassagers(station.getNbPassagers() - nb_à_entrer );
+        int nb_a_entrer = nb_max - rame.get_passagers();
+        rame.set_passagers(rame.get_passagers() + nb_a_entrer);
+        station.setNbPassagers(station.getNbPassagers() - nb_a_entrer );
 
-        return nb_à_entrer;
+        return nb_a_entrer;
     }
     
 }
