@@ -25,6 +25,12 @@ void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x) {
     text.setPosition(pos_x, 0);
 }
 
+int virage(Station station_actuelle, Station next_station, bool en_retour) {
+    if (station_actuelle.getPositionY() != next_station.getPositionY()) {
+        return 3;
+    }
+}
+
 void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool beginning, vector<Rame>& tabRame, Text& text) {
     if (!beginning) {
         default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
@@ -42,19 +48,27 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
         }
 
         for (int i = 0; i < listeStations.size(); i++) {
-            float dist_entre_2_stations = 0.0; //initialisation de la distance entre la station en cours et la suivante
+            int direction = 0;
+            if (i <= listeStations.size() - 2) {
+                direction = virage(listeStations[i], listeStations[i + 1], rame.getRetour());
+            }
+            float dist_entre_2_stations_x = 0.0; //initialisation de la distance entre la station en cours et la suivante en x
+            float dist_entre_2_stations_y = 0.0; //initialisation de la distance entre la station en cours et la suivante en y
+            float end_pos_x = 0.0;
 
             if (i == listeStations.size() - 1) { //si on est à la dernière station
                 rame.setFreinage(true); //si la rame se dirige vers une station blanche, on la set en mode freinage
             }
             else if (i == listeStations.size() - 2) { //si on est à la dernière station avant le terminus
-                dist_entre_2_stations = abs(listeStations[listeStations.size() - 2].getPositionX() - listeStations[listeStations.size() - 3].getPositionX());
+                dist_entre_2_stations_x = abs(listeStations[listeStations.size() - 2].getPositionX() - listeStations[listeStations.size() - 3].getPositionX());
             }
             else { //sinon
-                dist_entre_2_stations = abs(listeStations[i + 1].getPositionX() - listeStations[i].getPositionX());
+                dist_entre_2_stations_x = abs(listeStations[i + 1].getPositionX() - listeStations[i].getPositionX());
             }
-
-            float end_pos_x = listeStations[i].getPositionX(); //position x à atteindre (station suivante)
+            end_pos_x = listeStations[i].getPositionX(); //position x à atteindre (station suivante)
+            if (direction == 3) {
+                end_pos_x -= 12;
+            }
             float end_pos_y = listeStations[i].getPositionY(); //position y à atteindre (station suivante)
             int v; //initialisation de la vitesse
 
@@ -67,17 +81,17 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 if (dist_entre_rames == 0 && beginning == false) { //évite que des rames partent dans le mauvais ordre lors de la génération des threads
                     authorize_move = false;
                 }
-                if (distanceToSation_x >= (2.0 / 3.0) * dist_entre_2_stations) {
+                if (distanceToSation_x >= (2.0 / 3.0) * dist_entre_2_stations_x) {
                     //on accélère la rame sur le premier tiers de la distance
                     v = 1;
                    //cout << "Accelere" << endl;
                 }
-                else if (distanceToSation_x >= (1.0 / 3.0) * dist_entre_2_stations) {
+                else if (distanceToSation_x >= (1.0 / 3.0) * dist_entre_2_stations_x) {
                     //on maintient une vitesse constante pour la rame sur le deuxième tiers de la distance
                     v = 10;
                     //cout << "Constant" << endl;
                 }
-                else if (distanceToSation_x < (1.0 / 3.0) * dist_entre_2_stations) {
+                else if (distanceToSation_x < (1.0 / 3.0) * dist_entre_2_stations_x) {
                     //si une rame se rapproche d'une station (dernier tiers de la distance), on freine son déplacement
                     v = 30;
                     //cout << "Freine" << endl;
@@ -134,9 +148,12 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                         //si direction vers haut droite
                         if (end_pos_y < rame.get_position_y() && end_pos_x > rame.get_position_x())
                         {
-                            rame.moveDiagonalHautDroite();
+                            /*rame.moveDiagonalHautDroite();
                             rame.set_position_y(rame.get_position_y() - 1);
-                            rame.set_position_x(rame.get_position_x() + 1);
+                            rame.set_position_x(rame.get_position_x() + 1);*/
+
+                            rame.moveHaut();
+                            rame.set_position_y(rame.get_position_y() - 1);
                         }
                         //si direction vers bas droite
                         if (end_pos_y > rame.get_position_y() && end_pos_x > rame.get_position_x())
@@ -161,9 +178,12 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                         //si direction vers bas gauche
                         if (end_pos_y > rame.get_position_y() && end_pos_x < rame.get_position_x())
                         {
-                            rame.moveDiagonalBasGauche();
+                            /*rame.moveDiagonalBasGauche();
                             rame.set_position_y(rame.get_position_y() + 1);
-                            rame.set_position_x(rame.get_position_x() - 1);
+                            rame.set_position_x(rame.get_position_x() - 1);*/
+
+                            rame.moveBas();
+                            rame.set_position_y(rame.get_position_y() + 1);
                         }
                     }
                 }
@@ -171,20 +191,14 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             }
 
             if (i > 1 && i < listeStations.size() - 2) { //si on ne se situe pas sur un terminus
-                cout << "nb passager dans la rame  " << rame.get_numero() << " avant entrer : " << rame.get_passagers() << endl;
                 int nb_entrant = remplire_rame(rame, listeStations[i]);
-                cout << "numero de rame " << rame.get_numero() << " nb entrant : " << nb_entrant << endl;
                 int nb_sortant = sortire(rame);
-                cout << "numero de rame " << rame.get_numero() << " nb sortant : " << nb_sortant << endl;
-                cout << "nb passager dans la rame  " << rame.get_numero() << " apres entrer : " << rame.get_passagers() << endl;
 
                 int temp_attente = (int)(nb_entrant + nb_sortant) / 10;
-                cout << temp_attente << endl;
                 if (temp_attente < 2)
                 {
                     temp_attente = 2;
                 }
-                cout << "temp attente : " << temp_attente << endl;
                 
                 //si on est sur une station blanche
                 if (i == 0 || i == listeStations.size() - 1) {
@@ -195,7 +209,6 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             //this_thread::sleep_for(chrono::seconds(2)); //pause dans les stations
             else if (i == 1) {
                 int nb_entrant = remplire_rame(rame, listeStations[i]);
-                cout << "nb dans la rame  " << rame.get_numero() << "terminus depart : " << rame.get_passagers() << endl;
                 int temp_attente = (int)(nb_entrant) / 10;
                
                 if (temp_attente < 2)
@@ -212,19 +225,12 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 {
                     nb_attente = 2;
                 }
-                cout << "nb dans la rame  " << rame.get_numero() << "terminus arriver : " << rame.get_passagers() << endl;
 
                 this_thread::sleep_for(chrono::seconds(nb_attente)); //pause dans les stations
 
             }
             if (i == listeStations.size() - 1) { //si on est au bout de la ligne
                 rame.setArrete(true); //on met la rame en mode arret
-                cout << "--------------------------------------" << endl;
-
-                cout << "on va a l'oppose ouuuuu" << endl;
-
-                cout << "--------------------------------------" << endl;
-
             }
             //monte
             if (rame.estArrete() && i == listeStations.size() - 1 && !rame.getRetour()) {

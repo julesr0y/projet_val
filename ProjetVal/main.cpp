@@ -10,9 +10,9 @@
 using namespace std;
 using namespace sf;
 
-#define WINDOW_X 1900 //largeur de la fen�tre
-#define WINDOW_Y 900 //hauteur de la fen�tre
-#define WINDOW_NAME "VAL" //nom de la fen�tre
+#define WINDOW_X 1900 //largeur de la fenetre
+#define WINDOW_Y 900 //hauteur de la fenetre
+#define WINDOW_NAME "VAL" //nom de la fenetre
 #define FONT "merienda.ttf"
 #define ICON "icon.png"
 bool arret_urgence = false;
@@ -21,21 +21,21 @@ int main()
 {
     Font font;
     if (!font.loadFromFile(FONT)) {
-        // Gestion de l'erreur si la police ne peut pas �tre charg�e
+        // Gestion de l'erreur si la police ne peut pas etre charg�e
         return -1;
     }
     Text text;
     text.setFont(font);
     Text text2;
-    text2.setFont(font);// D�finir la police
-    text2.setCharacterSize(17); // D�finir la taille du texte
+    text2.setFont(font);// Definir la police
+    text2.setCharacterSize(17); // Definir la taille du texte
 
-    text2.setFillColor(Color::White); // D�finir la couleur du texte
+    text2.setFillColor(Color::White); // Definir la couleur du texte
 
-    text.setCharacterSize(17); // D�finir la taille du texte
-    text.setFillColor(Color::White); // D�finir la couleur du texte
+    text.setCharacterSize(17); // Definir la taille du texte
+    text.setFillColor(Color::White); // Definir la couleur du texte
 
-    //l�gende
+    //legende
     CircleShape legende_station;
     legende_station.setRadius(20);
     legende_station.setPosition(50 - 15, 850 - 15);
@@ -54,10 +54,9 @@ int main()
     Station station2_begin(0, "Station Debut", 50, 300, 0, Color::White, false);
     Station station2_1(1, "Station1", 100, 300, 10, Color::Red, true);
     Station station2_2(2, "Station2", 300, 300, 10, Color::Red, false);
-    Station station2_3(3, "Station3", 500, 300, 10, Color::Red, true);
+    Station station2_3(3, "Station3", 500, 300, 10, Color::Red, false);
     Station station2_4(4, "Station4", 500, 200, 10, Color::Red, false);
-    Station station2_5(5, "Station5", 700, 200, 10, Color::Red, false);
-    Station station2_6(6, "Station6", 1100, 300, 10, Color::Red, true);
+    Station station2_5(5, "Station5", 700, 200, 10, Color::Red, true);
     Station station2_end(7, "Station Fin", 750, 200, 0, Color::White, false);
     
     //L1
@@ -80,16 +79,17 @@ int main()
     Station station1_16(16, "Station6", 1506, 600, 10, Color::Yellow, false);
     Station station1_17(17, "Station6", 1597, 600, 10, Color::Yellow, false);
     Station station1_18(18, "Station6", 1688, 600, 10, Color::Yellow, true);
-
     Station station1_end(8, "Station Fin", 1779, 600, 0, Color::White, false);
+    
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
     vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_4, station2_5, station2_end };
     vector<Station> listeRStationsL2 = listeStationsL2;
-
     reverse(listeRStationsL2.begin(), listeRStationsL2.end());
+
     vector<Station> listeStationsL1 = { station1_begin, station1_1, station1_2, station1_3, station1_4, station1_5, station1_6, station1_7, station1_8, station1_9,station1_10, station1_11, station1_12, station1_13, station1_14,station1_15, station1_16, station1_17, station1_18,station1_end};
     vector<Station> listeRStationsL1 = listeStationsL1;
     reverse(listeRStationsL1.begin(), listeRStationsL1.end());
+
     vector<string> nom_station_L2 = { " ","lomme St Philibert","Bourg","Maison des Enfant","Mitterie","Pont Sup�rieur","Lomme_Lambersant","Canteleu","Bois Blancs","Port de Lille","Cormontainge","Montebello","Porte des Postes",""};
     vector<string> nom_station_L1 = {" ", "Lille-CHR B-Calmette","CHR Oscar Lambret","Porte des Postes","Wazemmes","Gambetta","R�publique Beaux Arts","Rihour","Gare Lille Flandres","Caulier","Fives","Marberie","Hellemmes","Lezennes","Pont de Bois","Villeneuve d'Ascq H�tel de Ville","Triolo","Cit� Scientifique Professeur Gabillard","4 Cantons",""};
 
@@ -97,7 +97,7 @@ int main()
     {
         listeStationsL1[i].set_nom(nom_station_L1[i-1]);
     }
-    //d�finition des rames (station d'apparition, id)
+    //definition des rames (station d'apparition, id)
  
     Rame rame1_1(station1_begin, 1,1,false);
     Rame rame1_2(station1_begin, 2,1,false);
@@ -117,19 +117,19 @@ int main()
     vector<Rame> tabRame_L2 = { rame2_1,rame2_2,rame2_3,rame2_4,rame2_5,rame2_6 };
 
     //cr�ation des threads (fonction de d�placement, rame concern�e, rame suivante, ligne concern�e)
-    thread thread1_1(moveRame, ref(rame1_1), ref(rame1_6), ref(listeStationsL1), true, ref(tabRame_L1), ref(text));
+    //thread thread1_1(moveRame, ref(rame1_1), ref(rame1_6), ref(listeStationsL1), true, ref(tabRame_L1), ref(text));
     thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true, ref(tabRame_L2), ref(text2));
-    thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeRStationsL1), true, ref(tabRame_L1), ref(text));
+    //thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeRStationsL1), true, ref(tabRame_L1), ref(text));
     thread thread2_4(moveRame, ref(rame2_4), ref(rame2_3), ref(listeRStationsL2), true, ref(tabRame_L2), ref(text2));
 
-    thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false, ref(tabRame_L1), ref(text));
-    thread thread1_3(moveRame, ref(rame1_3), ref(rame1_2), ref(listeStationsL1), false, ref(tabRame_L1), ref(text));
-    thread thread1_5(moveRame, ref(rame1_5), ref(rame1_4), ref(listeRStationsL1), false, ref(tabRame_L1), ref(text));
-    thread thread1_6(moveRame, ref(rame1_6), ref(rame1_5), ref(listeRStationsL1), false, ref(tabRame_L1), ref(text));
-    thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
-    thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
-    thread thread2_5(moveRame, ref(rame2_5), ref(rame2_4), ref(listeRStationsL2), false, ref(tabRame_L2), ref(text2));
-    thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeRStationsL2), false, ref(tabRame_L2), ref(text2));
+    //thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false, ref(tabRame_L1), ref(text));
+    //thread thread1_3(moveRame, ref(rame1_3), ref(rame1_2), ref(listeStationsL1), false, ref(tabRame_L1), ref(text));
+    //thread thread1_5(moveRame, ref(rame1_5), ref(rame1_4), ref(listeRStationsL1), false, ref(tabRame_L1), ref(text));
+    //thread thread1_6(moveRame, ref(rame1_6), ref(rame1_5), ref(listeRStationsL1), false, ref(tabRame_L1), ref(text));
+    //thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
+    //thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
+    //thread thread2_5(moveRame, ref(rame2_5), ref(rame2_4), ref(listeRStationsL2), false, ref(tabRame_L2), ref(text2));
+    //thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeRStationsL2), false, ref(tabRame_L2), ref(text2));
 
     //a voir 
     //thread thread1_1(moveRame, ref(rame1_1), ref(rame1_6), ref(listeStationsL1), true,ref(tabRame_L1),ref(text));
@@ -292,18 +292,18 @@ int main()
     }
 
     //destruction des threads
-    thread1_1.join();
-    thread1_2.join();
-    thread1_3.join();
-    thread1_4.join();
-    thread1_5.join();
-    thread1_6.join();
+    //thread1_1.join();
+    //thread1_2.join();
+    //thread1_3.join();
+    //thread1_4.join();
+    //thread1_5.join();
+    //thread1_6.join();
     thread2_1.join();
-    thread2_2.join();
-    thread2_3.join();
+    //thread2_2.join();
+    //thread2_3.join();
     thread2_4.join();
-    thread2_5.join();
-    thread2_6.join();
+    //thread2_5.join();
+    //thread2_6.join();
 
     return 0;
 }

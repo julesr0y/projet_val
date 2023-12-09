@@ -234,6 +234,19 @@ void Rame::setStarted(bool etat) {
 	hasStarted_ = etat;
 }
 
+bool Rame::getHorizontal() {
+	if (horizontal) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Rame::setHorizontal(bool etat) {
+	horizontal = etat;
+}
+
 int Rame::get_ligne(){
 	return ligne;
 }
