@@ -25,9 +25,23 @@ void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x) {
     text.setPosition(pos_x, 0);
 }
 
-int virage(Station station_actuelle, Station next_station, bool en_retour) {
-    if (station_actuelle.getPositionY() != next_station.getPositionY()) {
-        return 3;
+int virage(Station station_actuelle, Station next_station, bool en_retour, int pos_x_rame) {
+    if (station_actuelle.getPositionX() != pos_x_rame) {
+        if (station_actuelle.getPositionY() < next_station.getPositionY() && en_retour) {
+            return 1;
+        }
+        if (station_actuelle.getPositionY() < next_station.getPositionY() && !en_retour) {
+            return 2;
+        }
+        if (station_actuelle.getPositionY() > next_station.getPositionY() && en_retour) {
+            return 3;
+        }
+        if (station_actuelle.getPositionY() > next_station.getPositionY() && !en_retour) {
+            return 4;
+        }
+    }
+    else {
+        return 0;
     }
 }
 
@@ -50,7 +64,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
         for (int i = 0; i < listeStations.size(); i++) {
             int direction = 0;
             if (i <= listeStations.size() - 2) {
-                direction = virage(listeStations[i], listeStations[i + 1], rame.getRetour());
+                direction = virage(listeStations[i], listeStations[i + 1], rame.getRetour(), rame.get_position_x());
             }
             float dist_entre_2_stations_x = 0.0; //initialisation de la distance entre la station en cours et la suivante en x
             float dist_entre_2_stations_y = 0.0; //initialisation de la distance entre la station en cours et la suivante en y
@@ -61,52 +75,93 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             }
             else if (i == listeStations.size() - 2) { //si on est à la dernière station avant le terminus
                 dist_entre_2_stations_x = abs(listeStations[listeStations.size() - 2].getPositionX() - listeStations[listeStations.size() - 3].getPositionX());
+                dist_entre_2_stations_y = abs(listeStations[listeStations.size() - 2].getPositionY() - listeStations[listeStations.size() - 3].getPositionY());
             }
             else { //sinon
                 dist_entre_2_stations_x = abs(listeStations[i + 1].getPositionX() - listeStations[i].getPositionX());
+                dist_entre_2_stations_y = abs(listeStations[i + 1].getPositionY() - listeStations[i].getPositionY());
             }
             end_pos_x = listeStations[i].getPositionX(); //position x à atteindre (station suivante)
-            if (direction == 3) {
-                end_pos_x -= 12;
+
+            //gestion de la position d'arret si virage
+            if (direction == 1) {
+                end_pos_x -= 14;
             }
+            if (direction == 4) {
+                end_pos_x += 14;
+            }
+
             float end_pos_y = listeStations[i].getPositionY(); //position y à atteindre (station suivante)
             int v; //initialisation de la vitesse
 
             while ((rame.get_position_x() != end_pos_x) || (rame.get_position_y() != end_pos_y)) {
-                float distanceToSation_x = abs(end_pos_x - rame.get_position_x()); //distance x jusqu'a la prochaine station par rapport a la position x actuelle de la rame
+                float distanceToStation_x = abs(end_pos_x - rame.get_position_x()); //distance x jusqu'a la prochaine station par rapport a la position x actuelle de la rame
+                float distanceToStation_y = abs(end_pos_y - rame.get_position_y()); //distance x jusqu'a la prochaine station par rapport a la position x actuelle de la rame
                 bool authorize_move = true; //on autorise le déplacement
                 rame.setArrete(false); //la rame n'est pas en etat d'arret
-                int dist_entre_rames = abs(rame_apres.get_position_x() - rame.get_position_x()); //distance entre la rame actuelle et celle devant
+                int dist_entre_rames_x = abs(rame_apres.get_position_x() - rame.get_position_x()); //distance entre la rame actuelle et celle devant
+                int dist_entre_rames_y = abs(rame_apres.get_position_y() - rame.get_position_y()); //distance entre la rame actuelle et celle devant
 
-                if (dist_entre_rames == 0 && beginning == false) { //évite que des rames partent dans le mauvais ordre lors de la génération des threads
-                    authorize_move = false;
+                if (rame.getHorizontal()) {
+                    if (dist_entre_rames_x == 0 && beginning == false) { //évite que des rames partent dans le mauvais ordre lors de la génération des threads
+                        authorize_move = false;
+                    }
+                    if (distanceToStation_x >= (2.0 / 3.0) * dist_entre_2_stations_x) {
+                        //on accélère la rame sur le premier tiers de la distance
+                        v = 1;
+                        //cout << "Accelere" << endl;
+                    }
+                    else if (distanceToStation_x >= (1.0 / 3.0) * dist_entre_2_stations_x) {
+                        //on maintient une vitesse constante pour la rame sur le deuxième tiers de la distance
+                        v = 10;
+                        //cout << "Constant" << endl;
+                    }
+                    else if (distanceToStation_x < (1.0 / 3.0) * dist_entre_2_stations_x) {
+                        //si une rame se rapproche d'une station (dernier tiers de la distance), on freine son déplacement
+                        v = 30;
+                        //cout << "Freine" << endl;
+                    }
+                    if (rame.isFreinage()) {
+                        //si la rame se dirige vers une station blanche, on ralentit sa vitesse
+                        v = 30;
+                    }
+                    if (dist_entre_rames_x < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
+                        //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
+                        v = 30;
+                    }
+                    if (dist_entre_rames_x < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
+                        //si 2 rames se suivant sur une même voie ont une distance trop faible, on interdit le deplacement de la rame derrière
+                        authorize_move = false;
+                    }
                 }
-                if (distanceToSation_x >= (2.0 / 3.0) * dist_entre_2_stations_x) {
-                    //on accélère la rame sur le premier tiers de la distance
-                    v = 1;
-                   //cout << "Accelere" << endl;
-                }
-                else if (distanceToSation_x >= (1.0 / 3.0) * dist_entre_2_stations_x) {
-                    //on maintient une vitesse constante pour la rame sur le deuxième tiers de la distance
-                    v = 10;
-                    //cout << "Constant" << endl;
-                }
-                else if (distanceToSation_x < (1.0 / 3.0) * dist_entre_2_stations_x) {
-                    //si une rame se rapproche d'une station (dernier tiers de la distance), on freine son déplacement
-                    v = 30;
-                    //cout << "Freine" << endl;
-                }
-                if (rame.isFreinage()) {
-                    //si la rame se dirige vers une station blanche, on ralentit sa vitesse
-                    v = 30;
-                }
-                if (dist_entre_rames < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
-                    //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
-                    v = 30;
-                }
-                if (dist_entre_rames < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
-                    //si 2 rames se suivant sur une même voie ont une distance trop faible, on interdit le deplacement de la rame derrière
-                    authorize_move = false;
+                if(!rame.getHorizontal()) {
+                    cout << dist_entre_2_stations_y << endl;
+                    if (dist_entre_rames_y == 0 && beginning == false) { //évite que des rames partent dans le mauvais ordre lors de la génération des threads
+                        authorize_move = false;
+                    }
+                    if (distanceToStation_y >= (2.0 / 3.0) * dist_entre_2_stations_y) {
+                        //on accélère la rame sur le premier tiers de la distance
+                        v = 1;
+                        //cout << "Accelere" << endl;
+                    }
+                    else if (distanceToStation_y >= (1.0 / 3.0) * dist_entre_2_stations_y) {
+                        //on maintient une vitesse constante pour la rame sur le deuxième tiers de la distance
+                        v = 10;
+                        //cout << "Constant" << endl;
+                    }
+                    else if (distanceToStation_y < (1.0 / 3.0) * dist_entre_2_stations_y) {
+                        //si une rame se rapproche d'une station (dernier tiers de la distance), on freine son déplacement
+                        v = 30;
+                        //cout << "Freine" << endl;
+                    }
+                    if (dist_entre_rames_y < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
+                        //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
+                        v = 30;
+                    }
+                    if (dist_entre_rames_y < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
+                        //si 2 rames se suivant sur une même voie ont une distance trop faible, on interdit le deplacement de la rame derrière
+                        authorize_move = false;
+                    }
                 }
 
                 if (authorize_move) {
@@ -189,7 +244,6 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 }
                 this_thread::sleep_for(chrono::milliseconds(v)); //réglage de la vitesse de la rame
             }
-
             if (i > 1 && i < listeStations.size() - 2) { //si on ne se situe pas sur un terminus
                 int nb_entrant = remplire_rame(rame, listeStations[i]);
                 int nb_sortant = sortire(rame);
@@ -206,7 +260,6 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 }
                 this_thread::sleep_for(chrono::seconds(temp_attente)); //pause dans les stations
             }
-            //this_thread::sleep_for(chrono::seconds(2)); //pause dans les stations
             else if (i == 1) {
                 int nb_entrant = remplire_rame(rame, listeStations[i]);
                 int temp_attente = (int)(nb_entrant) / 10;
@@ -245,6 +298,22 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 rame.rotate180(); //on tourne la rame de 180 degrés
                 rame.setRetour(false); //on enleve le mode retour (voie inférieure)
                 reverseOrder = true; //on active l'inversion de la liste des stations
+            }
+
+            //gestion de la rotation si virage
+            if (direction == 1) {
+                rame.setHorizontal(false);
+                rame.rotategauche();
+            }
+            if (direction == 2) {
+                rame.setHorizontal(true);
+            }
+            if (direction == 3) {
+                rame.setHorizontal(true);
+            }
+            if (direction == 4) {
+                rame.setHorizontal(false);
+                rame.rotatedroite();
             }
         }
     }

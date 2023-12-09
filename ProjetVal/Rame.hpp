@@ -78,6 +78,8 @@ public:
 	void moveDiagonalBasDroite();
 	void moveDiagonalBasGauche();
 	void rotate180();
+	void rotategauche();
+	void rotatedroite();
 };
 
 #endif RAME_H

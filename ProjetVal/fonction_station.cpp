@@ -17,7 +17,7 @@ int remplire_rame(Rame& rame, Station& station) {
         rame.set_passagers(rame.get_passagers() + nb);
         station.setNbPassagers(station.getNbPassagers() - nb);
 
-        return  nb; 
+        return nb; 
     }
     else {
         int nb_à_entrer = nb_max - rame.get_passagers();

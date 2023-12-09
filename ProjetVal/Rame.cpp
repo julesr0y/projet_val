@@ -97,7 +97,21 @@ void Rame::rotate180() {
 	setRepr();
 }
 
+void Rame::rotategauche() {
+	angleRotation += 90.0;
+	if (angleRotation >= 180.0) {
+		angleRotation -= 180.0;
+	}
+	setRepr();
+}
 
+void Rame::rotatedroite() {
+	angleRotation -= 90.0;
+	if (angleRotation >= 180.0) {
+		angleRotation += 180.0;
+	}
+	setRepr();
+}
 
 //les getters 
 float Rame::get_vitesse() {

@@ -51,10 +51,11 @@ int main()
 
     //STATIONS (id, nom, position x, position y, nombre de passagers, couleur)
     //L2
-    Station station2_begin(0, "Station Debut", 50, 300, 0, Color::White, false);
-    Station station2_1(1, "Station1", 100, 300, 10, Color::Red, true);
-    Station station2_2(2, "Station2", 300, 300, 10, Color::Red, false);
-    Station station2_3(3, "Station3", 500, 300, 10, Color::Red, false);
+    Station station2_begin(0, "Station Debut", 50, 600, 0, Color::White, false);
+    Station station2_1(1, "Station1", 100, 600, 10, Color::Red, true);
+    Station station2_2(2, "Station2", 300, 600, 10, Color::Red, false);
+    Station station2_3(3, "Station3", 500, 600, 10, Color::Red, false);
+    Station station2_33(3, "Station3", 500, 400, 10, Color::Red, false);
     Station station2_4(4, "Station4", 500, 200, 10, Color::Red, false);
     Station station2_5(5, "Station5", 700, 200, 10, Color::Red, true);
     Station station2_end(7, "Station Fin", 750, 200, 0, Color::White, false);
@@ -82,7 +83,7 @@ int main()
     Station station1_end(8, "Station Fin", 1779, 600, 0, Color::White, false);
     
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
-    vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_4, station2_5, station2_end };
+    vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_33, station2_4, station2_5, station2_end };
     vector<Station> listeRStationsL2 = listeStationsL2;
     reverse(listeRStationsL2.begin(), listeRStationsL2.end());
 
@@ -90,7 +91,7 @@ int main()
     vector<Station> listeRStationsL1 = listeStationsL1;
     reverse(listeRStationsL1.begin(), listeRStationsL1.end());
 
-    vector<string> nom_station_L2 = { " ","lomme St Philibert","Bourg","Maison des Enfant","Mitterie","Pont Sup�rieur","Lomme_Lambersant","Canteleu","Bois Blancs","Port de Lille","Cormontainge","Montebello","Porte des Postes",""};
+    vector<string> nom_station_L2 = { " ", "","lomme St Philibert","Bourg","Maison des Enfant","Mitterie","Pont Sup�rieur","Lomme_Lambersant","Canteleu","Bois Blancs","Port de Lille","Cormontainge","Montebello","Porte des Postes",""};
     vector<string> nom_station_L1 = {" ", "Lille-CHR B-Calmette","CHR Oscar Lambret","Porte des Postes","Wazemmes","Gambetta","R�publique Beaux Arts","Rihour","Gare Lille Flandres","Caulier","Fives","Marberie","Hellemmes","Lezennes","Pont de Bois","Villeneuve d'Ascq H�tel de Ville","Triolo","Cit� Scientifique Professeur Gabillard","4 Cantons",""};
 
     for (size_t i = 1; i < listeStationsL1.size()-1; i++)
@@ -118,7 +119,7 @@ int main()
 
     //cr�ation des threads (fonction de d�placement, rame concern�e, rame suivante, ligne concern�e)
     //thread thread1_1(moveRame, ref(rame1_1), ref(rame1_6), ref(listeStationsL1), true, ref(tabRame_L1), ref(text));
-    thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true, ref(tabRame_L2), ref(text2));
+    //thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true, ref(tabRame_L2), ref(text2));
     //thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeRStationsL1), true, ref(tabRame_L1), ref(text));
     thread thread2_4(moveRame, ref(rame2_4), ref(rame2_3), ref(listeRStationsL2), true, ref(tabRame_L2), ref(text2));
 
@@ -131,23 +132,6 @@ int main()
     //thread thread2_5(moveRame, ref(rame2_5), ref(rame2_4), ref(listeRStationsL2), false, ref(tabRame_L2), ref(text2));
     //thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeRStationsL2), false, ref(tabRame_L2), ref(text2));
 
-    //a voir 
-    //thread thread1_1(moveRame, ref(rame1_1), ref(rame1_6), ref(listeStationsL1), true,ref(tabRame_L1),ref(text));
-    //thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false, ref(tabRame_L1), ref(text));
-    //thread thread1_3(moveRame, ref(rame1_3), ref(rame1_2), ref(listeStationsL1), false,ref(tabRame_L1), ref(text));
-    //thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeStationsL1), false,ref(tabRame_L1), ref(text));
-    //thread thread1_5(moveRame, ref(rame1_5), ref(rame1_4), ref(listeStationsL1), false,ref(tabRame_L1), ref(text));
-    //thread thread1_6(moveRame, ref(rame1_6), ref(rame1_5), ref(listeStationsL1), false,ref(tabRame_L1), ref(text));
-
-    //thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true, ref(tabRame_L2), ref(text2));
-    //thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
-    //thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
-    //thread thread2_4(moveRame, ref(rame2_4), ref(rame2_3), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
-    //thread thread2_5(moveRame, ref(rame2_5), ref(rame2_4), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
-    //thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
-
- 
-    
     Image icon;
     if (!icon.loadFromFile(ICON)) {
         return EXIT_FAILURE;
@@ -185,47 +169,47 @@ int main()
         window.clear(Color::Black); //couleur d'arri�re plan
 
         //PARTIE AFFICHAGE DES STATIONS + ROUTES
-        for (int i = 0; i < listeStationsL1.size(); i++) { //pour la L1
-            listeStationsL1[i].setRepr(); //on set la repr�sentation de la station en cours
-            if (i != listeStationsL1.size() - 1) { //la derni�re station ne peut avoir de route � sa droite
-                if (i == 0 || i == listeStationsL1.size() - 2) {
-                    Route route(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::White); //on cr�e une route de cette station � la suivante
-                    Route route_r(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::White); //on cr�e une route de retour
-                    route.setRepr(); //on set la repr�sentation de la route
-                    route_r.setReprRetour(); //on set la repr�sentation de la route de retour
-                    window.draw(route.getRepr()); //on dessine la route
-                    window.draw(route_r.getRepr()); //on dessine la route de retour
+        //for (int i = 0; i < listeStationsL1.size(); i++) { //pour la L1
+        //    listeStationsL1[i].setRepr(); //on set la repr�sentation de la station en cours
+        //    if (i != listeStationsL1.size() - 1) { //la derni�re station ne peut avoir de route � sa droite
+        //        if (i == 0 || i == listeStationsL1.size() - 2) {
+        //            Route route(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::White); //on cr�e une route de cette station � la suivante
+        //            Route route_r(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::White); //on cr�e une route de retour
+        //            route.setRepr(); //on set la repr�sentation de la route
+        //            route_r.setReprRetour(); //on set la repr�sentation de la route de retour
+        //            window.draw(route.getRepr()); //on dessine la route
+        //            window.draw(route_r.getRepr()); //on dessine la route de retour
 
-                }
-                else {
-                    Route route(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::Yellow); //on cr�e une route de cette station � la suivante
-                    Route route_r(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::Yellow); //on cr�e une route de retour
-                    route.setRepr(); //on set la repr�sentation de la route
-                    route_r.setReprRetour(); //on set la repr�sentation de la route de retour
-                    window.draw(route.getRepr()); //on dessine la route
-                    window.draw(route_r.getRepr()); //on dessine la route de retour
+        //        }
+        //        else {
+        //            Route route(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::Yellow); //on cr�e une route de cette station � la suivante
+        //            Route route_r(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::Yellow); //on cr�e une route de retour
+        //            route.setRepr(); //on set la repr�sentation de la route
+        //            route_r.setReprRetour(); //on set la repr�sentation de la route de retour
+        //            window.draw(route.getRepr()); //on dessine la route
+        //            window.draw(route_r.getRepr()); //on dessine la route de retour
 
-                }
+        //        }
 
-            }
+        //    }
 
-            updateRameText(text, tabRame_L1, rame1_1,0);
-            updateRameText(text, tabRame_L1, rame1_2,0);
-            updateRameText(text, tabRame_L1, rame1_3,0);
-            updateRameText(text, tabRame_L1, rame1_4,0);
-            updateRameText(text, tabRame_L1, rame1_5,0);
-            updateRameText(text, tabRame_L1, rame1_6,0);
-            Text text_S;
-            text_S.setFont(font);
-            text_S.setCharacterSize(15);
-            text_S.setFillColor(Color::White);
-            text_S.setPosition(listeStationsL1[i].getPositionX()+5, listeStationsL1[i].getPositionY() + 30); // Adjust the Y-coordinate
-            text_S.setRotation(45.0f);
-            text_S.setString(nom_station_L1[i]);
-            window.draw(listeStationsL1[i].getRepr());//on dessine la station
-            window.draw(text_S);
+        //    updateRameText(text, tabRame_L1, rame1_1,0);
+        //    updateRameText(text, tabRame_L1, rame1_2,0);
+        //    updateRameText(text, tabRame_L1, rame1_3,0);
+        //    updateRameText(text, tabRame_L1, rame1_4,0);
+        //    updateRameText(text, tabRame_L1, rame1_5,0);
+        //    updateRameText(text, tabRame_L1, rame1_6,0);
+        //    Text text_S;
+        //    text_S.setFont(font);
+        //    text_S.setCharacterSize(15);
+        //    text_S.setFillColor(Color::White);
+        //    text_S.setPosition(listeStationsL1[i].getPositionX()+5, listeStationsL1[i].getPositionY() + 30); // Adjust the Y-coordinate
+        //    text_S.setRotation(45.0f);
+        //    text_S.setString(nom_station_L1[i]);
+        //    window.draw(listeStationsL1[i].getRepr());//on dessine la station
+        //    window.draw(text_S);
 
-        }
+        //}
 
         for (int i = 0; i < listeStationsL2.size(); i++) { //pour la L2
             listeStationsL2[i].setRepr(); //on set la repr�sentation de la station en cours
@@ -298,7 +282,7 @@ int main()
     //thread1_4.join();
     //thread1_5.join();
     //thread1_6.join();
-    thread2_1.join();
+    //thread2_1.join();
     //thread2_2.join();
     //thread2_3.join();
     thread2_4.join();
