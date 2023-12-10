@@ -25,23 +25,75 @@ void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x) {
     text.setPosition(pos_x, 0);
 }
 
-int virage(Station station_actuelle, Station next_station, bool en_retour, int pos_x_rame) {
-    if (station_actuelle.getPositionX() != pos_x_rame) {
-        if (station_actuelle.getPositionY() < next_station.getPositionY() && en_retour) {
-            return 1;
-        }
-        if (station_actuelle.getPositionY() < next_station.getPositionY() && !en_retour) {
-            return 2;
-        }
-        if (station_actuelle.getPositionY() > next_station.getPositionY() && en_retour) {
-            return 3;
-        }
-        if (station_actuelle.getPositionY() > next_station.getPositionY() && !en_retour) {
-            return 4;
-        }
+bool aGauche(Station actuelle, Station prochaine) {
+    if (actuelle.getPositionX() > prochaine.getPositionX()) {
+        return true;
     }
     else {
-        return 0;
+        return false;
+    }
+}
+
+bool aDroite(Station actuelle, Station prochaine) {
+    if (actuelle.getPositionX() < prochaine.getPositionX()) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool enHaut(Station actuelle, Station prochaine) {
+    if (actuelle.getPositionY() > prochaine.getPositionY()) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool enBas(Station actuelle, Station prochaine) {
+    if (actuelle.getPositionY() < prochaine.getPositionY()) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool PreviousaGauche(Station previous, Station actuelle) {
+    if (previous.getPositionX() < actuelle.getPositionX()) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool PreviousaDroite(Station previous, Station actuelle) {
+    if (previous.getPositionX() > actuelle.getPositionX()) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool PreviousenHaut(Station previous, Station actuelle) {
+    if (previous.getPositionY() < actuelle.getPositionY()) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool PreviousenBas(Station previous, Station actuelle) {
+    if (previous.getPositionY() > actuelle.getPositionY()) {
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
@@ -62,13 +114,9 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
         }
 
         for (int i = 0; i < listeStations.size(); i++) {
-            int direction = 0;
-            if (i <= listeStations.size() - 2) {
-                direction = virage(listeStations[i], listeStations[i + 1], rame.getRetour(), rame.get_position_x());
-            }
+
             float dist_entre_2_stations_x = 0.0; //initialisation de la distance entre la station en cours et la suivante en x
             float dist_entre_2_stations_y = 0.0; //initialisation de la distance entre la station en cours et la suivante en y
-            float end_pos_x = 0.0;
 
             if (i == listeStations.size() - 1) { //si on est à la dernière station
                 rame.setFreinage(true); //si la rame se dirige vers une station blanche, on la set en mode freinage
@@ -81,17 +129,50 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 dist_entre_2_stations_x = abs(listeStations[i + 1].getPositionX() - listeStations[i].getPositionX());
                 dist_entre_2_stations_y = abs(listeStations[i + 1].getPositionY() - listeStations[i].getPositionY());
             }
-            end_pos_x = listeStations[i].getPositionX(); //position x à atteindre (station suivante)
+            float end_pos_x = listeStations[i].getPositionX(); //position x à atteindre (station suivante)
+            float end_pos_y = listeStations[i].getPositionY(); //position y à atteindre (station suivante)
 
             //gestion de la position d'arret si virage
-            if (direction == 1) {
-                end_pos_x -= 14;
-            }
-            if (direction == 4) {
-                end_pos_x += 14;
+            bool HAUT = false;
+            bool BAS = false;
+            bool GAUCHE = false;
+            bool DROITE = false;
+            if (i < listeStations.size() - 1) {
+                HAUT = enHaut(listeStations[i], listeStations[i + 1]);
+                BAS = enBas(listeStations[i], listeStations[i + 1]);
+                GAUCHE = aGauche(listeStations[i], listeStations[i + 1]);
+                DROITE = aDroite(listeStations[i], listeStations[i + 1]);
             }
 
-            float end_pos_y = listeStations[i].getPositionY(); //position y à atteindre (station suivante)
+            bool PrevGAUCHE = false;
+            bool PrevDROITE = false;
+            bool PrevHAUT = false;
+            bool PrevBAS = false;
+            if (i != 0) {
+                PrevHAUT = PreviousenHaut(listeStations[i-1], listeStations[i]);
+                PrevBAS = PreviousenBas(listeStations[i-1], listeStations[i]);
+                PrevGAUCHE = PreviousaGauche(listeStations[i-1], listeStations[i]);
+                PrevDROITE = PreviousaDroite(listeStations[i-1], listeStations[i]);
+            }
+
+            if (BAS && rame.getRetour()) {
+                end_pos_x -= 15;
+                end_pos_y += 15;
+            }
+
+            if (HAUT && !rame.getRetour()) {
+                end_pos_x += 15;
+                end_pos_y -= 15;
+            }
+
+            if (GAUCHE && PrevHAUT && rame.getRetour()) {
+                end_pos_x -= 15;
+            }
+
+            if (DROITE && PrevBAS && !rame.getRetour()) {
+                end_pos_x += 15;
+            }
+
             int v; //initialisation de la vitesse
 
             while ((rame.get_position_x() != end_pos_x) || (rame.get_position_y() != end_pos_y)) {
@@ -125,11 +206,11 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                         //si la rame se dirige vers une station blanche, on ralentit sa vitesse
                         v = 30;
                     }
-                    if (dist_entre_rames_x < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
+                    if (dist_entre_rames_x < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal()) {
                         //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
                         v = 30;
                     }
-                    if (dist_entre_rames_x < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
+                    if (dist_entre_rames_x < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal()) {
                         //si 2 rames se suivant sur une même voie ont une distance trop faible, on interdit le deplacement de la rame derrière
                         authorize_move = false;
                     }
@@ -154,11 +235,11 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                         v = 30;
                         //cout << "Freine" << endl;
                     }
-                    if (dist_entre_rames_y < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
+                    if (dist_entre_rames_y < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal()) {
                         //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
                         v = 30;
                     }
-                    if (dist_entre_rames_y < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour()) {
+                    if (dist_entre_rames_y < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal()) {
                         //si 2 rames se suivant sur une même voie ont une distance trop faible, on interdit le deplacement de la rame derrière
                         authorize_move = false;
                     }
@@ -300,20 +381,12 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 reverseOrder = true; //on active l'inversion de la liste des stations
             }
 
-            //gestion de la rotation si virage
-            if (direction == 1) {
+            if (HAUT || BAS) {
                 rame.setHorizontal(false);
-                rame.rotategauche();
+                rame.rotateHaut();
             }
-            if (direction == 2) {
+            if (GAUCHE || DROITE) {
                 rame.setHorizontal(true);
-            }
-            if (direction == 3) {
-                rame.setHorizontal(true);
-            }
-            if (direction == 4) {
-                rame.setHorizontal(false);
-                rame.rotatedroite();
             }
         }
     }

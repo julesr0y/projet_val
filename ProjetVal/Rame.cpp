@@ -80,7 +80,7 @@ void Rame::setRepr() {
 	representation.setPoint(1, Vector2f(centre_rame.x + taille_cote / 2, centre_rame.y));
 	representation.setPoint(2, Vector2f(centre_rame.x - taille_cote / 2, centre_rame.y + taille_cote / 2));
 	representation.setFillColor(Color::Blue);
-	float angleRad = angleRotation * (3.14159 / 180.0); // Convertir l'angle en radians
+	float angleRad = angleRotation * (3.14159 / 180.0);
 
 	for (int i = 0; i < 3; ++i) {
 		float newX = (representation.getPoint(i).x - centre_x) * cos(angleRad) - (representation.getPoint(i).y - centre_y) * sin(angleRad) + centre_x;
@@ -89,26 +89,23 @@ void Rame::setRepr() {
 	}
 }
 
+void Rame::rotateHaut() {
+	// Trouver l'angle de rotation nécessaire pour pointer vers le haut
+	float angleRad = atan2(representation.getPoint(1).y - representation.getPoint(0).y,
+		representation.getPoint(1).x - representation.getPoint(0).x);
+
+	// Appliquer la rotation nécessaire pour pointer vers le haut
+	for (int i = 0; i < 3; ++i) {
+		float newX = (representation.getPoint(i).x - centre_x) * cos(-angleRad) - (representation.getPoint(i).y - centre_y) * sin(-angleRad) + centre_x;
+		float newY = (representation.getPoint(i).x - centre_x) * sin(-angleRad) + (representation.getPoint(i).y - centre_y) * cos(-angleRad) + centre_y;
+		representation.setPoint(i, Vector2f(newX, newY));
+	}
+}
+
 void Rame::rotate180() {
 	angleRotation += 180.0;
 	if (angleRotation >= 360.0) {
 		angleRotation -= 360.0;
-	}
-	setRepr();
-}
-
-void Rame::rotategauche() {
-	angleRotation += 90.0;
-	if (angleRotation >= 180.0) {
-		angleRotation -= 180.0;
-	}
-	setRepr();
-}
-
-void Rame::rotatedroite() {
-	angleRotation -= 90.0;
-	if (angleRotation >= 180.0) {
-		angleRotation += 180.0;
 	}
 	setRepr();
 }

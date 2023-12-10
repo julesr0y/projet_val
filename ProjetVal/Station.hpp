@@ -17,6 +17,10 @@ private:
 	float rayon = 20;
 	Color couleur;
 	bool terminus;
+	bool next_direction_haut;
+	bool next_direction_bas;
+	bool next_direction_gauche;
+	bool next_direction_droite;
 
 public:
 	Station();
