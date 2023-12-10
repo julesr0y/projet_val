@@ -5,7 +5,7 @@ using namespace sf;
 
 Station::Station() {};
 
-Station::Station(int id, string name, float x, float y, int nbpassagers, Color color, bool terminus_) {
+Station::Station(int id, string name, float x, float y, int nbpassagers, Color color, bool terminus_, bool vir) {
 	id_station = id;
 	nom = name;
 	position[0] = x;
@@ -13,6 +13,7 @@ Station::Station(int id, string name, float x, float y, int nbpassagers, Color c
 	nb_passagers = nbpassagers;
 	couleur = color;
 	terminus = terminus_;
+	virage = vir;
 }
 
 int Station::getIdStation() {
@@ -58,4 +59,8 @@ void Station::set_nom(string Snom) {
 }
 string Station::get_nom() {
 	return nom;
+}
+
+bool Station::isVirage() {
+	return virage;
 }

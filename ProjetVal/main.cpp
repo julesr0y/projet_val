@@ -51,36 +51,36 @@ int main()
 
     //STATIONS (id, nom, position x, position y, nombre de passagers, couleur)
     //L2
-    Station station2_begin(0, "Station Debut", 50, 600, 0, Color::White, false);
-    Station station2_1(1, "Station1", 100, 600, 10, Color::Red, true);
-    Station station2_2(2, "Station2", 300, 600, 10, Color::Red, false);
-    Station station2_3(3, "Station3", 500, 600, 10, Color::Red, false);
-    Station station2_33(3, "Station3", 500, 400, 10, Color::Red, false);
-    Station station2_4(4, "Station4", 500, 200, 10, Color::Red, false);
-    Station station2_5(5, "Station5", 700, 200, 10, Color::Red, true);
-    Station station2_end(7, "Station Fin", 750, 200, 0, Color::White, false);
+    Station station2_begin(0, "Station Debut", 50, 600, 0, Color::White, false, false);
+    Station station2_1(1, "Station1", 100, 600, 10, Color::Red, true, false);
+    Station station2_2(2, "Station2", 300, 600, 10, Color::Red, false, false);
+    Station station2_3(3, "Station3", 500, 600, 10, Color::Red, false, true);
+    Station station2_33(3, "Station3", 500, 400, 10, Color::Red, false, false);
+    Station station2_4(4, "Station4", 500, 200, 10, Color::Red, false, true);
+    Station station2_5(5, "Station5", 700, 200, 10, Color::Red, true, false);
+    Station station2_end(7, "Station Fin", 750, 200, 0, Color::White, false, false);
     
     //L1
-    Station station1_begin(0, "Station Debut", 50, 600, 0, Color::White, false);
-    Station station1_1(1, "Station1", 141, 600, 10, Color::Yellow, true);
-    Station station1_2(2, "Station2", 232, 600, 10, Color::Yellow, false);
-    Station station1_3(3, "Station3", 323, 600, 10, Color::Yellow, false);
-    Station station1_4(4, "Station4", 414, 600, 10, Color::Yellow, false);
-    Station station1_5(5, "Station5", 505, 600, 10, Color::Yellow, false);
-    Station station1_6(6, "Station6", 596, 600, 10, Color::Yellow, false);
-    Station station1_7(7, "Station7", 687, 600, 10, Color::Yellow, false);
-    Station station1_8(8, "Station6", 778, 600, 10, Color::Yellow, false);
-    Station station1_9(9, "Station6", 869, 600, 10, Color::Yellow, false);
-    Station station1_10(10, "Station6", 960, 600, 10, Color::Yellow, false);
-    Station station1_11(11, "Station6", 1051, 600, 10, Color::Yellow, false);
-    Station station1_12(12, "Station6", 1142, 600, 10, Color::Yellow, false);
-    Station station1_13(13, "Station6", 1233, 600, 10, Color::Yellow, false);
-    Station station1_14(14, "Station6", 1324, 600, 10, Color::Yellow, false);
-    Station station1_15(15, "Station6", 1415, 600, 10, Color::Yellow, false);
-    Station station1_16(16, "Station6", 1506, 600, 10, Color::Yellow, false);
-    Station station1_17(17, "Station6", 1597, 600, 10, Color::Yellow, false);
-    Station station1_18(18, "Station6", 1688, 600, 10, Color::Yellow, true);
-    Station station1_end(8, "Station Fin", 1779, 600, 0, Color::White, false);
+    Station station1_begin(0, "Station Debut", 50, 600, 0, Color::White, false, false);
+    Station station1_1(1, "Station1", 141, 600, 10, Color::Yellow, true, false);
+    Station station1_2(2, "Station2", 232, 600, 10, Color::Yellow, false, false);
+    Station station1_3(3, "Station3", 323, 600, 10, Color::Yellow, false, false);
+    Station station1_4(4, "Station4", 414, 600, 10, Color::Yellow, false, false);
+    Station station1_5(5, "Station5", 505, 600, 10, Color::Yellow, false, false);
+    Station station1_6(6, "Station6", 596, 600, 10, Color::Yellow, false, false);
+    Station station1_7(7, "Station7", 687, 600, 10, Color::Yellow, false, false);
+    Station station1_8(8, "Station6", 778, 600, 10, Color::Yellow, false, false);
+    Station station1_9(9, "Station6", 869, 600, 10, Color::Yellow, false, false);
+    Station station1_10(10, "Station6", 960, 600, 10, Color::Yellow, false, false);
+    Station station1_11(11, "Station6", 1051, 600, 10, Color::Yellow, false, false);
+    Station station1_12(12, "Station6", 1142, 600, 10, Color::Yellow, false, false);
+    Station station1_13(13, "Station6", 1233, 600, 10, Color::Yellow, false, false);
+    Station station1_14(14, "Station6", 1324, 600, 10, Color::Yellow, false, false);
+    Station station1_15(15, "Station6", 1415, 600, 10, Color::Yellow, false, false);
+    Station station1_16(16, "Station6", 1506, 600, 10, Color::Yellow, false, false);
+    Station station1_17(17, "Station6", 1597, 600, 10, Color::Yellow, false, false);
+    Station station1_18(18, "Station6", 1688, 600, 10, Color::Yellow, true, false);
+    Station station1_end(8, "Station Fin", 1779, 600, 0, Color::White, false, false);
     
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
     vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_33, station2_4, station2_5, station2_end };

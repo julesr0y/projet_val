@@ -155,14 +155,42 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 PrevDROITE = PreviousaDroite(listeStations[i-1], listeStations[i]);
             }
 
-            if (BAS && rame.getRetour()) {
-                end_pos_x -= 15;
-                end_pos_y += 15;
+            if (i != 0) {
+                if (BAS && rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    end_pos_x -= 15;
+                }
             }
 
-            if (HAUT && !rame.getRetour()) {
-                end_pos_x += 15;
-                end_pos_y -= 15;
+            if (i != 0) {
+                if (HAUT && !rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    end_pos_x += 15;
+                }
+            }
+
+            if (i != 0) {
+                if (PrevHAUT && rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    end_pos_y += 15;
+                    rame.rotateDroite();
+                }
+            }
+
+            if (i != 0) {
+                if (PrevDROITE && rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    rame.rotateDroite();
+                }
+            }
+
+            if (i != 0) {
+                if (PrevGAUCHE && !rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    rame.rotateGauche();
+                }
+            }
+
+            if (i != 0) {
+                if (PrevBAS && !rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    end_pos_y -= 15;
+                    rame.rotateDroite();
+                }
             }
 
             if (GAUCHE && PrevHAUT && rame.getRetour()) {
@@ -246,78 +274,31 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 }
 
                 if (authorize_move) {
-                    rame.setStarted(true); //on set la rame comme démarrée
-                    //si déplacement vertical
-                    if (rame.get_position_x() == end_pos_x)
-                    {
-                        //si déplacement vers haut
-                        if (end_pos_y < rame.get_position_y())
-                        {
-                            rame.moveHaut();
-                            rame.set_position_y(rame.get_position_y() - 1);
-                        }
-                        //si déplacement vers bas
-                        if (end_pos_y > rame.get_position_y())
-                        {
-                            rame.moveBas();
-                            rame.set_position_y(rame.get_position_y() + 1);
-                        }
-                    }
-                    //si déplacement horizontal
-                    if (rame.get_position_y() == end_pos_y)
-                    {
-                        //si direction vers gauche
-                        if (end_pos_x < rame.get_position_x())
-                        {
+                    rame.setStarted(true); // on set la rame comme démarrée
+
+                    // déplacement horizontal
+                    if (rame.get_position_y() == end_pos_y || rame.get_position_y() != end_pos_y) {
+                        // si direction vers gauche
+                        if (end_pos_x < rame.get_position_x()) {
                             rame.moveGauche();
                             rame.set_position_x(rame.get_position_x() - 1);
                         }
-                        //si direction vers droite
-                        if (end_pos_x > rame.get_position_x())
-                        {
+                        // si direction vers droite
+                        else if (end_pos_x > rame.get_position_x()) {
                             rame.moveDroite();
                             rame.set_position_x(rame.get_position_x() + 1);
                         }
                     }
-                    else //cas des déplacements en diagonale
-                    {
-                        //si direction vers haut droite
-                        if (end_pos_y < rame.get_position_y() && end_pos_x > rame.get_position_x())
-                        {
-                            /*rame.moveDiagonalHautDroite();
-                            rame.set_position_y(rame.get_position_y() - 1);
-                            rame.set_position_x(rame.get_position_x() + 1);*/
 
+                    // déplacement vertical
+                    if (rame.get_position_x() == end_pos_x) {
+                        // si déplacement vers haut
+                        if (end_pos_y < rame.get_position_y()) {
                             rame.moveHaut();
                             rame.set_position_y(rame.get_position_y() - 1);
                         }
-                        //si direction vers bas droite
-                        if (end_pos_y > rame.get_position_y() && end_pos_x > rame.get_position_x())
-                        {
-                            /*rame.moveDiagonalBasDroite();
-                            rame.set_position_y(rame.get_position_y() + 1);
-                            rame.set_position_x(rame.get_position_x() + 1);*/
-
-                            rame.moveBas();
-                            rame.set_position_y(rame.get_position_y() + 1);
-                        }
-                        //si direction vers haut gauche
-                        if (end_pos_y < rame.get_position_y() && end_pos_x < rame.get_position_x())
-                        {
-                            /*rame.moveDiagonalHautGauche();
-                            rame.set_position_y(rame.get_position_y() - 1);
-                            rame.set_position_x(rame.get_position_x() - 1);*/
-
-                            rame.moveHaut();
-                            rame.set_position_y(rame.get_position_y() - 1);
-                        }
-                        //si direction vers bas gauche
-                        if (end_pos_y > rame.get_position_y() && end_pos_x < rame.get_position_x())
-                        {
-                            /*rame.moveDiagonalBasGauche();
-                            rame.set_position_y(rame.get_position_y() + 1);
-                            rame.set_position_x(rame.get_position_x() - 1);*/
-
+                        // si déplacement vers bas
+                        else if (end_pos_y > rame.get_position_y()) {
                             rame.moveBas();
                             rame.set_position_y(rame.get_position_y() + 1);
                         }
@@ -383,11 +364,22 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
 
             if (HAUT || BAS) {
                 rame.setHorizontal(false);
-                rame.rotateHaut();
             }
             if (GAUCHE || DROITE) {
                 rame.setHorizontal(true);
             }
+            //if (GAUCHE && PrevBAS) {
+            //    rame.rotateGauche();
+            //}
+            //if (GAUCHE && PrevHAUT) {
+            //    rame.rotateDroite();
+            //}
+            //if (DROITE && PrevBAS) {
+            //    rame.rotateDroite();
+            //}
+            //if (DROITE && PrevHAUT) {
+            //    rame.rotateGauche();
+            //}
         }
     }
 }
