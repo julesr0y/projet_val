@@ -125,7 +125,6 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 dist_entre_2_stations_y = abs(listeStations[listeStations.size() - 2].getPositionY() - listeStations[listeStations.size() - 3].getPositionY());
             }
             else if (i != 0) { //sinon
-                cout << listeStations[i].getPositionX() << " " << listeStations[i - 1].getPositionX() << endl;
                 dist_entre_2_stations_x = abs(listeStations[i].getPositionX() - listeStations[i - 1].getPositionX());
                 dist_entre_2_stations_y = abs(listeStations[i].getPositionY() - listeStations[i - 1].getPositionY());
             }
@@ -255,8 +254,6 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 int dist_entre_rames_x = abs(rame_apres.get_position_x() - rame.get_position_x()); //distance entre la rame actuelle et celle devant
                 int dist_entre_rames_y = abs(rame_apres.get_position_y() - rame.get_position_y()); //distance entre la rame actuelle et celle devant
 
-                cout << rame.getHorizontal() << endl;
-
                 if (rame.getHorizontal()) {
                     if (dist_entre_rames_x == 0 && beginning == false) { //évite que des rames partent dans le mauvais ordre lors de la génération des threads
                         authorize_move = false;
@@ -264,17 +261,14 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     if (distanceToStation_x >= (2.0 / 3.0) * dist_entre_2_stations_x) {
                         //on accélère la rame sur le premier tiers de la distance
                         v = 1;
-                        cout << "Accelere" << endl;
                     }
                     else if (distanceToStation_x >= (1.0 / 3.0) * dist_entre_2_stations_x) {
                         //on maintient une vitesse constante pour la rame sur le deuxième tiers de la distance
                         v = 10;
-                        cout << "Constant" << endl;
                     }
                     else if (distanceToStation_x < (1.0 / 3.0) * dist_entre_2_stations_x) {
                         //si une rame se rapproche d'une station (dernier tiers de la distance), on freine son déplacement
                         v = 30;
-                        cout << "Freine" << endl;
                     }
                     if (rame.isFreinage()) {
                         //si la rame se dirige vers une station blanche, on ralentit sa vitesse
@@ -296,17 +290,14 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     if (distanceToStation_y >= (2.0 / 3.0) * dist_entre_2_stations_y) {
                         //on accélère la rame sur le premier tiers de la distance
                         v = 1;
-                        cout << "Accelere" << endl;
                     }
                     else if (distanceToStation_y >= (1.0 / 3.0) * dist_entre_2_stations_y) {
                         //on maintient une vitesse constante pour la rame sur le deuxième tiers de la distance
                         v = 10;
-                        cout << "Constant" << endl;
                     }
                     else if (distanceToStation_y < (1.0 / 3.0) * dist_entre_2_stations_y) {
                         //si une rame se rapproche d'une station (dernier tiers de la distance), on freine son déplacement
                         v = 30;
-                        cout << "Freine" << endl;
                     }
                     if (dist_entre_rames_y < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal() && rame_apres.get_position_x() == rame.get_position_x()) {
                         //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
