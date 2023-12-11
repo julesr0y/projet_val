@@ -1,166 +1,108 @@
 #include "visible.hpp";
 
 
-void visible(Rame N1, Rame N2, Rame N3, Rame N4, Rame N5, Rame N6,Event event,Window window) {
+void visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event event, Window& window, CircleShape C1, CircleShape C2, CircleShape C3, CircleShape C4, CircleShape C5, CircleShape C6, RectangleShape  affiche1)
+{
+    if (event.type == Event::Closed) {
+        window.close();
+    }
     if (event.type == Event::MouseButtonPressed) {
         if (event.mouseButton.button == Mouse::Left) {
             Vector2i mousePosition = Mouse::getPosition(window);
-            Vector2f circlePosition = Rame1L1.getPosition();
 
-            // Check if the mouse click is within the bounds of the yellow circle (Rame1L1)
-            //float circleRadius = Rame1L1.getRadius();
-            //FloatRect circleBounds = Rame1L1.getGlobalBounds();
             int id;
-            if (Rame1L1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame1_1.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame1_2.set_visible(!rame1_1.isVisible());
-                rame1_3.set_visible(!rame1_1.isVisible());
-                rame1_4.set_visible(!rame1_1.isVisible());
-                rame1_5.set_visible(!rame1_1.isVisible());
-                rame1_6.set_visible(!rame1_1.isVisible());
+            if (C1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+                N1.set_visible(true); 
+                N2.set_visible(!N1.isVisible());
+                N3.set_visible(!N1.isVisible());
+                N4.set_visible(!N1.isVisible());
+                N5.set_visible(!N1.isVisible());
+                N6.set_visible(!N1.isVisible());
 
-                //for (size_t i = 0; i < tabRame_L1.size(); i++)
-                //{
-                //    if (id != tabRame_L1[i].get_numero())
-                //    {
-                //        tabRame_L1[i].set_visible(!rame1_1.isVisible());
-                //    }
-                //}
             }
 
-            if (Rame2L1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame1_2.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame1_1.set_visible(!rame1_2.isVisible());
-                rame1_3.set_visible(!rame1_2.isVisible());
-                rame1_4.set_visible(!rame1_2.isVisible());
-                rame1_5.set_visible(!rame1_2.isVisible());
-                rame1_6.set_visible(!rame1_2.isVisible());
+            if (C2.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+                N2.set_visible(true); 
+                N1.set_visible(!N2.isVisible());
+                N3.set_visible(!N2.isVisible());
+                N4.set_visible(!N2.isVisible());
+                N5.set_visible(!N2.isVisible());
+                N6.set_visible(!N2.isVisible());
             }
 
-            if (Rame3L1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame1_3.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame1_2.set_visible(!rame1_3.isVisible());
-                rame1_1.set_visible(!rame1_3.isVisible());
-                rame1_4.set_visible(!rame1_3.isVisible());
-                rame1_5.set_visible(!rame1_3.isVisible());
-                rame1_6.set_visible(!rame1_3.isVisible());
+            if (C3.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+                N3.set_visible(true);
+                N2.set_visible(!N3.isVisible());
+                N1.set_visible(!N3.isVisible());
+                N4.set_visible(!N3.isVisible());
+                N5.set_visible(!N3.isVisible());
+                N6.set_visible(!N3.isVisible());
             }
 
-            if (Rame4L1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame1_4.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame1_2.set_visible(!rame1_4.isVisible());
-                rame1_3.set_visible(!rame1_4.isVisible());
-                rame1_1.set_visible(!rame1_4.isVisible());
-                rame1_5.set_visible(!rame1_4.isVisible());
-                rame1_6.set_visible(!rame1_4.isVisible());
+            if (C4.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+                N4.set_visible(true);  
+                N2.set_visible(!N4.isVisible());
+                N3.set_visible(!N4.isVisible());
+                N1.set_visible(!N4.isVisible());
+                N5.set_visible(!N4.isVisible());
+                N6.set_visible(!N4.isVisible());
             }
 
-            if (Rame5L1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame1_5.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame1_2.set_visible(!rame1_5.isVisible());
-                rame1_3.set_visible(!rame1_5.isVisible());
-                rame1_4.set_visible(!rame1_5.isVisible());
-                rame1_1.set_visible(!rame1_5.isVisible());
-                rame1_6.set_visible(!rame1_5.isVisible());
+            if (C5.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+                N5.set_visible(true);
+                N2.set_visible(!N5.isVisible());
+                N3.set_visible(!N5.isVisible());
+                N4.set_visible(!N5.isVisible());
+                N1.set_visible(!N5.isVisible());
+                N6.set_visible(!N5.isVisible());
             }
 
-            if (Rame6L1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame1_6.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame1_2.set_visible(!rame1_6.isVisible());
-                rame1_3.set_visible(!rame1_6.isVisible());
-                rame1_4.set_visible(!rame1_6.isVisible());
-                rame1_5.set_visible(!rame1_6.isVisible());
-                rame1_1.set_visible(!rame1_6.isVisible());
+            if (C6.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+                N6.set_visible(true);  
+                N2.set_visible(!N6.isVisible());
+                N3.set_visible(!N6.isVisible());
+                N4.set_visible(!N6.isVisible());
+                N5.set_visible(!N6.isVisible());
+                N1.set_visible(!N6.isVisible());
             }
+            reset(N1, N2, N3, N4, N5, N6, affiche1, mousePosition);
 
-
-
-            if (Rame1L2.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame2_1.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame2_2.set_visible(!rame1_6.isVisible());
-                rame2_3.set_visible(!rame1_6.isVisible());
-                rame2_4.set_visible(!rame1_6.isVisible());
-                rame2_5.set_visible(!rame1_6.isVisible());
-                rame2_6.set_visible(!rame1_6.isVisible()); // Add a member function to Rame class to toggle visibility
-            }
-
-            if (Rame2L2.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame2_2.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame2_1.set_visible(!rame1_6.isVisible());
-                rame2_3.set_visible(!rame1_6.isVisible());
-                rame2_4.set_visible(!rame1_6.isVisible());
-                rame2_5.set_visible(!rame1_6.isVisible());
-                rame2_6.set_visible(!rame1_6.isVisible());
-            }
-
-            if (Rame3L2.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame2_3.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame2_2.set_visible(!rame1_6.isVisible());
-                rame2_1.set_visible(!rame1_6.isVisible());
-                rame2_4.set_visible(!rame1_6.isVisible());
-                rame2_5.set_visible(!rame1_6.isVisible());
-                rame2_6.set_visible(!rame1_6.isVisible());
-            }
-
-            if (Rame4L2.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame2_4.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame2_2.set_visible(!rame1_6.isVisible());
-                rame2_3.set_visible(!rame1_6.isVisible());
-                rame2_1.set_visible(!rame1_6.isVisible());
-                rame2_5.set_visible(!rame1_6.isVisible());
-                rame2_6.set_visible(!rame1_6.isVisible());
-            }
-
-            if (Rame5L2.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame2_5.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame2_2.set_visible(!rame1_6.isVisible());
-                rame2_3.set_visible(!rame1_6.isVisible());
-                rame2_4.set_visible(!rame1_6.isVisible());
-                rame2_1.set_visible(!rame1_6.isVisible());
-                rame2_6.set_visible(!rame1_6.isVisible());
-            }
-
-            if (Rame6L2.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame2_6.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame2_2.set_visible(!rame1_6.isVisible());
-                rame2_3.set_visible(!rame1_6.isVisible());
-                rame2_4.set_visible(!rame1_6.isVisible());
-                rame2_5.set_visible(!rame1_6.isVisible());
-                rame2_1.set_visible(!rame1_6.isVisible());
-            }
-
-            if (affiche1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame1_5.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame1_2.set_visible(true);
-                rame1_3.set_visible(true);
-                rame1_4.set_visible(true);
-                rame1_1.set_visible(true);
-                rame1_6.set_visible(true);
-            }
-
-            if (affiche2.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                // Toggle the visibility of Rame1L1
-                rame2_5.set_visible(true);  // Add a member function to Rame class to toggle visibility
-                rame2_2.set_visible(true);
-                rame2_3.set_visible(true);
-                rame2_4.set_visible(true);
-                rame2_1.set_visible(true);
-                rame2_6.set_visible(true);
-            }
 
         }
+    }
+}
 
-};
+void reset(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6,RectangleShape  affiche1, Vector2i mousePosition) {
+    if (affiche1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+        N5.set_visible(true); 
+        N2.set_visible(true);
+        N3.set_visible(true);
+        N4.set_visible(true);
+        N1.set_visible(true);
+        N6.set_visible(true);
+    }
+}
+
+void affichage(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, RenderWindow& window) {
+    if (N1.isVisible()) {
+        window.draw(N1.getRepr());
+
+    }
+    if (N2.isVisible()) {
+        window.draw(N2.getRepr());
+    }
+
+    if (N3.isVisible()) {
+        window.draw(N3.getRepr());
+    }
+    if (N4.isVisible()) {
+        window.draw(N4.getRepr());
+    }
+
+    if (N5.isVisible()) {
+        window.draw(N5.getRepr());
+    }
+    if (N6.isVisible()) {
+        window.draw(N6.getRepr());
+    }
+}

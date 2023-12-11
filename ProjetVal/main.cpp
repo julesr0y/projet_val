@@ -226,10 +226,9 @@ int main() {
             if (event.type == Event::Closed) {
                 window.close();
             }
-            visible(rame1_1,rame1_2,rame1_3,rame1_4,rame1_5,rame1_6,event,window);
-            visible(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6,event,window);
+            visible(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, event, window, Rame1L1, Rame2L1, Rame3L1, Rame4L1, Rame5L1, Rame6L1,affiche1);
+            visible(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6, event, window, Rame1L2, Rame2L2, Rame3L2, Rame4L2, Rame5L2, Rame6L2,affiche2);
 
-           
            
         }
 
@@ -318,79 +317,41 @@ int main() {
         }
        
 
-            if (rame1_1.isVisible()) {
-                window.draw(rame1_1.getRepr());
-
-            }
-            if (rame1_2.isVisible()) {
-                window.draw(rame1_2.getRepr());
-            }
-
-            if (rame1_3.isVisible()) {
-                window.draw(rame1_3.getRepr());
-            }
-            if (rame1_4.isVisible()) {
-                window.draw(rame1_4.getRepr());
-            }
-
-            if (rame1_5.isVisible()) {
-                window.draw(rame1_5.getRepr());
-            }
-            if (rame1_6.isVisible()) {
-                window.draw(rame1_6.getRepr());
-            }
-
-            if (rame2_1.isVisible()) {
-                window.draw(rame2_1.getRepr());
-            }
-            if (rame2_2.isVisible()) {
-                window.draw(rame2_2.getRepr());
-            }
-            if (rame2_3.isVisible()) {
-                window.draw(rame2_3.getRepr());
-            }
-            if (rame2_4.isVisible()) {
-                window.draw(rame2_4.getRepr());
-            }
-
-            if (rame2_5.isVisible()) {
-                window.draw(rame2_5.getRepr());
-            }
-            if (rame2_6.isVisible()) {
-                window.draw(rame2_6.getRepr());
-            }
+        
+        affichage(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6,window);
+        affichage(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6, window);
 
 
-            window.draw(text);
-            window.draw(text2);
+        window.draw(text);
+        window.draw(text2);
 
 
-            //window.draw(text_S);
+        //window.draw(text_S);
 
-            window.draw(Rame1L1);
-            window.draw(Rame2L1);
-            window.draw(Rame3L1);
-            window.draw(Rame4L1);
-            window.draw(Rame5L1);
-            window.draw(Rame6L1);
+        window.draw(Rame1L1);
+        window.draw(Rame2L1);
+        window.draw(Rame3L1);
+        window.draw(Rame4L1);
+        window.draw(Rame5L1);
+        window.draw(Rame6L1);
 
-            window.draw(Rame1L2);
-            window.draw(Rame2L2);
-            window.draw(Rame3L2);
-            window.draw(Rame4L2);
-            window.draw(Rame5L2);
-            window.draw(Rame6L2);
+        window.draw(Rame1L2);
+        window.draw(Rame2L2);
+        window.draw(Rame3L2);
+        window.draw(Rame4L2);
+        window.draw(Rame5L2);
+        window.draw(Rame6L2);
 
-            window.draw(affiche1);
-            window.draw(re1);
-            window.draw(affiche2);
-            window.draw(re2);
+        window.draw(affiche1);
+        window.draw(re1);
+        window.draw(affiche2);
+        window.draw(re2);
 
 
-            window.draw(legende_retour);
-            window.draw(legende_route);
+        window.draw(legende_retour);
+        window.draw(legende_route);
 
-            window.display(); //affichage de la fen�tre
+        window.display(); //affichage de la fen�tre
         }
 
         //destruction des threads
