@@ -101,7 +101,6 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
     if (!beginning) {
         default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
         uniform_int_distribution<int> randomNum{ 4, 10 };
-        //cout << randomNum(re) << endl;
         this_thread::sleep_for(chrono::seconds(randomNum(re)));
     }
 
@@ -195,36 +194,55 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 //rotation
                 if (HAUT && rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateGauche();
+                    //rame.setHorizontal(false);
                 }
                 if (BAS && rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateDroite();
+                    //rame.setHorizontal(false);
                 }
                 if (GAUCHE && rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateGauche();
+                    //rame.setHorizontal(true);
                 }
                 if (DROITE && rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateDroite();
+                    //rame.setHorizontal(true);
                 }
                 if (HAUT && !rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateDroite();
+                    //rame.setHorizontal(false);
                 }
                 if (BAS && !rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateGauche();
+                    //rame.setHorizontal(false);
                 }
                 if (GAUCHE && !rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateDroite();
+                    //rame.setHorizontal(true);
                 }
                 if (DROITE && !rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateDroite();
+                    //rame.setHorizontal(true);
                 }
             }
 
             if (GAUCHE && PrevHAUT && rame.getRetour()) {
                 end_pos_x -= 15;
+                //rame.setHorizontal(true);
             }
 
             if (DROITE && PrevBAS && !rame.getRetour()) {
                 end_pos_x += 15;
+                //rame.setHorizontal(true);
+            }
+
+            if (i != 0) {
+                if(listeStations[i].getPositionY() == listeStations[i - 1].getPositionY()) {
+                    rame.setHorizontal(true);
+                }
+                if (listeStations[i].getPositionX() == listeStations[i - 1].getPositionX()) {
+                    rame.setHorizontal(false);
+                }
             }
 
             int v; //initialisation de la vitesse
@@ -236,6 +254,8 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 rame.setArrete(false); //la rame n'est pas en etat d'arret
                 int dist_entre_rames_x = abs(rame_apres.get_position_x() - rame.get_position_x()); //distance entre la rame actuelle et celle devant
                 int dist_entre_rames_y = abs(rame_apres.get_position_y() - rame.get_position_y()); //distance entre la rame actuelle et celle devant
+
+                cout << rame.getHorizontal() << endl;
 
                 if (rame.getHorizontal()) {
                     if (dist_entre_rames_x == 0 && beginning == false) { //évite que des rames partent dans le mauvais ordre lors de la génération des threads
@@ -260,11 +280,11 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                         //si la rame se dirige vers une station blanche, on ralentit sa vitesse
                         v = 30;
                     }
-                    if (dist_entre_rames_x < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal()) {
+                    if (dist_entre_rames_x < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal() && rame_apres.get_position_y() == rame.get_position_y()) {
                         //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
                         v = 30;
                     }
-                    if (dist_entre_rames_x < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal()) {
+                    if (dist_entre_rames_x < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal() && rame_apres.get_position_y() == rame.get_position_y()) {
                         //si 2 rames se suivant sur une même voie ont une distance trop faible, on interdit le deplacement de la rame derrière
                         authorize_move = false;
                     }
@@ -288,11 +308,11 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                         v = 30;
                         cout << "Freine" << endl;
                     }
-                    if (dist_entre_rames_y < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal()) {
+                    if (dist_entre_rames_y < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal() && rame_apres.get_position_x() == rame.get_position_x()) {
                         //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
                         v = 30;
                     }
-                    if (dist_entre_rames_y < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal()) {
+                    if (dist_entre_rames_y < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal() && rame_apres.get_position_x() == rame.get_position_x()) {
                         //si 2 rames se suivant sur une même voie ont une distance trop faible, on interdit le deplacement de la rame derrière
                         authorize_move = false;
                     }
@@ -387,12 +407,12 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 reverseOrder = true; //on active l'inversion de la liste des stations
             }
 
-            if (HAUT || BAS) {
-                rame.setHorizontal(false);
-            }
-            if (GAUCHE || DROITE) {
-                rame.setHorizontal(true);
-            }
+            //if (HAUT || BAS) {
+            //    rame.setHorizontal(false);
+            //}
+            //if (GAUCHE || DROITE) {
+            //    rame.setHorizontal(true);
+            //}
         }
     }
 }
