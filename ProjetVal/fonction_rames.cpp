@@ -125,7 +125,12 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 dist_entre_2_stations_x = abs(listeStations[listeStations.size() - 2].getPositionX() - listeStations[listeStations.size() - 3].getPositionX());
                 dist_entre_2_stations_y = abs(listeStations[listeStations.size() - 2].getPositionY() - listeStations[listeStations.size() - 3].getPositionY());
             }
-            else { //sinon
+            else if (i != 0) { //sinon
+                cout << listeStations[i].getPositionX() << " " << listeStations[i - 1].getPositionX() << endl;
+                dist_entre_2_stations_x = abs(listeStations[i].getPositionX() - listeStations[i - 1].getPositionX());
+                dist_entre_2_stations_y = abs(listeStations[i].getPositionY() - listeStations[i - 1].getPositionY());
+            }
+            else if (i == 0) {
                 dist_entre_2_stations_x = abs(listeStations[i + 1].getPositionX() - listeStations[i].getPositionX());
                 dist_entre_2_stations_y = abs(listeStations[i + 1].getPositionY() - listeStations[i].getPositionY());
             }
@@ -159,36 +164,57 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 if (BAS && rame.getRetour() && listeStations[i - 1].isVirage()) {
                     end_pos_x -= 15;
                 }
-            }
-
-            if (i != 0) {
+                if (PrevHAUT && rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    end_pos_y += 15;
+                }
+                if (PrevHAUT && !rame.getRetour() && (!GAUCHE && !DROITE)) {
+                    end_pos_y -= 15;
+                }
+                if (PrevHAUT && !rame.getRetour()) {
+                    end_pos_x -= 15;
+                }
+                if (PrevBAS && rame.getRetour() && (!GAUCHE && !DROITE)) {
+                    end_pos_y += 15;
+                }
+                if (PrevBAS && !rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    end_pos_y -= 15;
+                }
+                if (HAUT && rame.getRetour() && listeStations[i].isVirage()) {
+                    end_pos_x += 15;
+                }
+                if (PrevBAS && rame.getRetour()) {
+                    end_pos_x += 15;
+                }
                 if (HAUT && !rame.getRetour() && listeStations[i - 1].isVirage()) {
                     end_pos_x += 15;
                 }
-            }
-
-            if (i != 0) {
-                if (PrevHAUT && rame.getRetour() && listeStations[i - 1].isVirage()) {
-                    end_pos_y += 15;
-                    rame.rotateDroite();
+                if (BAS && !rame.getRetour() && listeStations[i].isVirage()) {
+                    end_pos_x -= 15;
                 }
-            }
 
-            if (i != 0) {
-                if (PrevDROITE && rame.getRetour() && listeStations[i - 1].isVirage()) {
-                    rame.rotateDroite();
-                }
-            }
-
-            if (i != 0) {
-                if (PrevGAUCHE && !rame.getRetour() && listeStations[i - 1].isVirage()) {
+                //rotation
+                if (HAUT && rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateGauche();
                 }
-            }
-
-            if (i != 0) {
-                if (PrevBAS && !rame.getRetour() && listeStations[i - 1].isVirage()) {
-                    end_pos_y -= 15;
+                if (BAS && rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    rame.rotateDroite();
+                }
+                if (GAUCHE && rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    rame.rotateGauche();
+                }
+                if (DROITE && rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    rame.rotateDroite();
+                }
+                if (HAUT && !rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    rame.rotateDroite();
+                }
+                if (BAS && !rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    rame.rotateGauche();
+                }
+                if (GAUCHE && !rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    rame.rotateDroite();
+                }
+                if (DROITE && !rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateDroite();
                 }
             }
@@ -218,17 +244,17 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     if (distanceToStation_x >= (2.0 / 3.0) * dist_entre_2_stations_x) {
                         //on accélère la rame sur le premier tiers de la distance
                         v = 1;
-                        //cout << "Accelere" << endl;
+                        cout << "Accelere" << endl;
                     }
                     else if (distanceToStation_x >= (1.0 / 3.0) * dist_entre_2_stations_x) {
                         //on maintient une vitesse constante pour la rame sur le deuxième tiers de la distance
                         v = 10;
-                        //cout << "Constant" << endl;
+                        cout << "Constant" << endl;
                     }
                     else if (distanceToStation_x < (1.0 / 3.0) * dist_entre_2_stations_x) {
                         //si une rame se rapproche d'une station (dernier tiers de la distance), on freine son déplacement
                         v = 30;
-                        //cout << "Freine" << endl;
+                        cout << "Freine" << endl;
                     }
                     if (rame.isFreinage()) {
                         //si la rame se dirige vers une station blanche, on ralentit sa vitesse
@@ -244,24 +270,23 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     }
                 }
                 if(!rame.getHorizontal()) {
-                    cout << dist_entre_2_stations_y << endl;
                     if (dist_entre_rames_y == 0 && beginning == false) { //évite que des rames partent dans le mauvais ordre lors de la génération des threads
                         authorize_move = false;
                     }
                     if (distanceToStation_y >= (2.0 / 3.0) * dist_entre_2_stations_y) {
                         //on accélère la rame sur le premier tiers de la distance
                         v = 1;
-                        //cout << "Accelere" << endl;
+                        cout << "Accelere" << endl;
                     }
                     else if (distanceToStation_y >= (1.0 / 3.0) * dist_entre_2_stations_y) {
                         //on maintient une vitesse constante pour la rame sur le deuxième tiers de la distance
                         v = 10;
-                        //cout << "Constant" << endl;
+                        cout << "Constant" << endl;
                     }
                     else if (distanceToStation_y < (1.0 / 3.0) * dist_entre_2_stations_y) {
                         //si une rame se rapproche d'une station (dernier tiers de la distance), on freine son déplacement
                         v = 30;
-                        //cout << "Freine" << endl;
+                        cout << "Freine" << endl;
                     }
                     if (dist_entre_rames_y < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal()) {
                         //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
@@ -368,18 +393,6 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             if (GAUCHE || DROITE) {
                 rame.setHorizontal(true);
             }
-            //if (GAUCHE && PrevBAS) {
-            //    rame.rotateGauche();
-            //}
-            //if (GAUCHE && PrevHAUT) {
-            //    rame.rotateDroite();
-            //}
-            //if (DROITE && PrevBAS) {
-            //    rame.rotateDroite();
-            //}
-            //if (DROITE && PrevHAUT) {
-            //    rame.rotateGauche();
-            //}
         }
     }
 }

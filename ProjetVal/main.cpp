@@ -57,8 +57,12 @@ int main()
     Station station2_3(3, "Station3", 500, 600, 10, Color::Red, false, true);
     Station station2_33(3, "Station3", 500, 400, 10, Color::Red, false, false);
     Station station2_4(4, "Station4", 500, 200, 10, Color::Red, false, true);
-    Station station2_5(5, "Station5", 700, 200, 10, Color::Red, true, false);
-    Station station2_end(7, "Station Fin", 750, 200, 0, Color::White, false, false);
+    Station station2_5(5, "Station5", 700, 200, 10, Color::Red, true, true);
+    Station station2_6(6, "Station6", 700, 400, 10, Color::Red, true, false);
+    Station station2_7(7, "Station7", 700, 600, 10, Color::Red, true, false);
+    Station station2_8(8, "Station8", 700, 800, 10, Color::Red, true, true);
+    Station station2_9(9, "Station9", 900, 800, 10, Color::Red, true, false);
+    Station station2_end(7, "Station Fin", 950, 800, 0, Color::White, false, false);
     
     //L1
     Station station1_begin(0, "Station Debut", 50, 600, 0, Color::White, false, false);
@@ -83,7 +87,7 @@ int main()
     Station station1_end(8, "Station Fin", 1779, 600, 0, Color::White, false, false);
     
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
-    vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_33, station2_4, station2_5, station2_end };
+    vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_33, station2_4, station2_5, station2_6, station2_7, station2_8, station2_9, station2_end };
     vector<Station> listeRStationsL2 = listeStationsL2;
     reverse(listeRStationsL2.begin(), listeRStationsL2.end());
 
@@ -91,7 +95,7 @@ int main()
     vector<Station> listeRStationsL1 = listeStationsL1;
     reverse(listeRStationsL1.begin(), listeRStationsL1.end());
 
-    vector<string> nom_station_L2 = { " ", "","lomme St Philibert","Bourg","Maison des Enfant","Mitterie","Pont Sup�rieur","Lomme_Lambersant","Canteleu","Bois Blancs","Port de Lille","Cormontainge","Montebello","Porte des Postes",""};
+    vector<string> nom_station_L2 = { " ", "","lomme St Philibert","Bourg","Maison des Enfant","Mitterie","Pont Sup�rieur","Lomme_Lambersant","Canteleu","Bois Blancs","Port de Lille","Cormontainge","Montebello","Porte des Postes","","",""};
     vector<string> nom_station_L1 = {" ", "Lille-CHR B-Calmette","CHR Oscar Lambret","Porte des Postes","Wazemmes","Gambetta","R�publique Beaux Arts","Rihour","Gare Lille Flandres","Caulier","Fives","Marberie","Hellemmes","Lezennes","Pont de Bois","Villeneuve d'Ascq H�tel de Ville","Triolo","Cit� Scientifique Professeur Gabillard","4 Cantons",""};
 
     for (size_t i = 1; i < listeStationsL1.size()-1; i++)
@@ -137,7 +141,7 @@ int main()
         return EXIT_FAILURE;
     }
 
-    //cr�ation et gestion de la fen�tre
+    //creation et gestion de la fenetre
     RenderWindow window(VideoMode(WINDOW_X, WINDOW_Y), WINDOW_NAME);
 
     // D�finir l'ic�ne de la fen�tre

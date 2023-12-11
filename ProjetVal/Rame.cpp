@@ -112,16 +112,16 @@ void Rame::rotate180() {
 
 void Rame::rotateGauche() {
 	angleRotation += 90.0;
-	if (angleRotation >= 180.0) {
-		angleRotation -= 180.0;
+	if (angleRotation >= 360.0) {
+		angleRotation -= 360.0;
 	}
 	setRepr();
 }
 
 void Rame::rotateDroite() {
 	angleRotation -= 90.0;
-	if (angleRotation >= 180.0) {
-		angleRotation += 180.0;
+	if (angleRotation < 0.0) {
+		angleRotation += 360.0;
 	}
 	setRepr();
 }

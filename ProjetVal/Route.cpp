@@ -37,8 +37,8 @@ void Route::setRepr() {
 	}
 	if (longueur == 0 && station1_y < station2_y) {
 		representation.setSize(Vector2f(hauteur, epaisseur));
-		representation.rotate(90);
-		representation.setPosition(station1_x - 12, station1_y);
+		representation.rotate(-90);
+		representation.setPosition(station1_x - 20, station1_y);
 	}
 	if (longueur == 0 && station1_y > station2_y) {
 		representation.setSize(Vector2f(hauteur, epaisseur));
@@ -55,8 +55,8 @@ void Route::setReprRetour() {
 	}
 	if (longueur == 0 && station1_y < station2_y) {
 		representation.setSize(Vector2f(hauteur, epaisseur));
-		representation.rotate(90);
-		representation.setPosition(station1_x + 20, station1_y);
+		representation.rotate(-90);
+		representation.setPosition(station1_x + 12, station1_y);
 	}
 	if (longueur == 0 && station1_y > station2_y) {
 		representation.setSize(Vector2f(hauteur, epaisseur));
