@@ -6,6 +6,7 @@
 #include "Rame.hpp"
 #include "Route.hpp"
 #include "fonction_rames.hpp"
+#include "visible.hpp"
 
 using namespace std;
 using namespace sf;
@@ -33,6 +34,31 @@ int main() {
 
     text.setCharacterSize(17); // D�finir la taille du texte
     text.setFillColor(Color::White); // D�finir la couleur du texte
+
+    //DESSAIN D4UN RECTANGLE POUR TOUS AFFICHER
+    RectangleShape  affiche1(Vector2f(150,50));
+    affiche1.setPosition(100.0f, 150.0f);
+    affiche1.setFillColor(Color::Yellow);
+
+    RectangleShape  affiche2(Vector2f(150, 50));
+    affiche2.setPosition(600.0f, 150.0f);
+    affiche2.setFillColor(Color::Red);
+
+    string reset = "Reset";
+    Text re1;
+    Text re2;
+
+    re1.setFont(font);
+    re1.setCharacterSize(25);
+    re1.setFillColor(Color::Black);
+    re1.setPosition(145.0f, 160.0f);
+    re1.setString(reset);
+
+    re2.setFont(font);
+    re2.setCharacterSize(25);
+    re2.setFillColor(Color::Black);
+    re2.setPosition(645.0f, 160.0f);
+    re2.setString(reset);
 
     //DESSAIN DES POINT L1
     CircleShape Rame1L1;
@@ -200,18 +226,11 @@ int main() {
             if (event.type == Event::Closed) {
                 window.close();
             }
+            visible(rame1_1,rame1_2,rame1_3,rame1_4,rame1_5,rame1_6,event,window);
+            visible(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6,event,window);
 
-            if (event.type == Event::MouseButtonPressed) {
-                if (event.mouseButton.button == Mouse::Left) {
-                    Vector2i mousePosition = Mouse::getPosition(window);
-                    Vector2f circlePosition = Rame1L1.getPosition();
-                    float circleRadius = Rame1L1.getRadius();
-                    float distance = sqrt(pow(mousePosition.x - (circlePosition.x + circleRadius), 2) + pow(mousePosition.y - (circlePosition.y + circleRadius), 2));
-                    if (distance <= circleRadius) {
-                        arret_urgence = !arret_urgence;
-                    }
-                }
-            }
+           
+           
         }
 
         window.clear(Color::Black); //couleur d'arri�re plan
@@ -298,23 +317,53 @@ int main() {
             window.draw(text_S);
         }
        
-            //on dessine les rames
-            window.draw(rame1_1.getRepr());
-            window.draw(rame1_2.getRepr());
-            window.draw(rame1_3.getRepr());
-            window.draw(rame1_4.getRepr());
-            window.draw(rame1_5.getRepr());
-            window.draw(rame1_6.getRepr());
-            window.draw(rame2_1.getRepr());
-            window.draw(rame2_2.getRepr());
-            window.draw(rame2_3.getRepr());
-            window.draw(rame2_4.getRepr());
-            window.draw(rame2_5.getRepr());
-            window.draw(rame2_6.getRepr());
+
+            if (rame1_1.isVisible()) {
+                window.draw(rame1_1.getRepr());
+
+            }
+            if (rame1_2.isVisible()) {
+                window.draw(rame1_2.getRepr());
+            }
+
+            if (rame1_3.isVisible()) {
+                window.draw(rame1_3.getRepr());
+            }
+            if (rame1_4.isVisible()) {
+                window.draw(rame1_4.getRepr());
+            }
+
+            if (rame1_5.isVisible()) {
+                window.draw(rame1_5.getRepr());
+            }
+            if (rame1_6.isVisible()) {
+                window.draw(rame1_6.getRepr());
+            }
+
+            if (rame2_1.isVisible()) {
+                window.draw(rame2_1.getRepr());
+            }
+            if (rame2_2.isVisible()) {
+                window.draw(rame2_2.getRepr());
+            }
+            if (rame2_3.isVisible()) {
+                window.draw(rame2_3.getRepr());
+            }
+            if (rame2_4.isVisible()) {
+                window.draw(rame2_4.getRepr());
+            }
+
+            if (rame2_5.isVisible()) {
+                window.draw(rame2_5.getRepr());
+            }
+            if (rame2_6.isVisible()) {
+                window.draw(rame2_6.getRepr());
+            }
 
 
             window.draw(text);
             window.draw(text2);
+
 
             //window.draw(text_S);
 
@@ -332,6 +381,10 @@ int main() {
             window.draw(Rame5L2);
             window.draw(Rame6L2);
 
+            window.draw(affiche1);
+            window.draw(re1);
+            window.draw(affiche2);
+            window.draw(re2);
 
 
             window.draw(legende_retour);

@@ -23,6 +23,7 @@ Rame::Rame(Station station_depart,int num , int L,bool etat) : representation(3)
 	vitesse = 1;
 	distance_arret_urgence = 3.4;//� voir 
 	retour = etat;
+	visible = true;
 }
 
 Rame::Rame(Station station_depart) : representation(3) {
@@ -35,6 +36,8 @@ Rame::Rame(Station station_depart) : representation(3) {
 	nb_passagers = 0;
 	vitesse = 1;
 	distance_arret_urgence = 3.4;//� voir 
+	visible = true;
+
 }
 
 //methodes de la classe
@@ -241,4 +244,15 @@ int Rame::get_ligne(){
 Rame::~Rame()
 {
 
+}
+
+
+void Rame::toggleVisibility() {
+	visible = !visible;
+};
+bool Rame::isVisible() {
+	return visible;
+};
+void Rame::set_visible(bool tu_me_dit) {
+	visible = tu_me_dit;
 }

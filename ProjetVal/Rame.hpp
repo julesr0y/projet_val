@@ -22,6 +22,7 @@ private:
 	bool en_freinage = false;
 	float angleRotation = 0.0;
 	ConvexShape representation;
+	bool visible;//represente si la rame est visible ou non 
 
 public:
 	Rame(Station station_depart);//constructeur
@@ -75,6 +76,12 @@ public:
 	void moveDiagonalBasDroite();
 	void moveDiagonalBasGauche();
 	void rotate180();
+
+	//visible
+	void toggleVisibility();
+	bool isVisible();
+	void set_visible(bool tu_me_dit);
+
 };
 
 #endif RAME_H
