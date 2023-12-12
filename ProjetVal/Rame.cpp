@@ -283,14 +283,3 @@ Rame::~Rame()
 {
 
 }
-
-
-void Rame::toggleVisibility() {
-	visible = !visible;
-};
-bool Rame::isVisible() {
-	return visible;
-};
-void Rame::set_visible(bool tu_me_dit) {
-	visible = tu_me_dit;
-}
