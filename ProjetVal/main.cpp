@@ -35,7 +35,7 @@ int main() {
     text.setCharacterSize(17); // D�finir la taille du texte
     text.setFillColor(Color::White); // D�finir la couleur du texte
 
-    //DESSAIN D4UN RECTANGLE POUR TOUS AFFICHER
+    //DESSAIN D'UN RECTANGLE POUR TOUS AFFICHER
     RectangleShape  affiche1(Vector2f(150,50));
     affiche1.setPosition(100.0f, 150.0f);
     affiche1.setFillColor(Color::Yellow);
@@ -114,14 +114,14 @@ int main() {
 
 
 
-    CircleShape legende_retour;
-    legende_retour.setRadius(20);
-    legende_retour.setPosition(175 - 15, 850 - 15);
-    legende_retour.setFillColor(Color::White);
-    RectangleShape legende_route;
-    legende_route.setSize(Vector2f(75, 8));
-    legende_route.setPosition(300, 850);
-    legende_route.setFillColor(Color::Yellow);
+    //CircleShape legende_retour;
+    //legende_retour.setRadius(20);
+    //legende_retour.setPosition(175 - 15, 850 - 15);
+    //legende_retour.setFillColor(Color::White);
+    //RectangleShape legende_route;
+    //legende_route.setSize(Vector2f(75, 8));
+    //legende_route.setPosition(300, 850);
+    //legende_route.setFillColor(Color::Yellow);
 
     //STATIONS (id, nom, position x, position y, nombre de passagers, couleur)
     //L2
@@ -348,8 +348,6 @@ int main() {
         window.draw(re2);
 
 
-        window.draw(legende_retour);
-        window.draw(legende_route);
 
         window.display(); //affichage de la fen�tre
         }

@@ -7,7 +7,7 @@ class Rame {
 private:
 	float centre_x;
 	float centre_y;
-	float taille_cote = 25;
+	float taille_cote = 12;
 	int numero;
 	int ligne;
 	float vitesse = 10;

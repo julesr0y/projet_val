@@ -16,7 +16,7 @@ Rame::Rame(Station station_depart,int num , int L,bool etat) : representation(3)
 	position_x = centre_x;
 	position_y = centre_y;
 	if (etat == true) {
-		position_y += 30;
+		position_y += 6;
 		angleRotation += 180.0;
 	}
 	nb_passagers = 0;
@@ -88,7 +88,7 @@ void Rame::setRepr() {
 	for (int i = 0; i < 3; ++i) {
 		float newX = (representation.getPoint(i).x - centre_x) * cos(angleRad) - (representation.getPoint(i).y - centre_y) * sin(angleRad) + centre_x;
 		float newY = (representation.getPoint(i).x - centre_x) * sin(angleRad) + (representation.getPoint(i).y - centre_y) * cos(angleRad) + centre_y;
-		representation.setPoint(i, Vector2f(newX, newY + 15));
+		representation.setPoint(i, Vector2f(newX, newY + 3));
 	}
 }
 
