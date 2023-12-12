@@ -23,6 +23,7 @@ Rame::Rame(Station station_depart,int num , int L,bool etat) : representation(3)
 	vitesse = 1;
 	distance_arret_urgence = 3.4;//� voir 
 	retour = etat;
+	visible = true;
 }
 
 Rame::Rame(Station station_depart) : representation(3) {
@@ -86,19 +87,6 @@ void Rame::setRepr() {
 		float newX = (representation.getPoint(i).x - centre_x) * cos(angleRad) - (representation.getPoint(i).y - centre_y) * sin(angleRad) + centre_x;
 		float newY = (representation.getPoint(i).x - centre_x) * sin(angleRad) + (representation.getPoint(i).y - centre_y) * cos(angleRad) + centre_y;
 		representation.setPoint(i, Vector2f(newX, newY + 15));
-	}
-}
-
-void Rame::rotateHaut() {
-	// Trouver l'angle de rotation nécessaire pour pointer vers le haut
-	float angleRad = atan2(representation.getPoint(1).y - representation.getPoint(0).y,
-		representation.getPoint(1).x - representation.getPoint(0).x);
-
-	// Appliquer la rotation nécessaire pour pointer vers le haut
-	for (int i = 0; i < 3; ++i) {
-		float newX = (representation.getPoint(i).x - centre_x) * cos(-angleRad) - (representation.getPoint(i).y - centre_y) * sin(-angleRad) + centre_x;
-		float newY = (representation.getPoint(i).x - centre_x) * sin(-angleRad) + (representation.getPoint(i).y - centre_y) * cos(-angleRad) + centre_y;
-		representation.setPoint(i, Vector2f(newX, newY));
 	}
 }
 
@@ -277,6 +265,17 @@ void Rame::setHorizontal(bool etat) {
 int Rame::get_ligne(){
 	return ligne;
 }
+
+void Rame::toggleVisibility() {
+	visible = !visible;
+};
+bool Rame::isVisible() {
+	return visible;
+};
+void Rame::set_visible(bool visibilite) {
+	visible = visibilite;
+}
+
 //destructeur
 Rame::~Rame()
 {
