@@ -14,7 +14,7 @@ private:
 	int nb_passagers;
 	//float temps;
 	CircleShape representation;
-	float rayon = 20;
+	float rayon = 5;
 	Color couleur;
 	bool terminus;
 
