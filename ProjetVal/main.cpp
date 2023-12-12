@@ -36,7 +36,7 @@ int main()
     text.setCharacterSize(17); // Definir la taille du texte
     text.setFillColor(Color::White); // Definir la couleur du texte
 
-    //DESSAIN D4UN RECTANGLE POUR TOUS AFFICHER
+    //DESSIN D'UN RECTANGLE POUR TOUT AFFICHER
     RectangleShape  affiche1(Vector2f(150, 50));
     affiche1.setPosition(100.0f, 150.0f);
     affiche1.setFillColor(Color::Yellow);
@@ -87,7 +87,7 @@ int main()
     Rame6L1.setPosition(355, 125);
     Rame6L1.setFillColor(Color::Yellow);
 
-    //DESSAIN DES POINTS L2
+    //DESSIN DES POINTS L2
     CircleShape Rame1L2;
     Rame1L2.setRadius(10);
     Rame1L2.setPosition(855, 2);
@@ -115,26 +115,26 @@ int main()
 
     //STATIONS (id, nom, position x, position y, nombre de passagers, couleur) 
     //L1
-    Station station1_begin(0, "Station Debut", 50, 600, 0, Color::White, false, false);
-    Station station1_1(1, "Station1", 141, 600, 10, Color::Yellow, true, false);
-    Station station1_2(2, "Station2", 232, 600, 10, Color::Yellow, false, false);
-    Station station1_3(3, "Station3", 323, 600, 10, Color::Yellow, false, false);
-    Station station1_4(4, "Station4", 414, 600, 10, Color::Yellow, false, false);
-    Station station1_5(5, "Station5", 505, 600, 10, Color::Yellow, false, false);
-    Station station1_6(6, "Station6", 596, 600, 10, Color::Yellow, false, false);
-    Station station1_7(7, "Station7", 687, 600, 10, Color::Yellow, false, false);
-    Station station1_8(8, "Station6", 778, 600, 10, Color::Yellow, false, false);
-    Station station1_9(9, "Station6", 869, 600, 10, Color::Yellow, false, false);
-    Station station1_10(10, "Station6", 960, 600, 10, Color::Yellow, false, false);
-    Station station1_11(11, "Station6", 1051, 600, 10, Color::Yellow, false, false);
-    Station station1_12(12, "Station6", 1142, 600, 10, Color::Yellow, false, false);
-    Station station1_13(13, "Station6", 1233, 600, 10, Color::Yellow, false, false);
-    Station station1_14(14, "Station6", 1324, 600, 10, Color::Yellow, false, false);
-    Station station1_15(15, "Station6", 1415, 600, 10, Color::Yellow, false, false);
-    Station station1_16(16, "Station6", 1506, 600, 10, Color::Yellow, false, false);
-    Station station1_17(17, "Station6", 1597, 600, 10, Color::Yellow, false, false);
-    Station station1_18(18, "Station6", 1688, 600, 10, Color::Yellow, true, false);
-    Station station1_end(8, "Station Fin", 1779, 600, 0, Color::White, false, false);
+    Station station1_begin(0, "Station Debut", 405, 645, 0, Color::White, false, false);
+    Station station1_1(1, "Station1", 450, 645, 10, Color::Yellow, true, false);
+    Station station1_2(2, "Station2", 495, 645, 10, Color::Yellow, false, false);
+    Station station1_3(3, "Station3", 540, 645, 10, Color::Yellow, false, false);
+    Station station1_4(4, "Station4", 585, 645, 10, Color::Yellow, false, false);
+    Station station1_5(5, "Station5", 630, 645, 10, Color::Yellow, false, false);
+    Station station1_6(6, "Station6", 675, 645, 10, Color::Yellow, false, false);
+    Station station1_7(7, "Station7", 720, 645, 10, Color::Yellow, false, false);
+    Station station1_8(8, "Station6", 765, 645, 10, Color::Yellow, false, false);
+    Station station1_9(9, "Station6", 810, 645, 10, Color::Yellow, false, false);
+    Station station1_10(10, "Station6", 855, 645, 10, Color::Yellow, false, false);
+    Station station1_11(11, "Station6", 900, 645, 10, Color::Yellow, false, false);
+    Station station1_12(12, "Station6", 945, 645, 10, Color::Yellow, false, false);
+    Station station1_13(13, "Station6", 990, 645, 10, Color::Yellow, false, false);
+    Station station1_14(14, "Station6", 1035, 645, 10, Color::Yellow, false, false);
+    Station station1_15(15, "Station6", 1080, 645, 10, Color::Yellow, false, false);
+    Station station1_16(16, "Station6", 1125, 645, 10, Color::Yellow, false, false);
+    Station station1_17(17, "Station6", 1170, 645, 10, Color::Yellow, false, false);
+    Station station1_18(18, "Station6", 1215, 645, 10, Color::Yellow, true, false);
+    Station station1_end(8, "Station Fin", 1260, 645, 0, Color::White, false, false);
 
     //L2
     Station station2_begin(0, "Station Debut", 45, 600, 0, Color::White, false, false);
@@ -193,13 +193,13 @@ int main()
     vector<Station> listeRStationsL1 = listeStationsL1;
     reverse(listeRStationsL1.begin(), listeRStationsL1.end());
 
-    vector<string> nom_station_L2 = { " ", "","lomme St Philibert","Bourg","Maison des Enfant","Mitterie","Pont Sup�rieur","Lomme_Lambersant","Canteleu","Bois Blancs","Port de Lille","Cormontainge","Montebello","Porte des Postes","","","","","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" };
-    vector<string> nom_station_L1 = {" ", "Lille-CHR B-Calmette","CHR Oscar Lambret","Porte des Postes","Wazemmes","Gambetta","R�publique Beaux Arts","Rihour","Gare Lille Flandres","Caulier","Fives","Marberie","Hellemmes","Lezennes","Pont de Bois","Villeneuve d'Ascq Hotel de Ville","Triolo","Cit� Scientifique Professeur Gabillard","4 Cantons",""};
+    //vector<string> nom_station_L2 = { " ", "","lomme St Philibert","Bourg","Maison des Enfant","Mitterie","Pont Sup�rieur","Lomme_Lambersant","Canteleu","Bois Blancs","Port de Lille","Cormontainge","Montebello","Porte des Postes","","","","","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" };
+    //vector<string> nom_station_L1 = {" ", "Lille-CHR B-Calmette","CHR Oscar Lambret","Porte des Postes","Wazemmes","Gambetta","R�publique Beaux Arts","Rihour","Gare Lille Flandres","Caulier","Fives","Marberie","Hellemmes","Lezennes","Pont de Bois","Villeneuve d'Ascq Hotel de Ville","Triolo","Cit� Scientifique Professeur Gabillard","4 Cantons",""};
 
-    for (size_t i = 1; i < listeStationsL1.size()-1; i++)
-    {
-        listeStationsL1[i].set_nom(nom_station_L1[i-1]);
-    }
+    //for (size_t i = 1; i < listeStationsL1.size()-1; i++)
+    //{
+        //listeStationsL1[i].set_nom(nom_station_L1[i-1]);
+    //}
 
     //definition des rames (station d'apparition, id)
     Rame rame1_1(station1_begin, 1,1,false);
@@ -220,19 +220,19 @@ int main()
     vector<Rame> tabRame_L2 = { rame2_1,rame2_2,rame2_3,rame2_4,rame2_5,rame2_6 };
 
     //creation des threads (fonction de deplacement, rame concernee, rame suivante, ligne concernee)
-    //thread thread1_1(moveRame, ref(rame1_1), ref(rame1_6), ref(listeStationsL1), true, ref(tabRame_L1), ref(text));
-    //thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true, ref(tabRame_L2), ref(text2));
-    //thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeRStationsL1), true, ref(tabRame_L1), ref(text));
+    thread thread1_1(moveRame, ref(rame1_1), ref(rame1_6), ref(listeStationsL1), true, ref(tabRame_L1), ref(text));
+    thread thread2_1(moveRame, ref(rame2_1), ref(rame2_6), ref(listeStationsL2), true, ref(tabRame_L2), ref(text2));
+    thread thread1_4(moveRame, ref(rame1_4), ref(rame1_3), ref(listeRStationsL1), true, ref(tabRame_L1), ref(text));
     thread thread2_4(moveRame, ref(rame2_4), ref(rame2_3), ref(listeRStationsL2), true, ref(tabRame_L2), ref(text2));
 
-    //thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false, ref(tabRame_L1), ref(text));
-    //thread thread1_3(moveRame, ref(rame1_3), ref(rame1_2), ref(listeStationsL1), false, ref(tabRame_L1), ref(text));
-    //thread thread1_5(moveRame, ref(rame1_5), ref(rame1_4), ref(listeRStationsL1), false, ref(tabRame_L1), ref(text));
-    //thread thread1_6(moveRame, ref(rame1_6), ref(rame1_5), ref(listeRStationsL1), false, ref(tabRame_L1), ref(text));
-    /*thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
+    thread thread1_2(moveRame, ref(rame1_2), ref(rame1_1), ref(listeStationsL1), false, ref(tabRame_L1), ref(text));
+    thread thread1_3(moveRame, ref(rame1_3), ref(rame1_2), ref(listeStationsL1), false, ref(tabRame_L1), ref(text));
+    thread thread1_5(moveRame, ref(rame1_5), ref(rame1_4), ref(listeRStationsL1), false, ref(tabRame_L1), ref(text));
+    thread thread1_6(moveRame, ref(rame1_6), ref(rame1_5), ref(listeRStationsL1), false, ref(tabRame_L1), ref(text));
+    thread thread2_2(moveRame, ref(rame2_2), ref(rame2_1), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
     thread thread2_3(moveRame, ref(rame2_3), ref(rame2_2), ref(listeStationsL2), false, ref(tabRame_L2), ref(text2));
     thread thread2_5(moveRame, ref(rame2_5), ref(rame2_4), ref(listeRStationsL2), false, ref(tabRame_L2), ref(text2));
-    thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeRStationsL2), false, ref(tabRame_L2), ref(text2));*/
+    thread thread2_6(moveRame, ref(rame2_6), ref(rame2_5), ref(listeRStationsL2), false, ref(tabRame_L2), ref(text2));
 
     Image icon;
     if (!icon.loadFromFile(ICON)) {
@@ -255,54 +255,54 @@ int main()
                 window.close();
             }
 
-            //visible(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, event, window, Rame1L1, Rame2L1, Rame3L1, Rame4L1, Rame5L1, Rame6L1, affiche1);
+            visible(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, event, window, Rame1L1, Rame2L1, Rame3L1, Rame4L1, Rame5L1, Rame6L1, affiche1);
             visible(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6, event, window, Rame1L2, Rame2L2, Rame3L2, Rame4L2, Rame5L2, Rame6L2, affiche2);
         }
 
         window.clear(Color::Black); //couleur d'arriere plan
 
         //PARTIE AFFICHAGE DES STATIONS + ROUTES
-        //for (int i = 0; i < listeStationsL1.size(); i++) { //pour la L1
-        //    listeStationsL1[i].setRepr(); //on set la representation de la station en cours
-        //    if (i != listeStationsL1.size() - 1) { //la derniere station ne peut avoir de route a sa droite
-        //        if (i == 0 || i == listeStationsL1.size() - 2) {
-        //            Route route(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::White); //on cree une route de cette station e la suivante
-        //            Route route_r(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::White); //on cree une route de retour
-        //            route.setRepr(); //on set la repr�sentation de la route
-        //            route_r.setReprRetour(); //on set la repr�sentation de la route de retour
-        //            window.draw(route.getRepr()); //on dessine la route
-        //            window.draw(route_r.getRepr()); //on dessine la route de retour
+        for (int i = 0; i < listeStationsL1.size(); i++) { //pour la L1
+            listeStationsL1[i].setRepr(); //on set la representation de la station en cours
+            if (i != listeStationsL1.size() - 1) { //la derniere station ne peut avoir de route a sa droite
+                if (i == 0 || i == listeStationsL1.size() - 2) {
+                    Route route(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::White); //on cree une route de cette station e la suivante
+                    Route route_r(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::White); //on cree une route de retour
+                    route.setRepr(); //on set la repr�sentation de la route
+                    route_r.setReprRetour(); //on set la repr�sentation de la route de retour
+                    window.draw(route.getRepr()); //on dessine la route
+                    window.draw(route_r.getRepr()); //on dessine la route de retour
 
-        //        }
-        //        else {
-        //            Route route(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::Yellow); //on cree une route de cette station a la suivante
-        //            Route route_r(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::Yellow); //on cree une route de retour
-        //            route.setRepr(); //on set la repr�sentation de la route
-        //            route_r.setReprRetour(); //on set la representation de la route de retour
-        //            window.draw(route.getRepr()); //on dessine la route
-        //            window.draw(route_r.getRepr()); //on dessine la route de retour
+                }
+                else {
+                    Route route(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::Yellow); //on cree une route de cette station a la suivante
+                    Route route_r(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::Yellow); //on cree une route de retour
+                    route.setRepr(); //on set la repr�sentation de la route
+                    route_r.setReprRetour(); //on set la representation de la route de retour
+                    window.draw(route.getRepr()); //on dessine la route
+                    window.draw(route_r.getRepr()); //on dessine la route de retour
 
-        //        }
+                }
 
-        //    }
+            }
 
-        //    updateRameText(text, tabRame_L1, rame1_1,0);
-        //    updateRameText(text, tabRame_L1, rame1_2,0);
-        //    updateRameText(text, tabRame_L1, rame1_3,0);
-        //    updateRameText(text, tabRame_L1, rame1_4,0);
-        //    updateRameText(text, tabRame_L1, rame1_5,0);
-        //    updateRameText(text, tabRame_L1, rame1_6,0);
-        //    Text text_S;
-        //    text_S.setFont(font);
-        //    text_S.setCharacterSize(15);
-        //    text_S.setFillColor(Color::White);
-        //    text_S.setPosition(listeStationsL1[i].getPositionX()+5, listeStationsL1[i].getPositionY() + 30);
-        //    text_S.setRotation(45.0f);
-        //    text_S.setString(nom_station_L1[i]);
-        //    window.draw(listeStationsL1[i].getRepr());//on dessine la station
-        //    window.draw(text_S);
+            updateRameText(text, tabRame_L1, rame1_1,0);
+            updateRameText(text, tabRame_L1, rame1_2,0);
+            updateRameText(text, tabRame_L1, rame1_3,0);
+            updateRameText(text, tabRame_L1, rame1_4,0);
+            updateRameText(text, tabRame_L1, rame1_5,0);
+            updateRameText(text, tabRame_L1, rame1_6,0);
+            Text text_S;
+            text_S.setFont(font);
+            text_S.setCharacterSize(15);
+            text_S.setFillColor(Color::White);
+            text_S.setPosition(listeStationsL1[i].getPositionX()+5, listeStationsL1[i].getPositionY() + 30);
+            text_S.setRotation(45.0f);
+            //text_S.setString(nom_station_L1[i]);
+            window.draw(listeStationsL1[i].getRepr());//on dessine la station
+            window.draw(text_S);
 
-        //}
+        }
 
         for (int i = 0; i < listeStationsL2.size(); i++) { //pour la L2
             listeStationsL2[i].setRepr(); //on set la representation de la station en cours
@@ -338,7 +338,7 @@ int main()
             text_S.setFillColor(Color::White);
             text_S.setPosition(listeStationsL2[i].getPositionX()+5, listeStationsL2[i].getPositionY() + 30);
             text_S.setRotation(45.0f);
-            text_S.setString(nom_station_L2[i]);
+            //text_S.setString(nom_station_L2[i]);
             window.draw(listeStationsL2[i].getRepr());//on dessine la station
             window.draw(text_S);
         }
@@ -348,20 +348,6 @@ int main()
 
         affichage(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, window);
         affichage(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6, window);
-
-        //on dessine les rames
-        //window.draw(rame1_1.getRepr());
-        //window.draw(rame1_2.getRepr());
-        //window.draw(rame1_3.getRepr());
-        //window.draw(rame1_4.getRepr());
-        //window.draw(rame1_5.getRepr());
-        //window.draw(rame1_6.getRepr());
-        //window.draw(rame2_1.getRepr());
-        //window.draw(rame2_2.getRepr());
-        //window.draw(rame2_3.getRepr());
-        //window.draw(rame2_4.getRepr());
-        //window.draw(rame2_5.getRepr());
-        //window.draw(rame2_6.getRepr());
 
         window.draw(Rame1L1);
         window.draw(Rame2L1);
@@ -386,18 +372,18 @@ int main()
     }
 
     //destruction des threads
-    //thread1_1.join();
-    //thread1_2.join();
-    //thread1_3.join();
-    //thread1_4.join();
-    //thread1_5.join();
-    //thread1_6.join();
-    //thread2_1.join();
-    //thread2_2.join();
-    //thread2_3.join();
+    thread1_1.join();
+    thread1_2.join();
+    thread1_3.join();
+    thread1_4.join();
+    thread1_5.join();
+    thread1_6.join();
+    thread2_1.join();
+    thread2_2.join();
+    thread2_3.join();
     thread2_4.join();
-    //thread2_5.join();
-    //thread2_6.join();
+    thread2_5.join();
+    thread2_6.join();
 
     return 0;
 }
