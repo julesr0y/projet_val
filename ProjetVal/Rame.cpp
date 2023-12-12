@@ -83,7 +83,7 @@ void Rame::setRepr() {
 	representation.setPoint(1, Vector2f(centre_rame.x + taille_cote / 2, centre_rame.y));
 	representation.setPoint(2, Vector2f(centre_rame.x - taille_cote / 2, centre_rame.y + taille_cote / 2));
 	representation.setFillColor(Color::Blue);
-	float angleRad = angleRotation * (3.14159 / 180.0); // Convertir l'angle en radians
+	float angleRad = angleRotation * (3.14159 / 180.0);
 
 	for (int i = 0; i < 3; ++i) {
 		float newX = (representation.getPoint(i).x - centre_x) * cos(angleRad) - (representation.getPoint(i).y - centre_y) * sin(angleRad) + centre_x;
@@ -100,7 +100,21 @@ void Rame::rotate180() {
 	setRepr();
 }
 
+void Rame::rotateGauche() {
+	angleRotation += 90.0;
+	if (angleRotation >= 360.0) {
+		angleRotation -= 360.0;
+	}
+	setRepr();
+}
 
+void Rame::rotateDroite() {
+	angleRotation -= 90.0;
+	if (angleRotation < 0.0) {
+		angleRotation += 360.0;
+	}
+	setRepr();
+}
 
 //les getters 
 float Rame::get_vitesse() {
@@ -237,9 +251,33 @@ void Rame::setStarted(bool etat) {
 	hasStarted_ = etat;
 }
 
+bool Rame::getHorizontal() {
+	if (horizontal) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Rame::setHorizontal(bool etat) {
+	horizontal = etat;
+}
+
 int Rame::get_ligne(){
 	return ligne;
 }
+
+void Rame::toggleVisibility() {
+	visible = !visible;
+};
+bool Rame::isVisible() {
+	return visible;
+};
+void Rame::set_visible(bool visibilite) {
+	visible = visibilite;
+}
+
 //destructeur
 Rame::~Rame()
 {

@@ -17,10 +17,15 @@ private:
 	float rayon = 5;
 	Color couleur;
 	bool terminus;
+	bool next_direction_haut;
+	bool next_direction_bas;
+	bool next_direction_gauche;
+	bool next_direction_droite;
+	bool virage;
 
 public:
 	Station();
-	Station(int id, string name, float x, float y, int nbpassagers, Color color, bool terminus_);
+	Station(int id, string name, float x, float y, int nbpassagers, Color color, bool terminus_, bool virage);
 	//Stations ~Stations();
 	int getIdStation();
 	string getNom();
@@ -34,6 +39,7 @@ public:
 	bool get_terminus();
 	void set_nom(string Snom);
 	string get_nom();
+	bool isVirage();
 };
 
 #endif STATION_H

@@ -22,7 +22,8 @@ private:
 	bool en_freinage = false;
 	float angleRotation = 0.0;
 	ConvexShape representation;
-	bool visible;//represente si la rame est visible ou non 
+	bool horizontal = true;
+	bool visible; //rame est visible ou non 
 
 public:
 	Rame(Station station_depart);//constructeur
@@ -48,6 +49,7 @@ public:
 	void setRetour(bool etat);
 	void setStarted(bool etat);
 	void setFreinage(bool etat);
+	void setHorizontal(bool etat);
 
 	//getters
 	int get_numero();
@@ -55,7 +57,7 @@ public:
 	float get_vitesse();
 	int get_position_x();
 	int get_position_y();
-	int  get_passagers();
+	int get_passagers();
 	float get_distance_arret_urgence();
 	int get_poids();
 	bool estArrete();
@@ -65,6 +67,7 @@ public:
 	bool getRetour();
 	bool hasStarted();
 	bool isFreinage();
+	bool getHorizontal();
 
 	//gestion des d�placements
 	void moveDroite();
@@ -76,12 +79,13 @@ public:
 	void moveDiagonalBasDroite();
 	void moveDiagonalBasGauche();
 	void rotate180();
+	void rotateGauche();
+	void rotateDroite();
 
 	//visible
 	void toggleVisibility();
 	bool isVisible();
-	void set_visible(bool tu_me_dit);
-
+	void set_visible(bool visibilite);
 };
 
 #endif RAME_H
