@@ -6,7 +6,7 @@ using namespace sf;
 //constructeur
 Rame::Rame() : representation(3){}
 
-Rame::Rame(Station station_depart,int num , int L,bool etat) : representation(3)
+Rame::Rame(Station station_depart,int num , int L,bool etat, Color color) : representation(3)
 {
 	centre_x = station_depart.getPositionX();
 	centre_y = station_depart.getPositionY();
@@ -24,6 +24,8 @@ Rame::Rame(Station station_depart,int num , int L,bool etat) : representation(3)
 	distance_arret_urgence = 3.4;//� voir 
 	retour = etat;
 	visible = true;
+	arret_urgence = false;
+	couleur = color;
 }
 
 Rame::Rame(Station station_depart) : representation(3) {
@@ -82,7 +84,7 @@ void Rame::setRepr() {
 	representation.setPoint(0, Vector2f(centre_rame.x - taille_cote / 2, centre_rame.y - taille_cote/2));
 	representation.setPoint(1, Vector2f(centre_rame.x + taille_cote / 2, centre_rame.y));
 	representation.setPoint(2, Vector2f(centre_rame.x - taille_cote / 2, centre_rame.y + taille_cote / 2));
-	representation.setFillColor(Color::Blue);
+	representation.setFillColor(couleur);
 	float angleRad = angleRotation * (3.14159 / 180.0);
 
 	for (int i = 0; i < 3; ++i) {
@@ -276,6 +278,14 @@ bool Rame::isVisible() {
 };
 void Rame::set_visible(bool visibilite) {
 	visible = visibilite;
+}
+
+bool Rame::get_arret_urgence() {
+	return arret_urgence;
+}
+
+void Rame::set_arret_urgence(bool etat) {
+	arret_urgence = etat;
 }
 
 //destructeur

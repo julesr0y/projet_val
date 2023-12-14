@@ -20,6 +20,5 @@ find_package(SFML COMPONENTS window system graphics REQUIRED)
 link_libraries(sfml-graphics sfml-window)
 configure_file(SFML/font/merienda.ttf ${CMAKE_CURRENT_BINARY_DIR}/ProjetVal/merienda.ttf COPYONLY)
 configure_file(SFML/img/icon.png ${CMAKE_CURRENT_BINARY_DIR}/ProjetVal/icon.png COPYONLY)
-configure_file(SFML/img/bouton/L_1_Rame1.png ${CMAKE_CURRENT_BINARY_DIR}/ProjetVal/bouton/L_1_Rame1.png COPYONLY)
 
 add_subdirectory(ProjetVal)

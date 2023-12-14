@@ -5,8 +5,11 @@
 #include <algorithm>
 #include "fonction_station.hpp"
 
-#define AJUSTEMENT 15
-#define CHGT_VOIE 30
+#define AJUSTEMENT 2
+#define CHGT_VOIE 3
+#define VITESSE_FREINAGE 120
+#define VITESSE_CONSTANTE 40
+#define VITESSE_ACCELERATION 10
 
 using namespace std;
 
@@ -279,26 +282,29 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     }
                     if (distanceToStation_x >= (2.0 / 3.0) * dist_entre_2_stations_x) {
                         //on accélère la rame sur le premier tiers de la distance
-                        v = 1;
+                        v = VITESSE_ACCELERATION;
                     }
                     else if (distanceToStation_x >= (1.0 / 3.0) * dist_entre_2_stations_x) {
                         //on maintient une vitesse constante pour la rame sur le deuxième tiers de la distance
-                        v = 10;
+                        v = VITESSE_CONSTANTE;
                     }
                     else if (distanceToStation_x < (1.0 / 3.0) * dist_entre_2_stations_x) {
                         //si une rame se rapproche d'une station (dernier tiers de la distance), on freine son déplacement
-                        v = 30;
+                        v = VITESSE_FREINAGE;
                     }
                     if (rame.isFreinage()) {
                         //si la rame se dirige vers une station blanche, on ralentit sa vitesse
-                        v = 30;
+                        v = VITESSE_FREINAGE;
                     }
                     if (dist_entre_rames_x < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal() && rame_apres.get_position_y() == rame.get_position_y()) {
                         //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
-                        v = 30;
+                        v = VITESSE_FREINAGE;
                     }
                     if (dist_entre_rames_x < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal() && rame_apres.get_position_y() == rame.get_position_y()) {
                         //si 2 rames se suivant sur une même voie ont une distance trop faible, on interdit le deplacement de la rame derrière
+                        authorize_move = false;
+                    }
+                    else if (rame.get_arret_urgence() == true) {
                         authorize_move = false;
                     }
                 }
@@ -308,15 +314,15 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     }
                     if (distanceToStation_y >= (2.0 / 3.0) * dist_entre_2_stations_y) {
                         //on accélère la rame sur le premier tiers de la distance
-                        v = 1;
+                        v = VITESSE_ACCELERATION;
                     }
                     else if (distanceToStation_y >= (1.0 / 3.0) * dist_entre_2_stations_y) {
                         //on maintient une vitesse constante pour la rame sur le deuxième tiers de la distance
-                        v = 10;
+                        v = VITESSE_CONSTANTE;
                     }
                     else if (distanceToStation_y < (1.0 / 3.0) * dist_entre_2_stations_y) {
                         //si une rame se rapproche d'une station (dernier tiers de la distance), on freine son déplacement
-                        v = 30;
+                        v = VITESSE_FREINAGE;
                     }
                     if (dist_entre_rames_y < 150 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal() && rame_apres.get_position_x() == rame.get_position_x()) {
                         //si 2 rames se suivant sur une même voie ont une distance faible, on freine le deplacement de la rame derrière
@@ -324,6 +330,9 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     }
                     if (dist_entre_rames_y < 100 && rame_apres.hasStarted() == true && rame_apres.getRetour() == rame.getRetour() && rame_apres.getHorizontal() == rame.getHorizontal() && rame_apres.get_position_x() == rame.get_position_x()) {
                         //si 2 rames se suivant sur une même voie ont une distance trop faible, on interdit le deplacement de la rame derrière
+                        authorize_move = false;
+                    }
+                    else if (rame.get_arret_urgence() == true) {
                         authorize_move = false;
                     }
                 }
@@ -405,16 +414,73 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             //monte
             if (rame.estArrete() && i == listeStations.size() - 1 && !rame.getRetour()) {
                 rame.set_position_y(rame.get_position_y() + CHGT_VOIE); //on monte la position y de la rame
-                rame.rotate180(); //on tourne la rame de 180 degrés
+                rame.rotate180(); //on tourne la rame de 180 degres
                 rame.setRetour(true); //on active le mode retour (voie supérieure)
                 reverseOrder = true; //on active l'inversion de la liste des stations
             }
             ////descend
             else if (rame.estArrete() && rame.getRetour()) {
                 rame.set_position_y(rame.get_position_y() - CHGT_VOIE); //on descend la position y de la rame
-                rame.rotate180(); //on tourne la rame de 180 degrés
+                rame.rotate180(); //on tourne la rame de 180 degres
                 rame.setRetour(false); //on enleve le mode retour (voie inférieure)
                 reverseOrder = true; //on active l'inversion de la liste des stations
+            }
+        }
+    }
+}
+
+void arret_urgence_window(Window& window, Event event, Rame& R1_1, Rame& R1_2, Rame& R1_3, Rame& R1_4, Rame& R1_5, Rame& R1_6, Rame& R2_1, Rame& R2_2, Rame& R2_3, Rame& R2_4, Rame& R2_5, Rame& R2_6) {
+    if (event.type == Event::MouseButtonPressed) {
+        if (event.mouseButton.button == sf::Mouse::Left)
+        {
+            Vector2f mousePos = Vector2f(Mouse::getPosition(window));
+            if (R1_1.getRepr().getGlobalBounds().contains(mousePos))
+            {
+                R1_1.set_arret_urgence(!R1_1.get_arret_urgence());
+            }
+            if (R1_2.getRepr().getGlobalBounds().contains(mousePos))
+            {
+				R1_2.set_arret_urgence(!R1_2.get_arret_urgence());
+			}
+            if (R1_3.getRepr().getGlobalBounds().contains(mousePos))
+            {
+                R1_3.set_arret_urgence(!R1_3.get_arret_urgence());
+            }
+            if (R1_4.getRepr().getGlobalBounds().contains(mousePos))
+            {
+				R1_4.set_arret_urgence(!R1_4.get_arret_urgence());
+			}
+            if (R1_5.getRepr().getGlobalBounds().contains(mousePos))
+            {
+                R1_5.set_arret_urgence(!R1_5.get_arret_urgence());
+            }
+            if (R1_6.getRepr().getGlobalBounds().contains(mousePos))
+            {
+				R1_6.set_arret_urgence(!R1_6.get_arret_urgence());
+			}
+            if (R2_1.getRepr().getGlobalBounds().contains(mousePos))
+            {
+				R2_1.set_arret_urgence(!R2_1.get_arret_urgence());
+			}
+            if (R2_2.getRepr().getGlobalBounds().contains(mousePos))
+            {
+                R2_2.set_arret_urgence(!R2_2.get_arret_urgence());
+            }
+            if (R2_3.getRepr().getGlobalBounds().contains(mousePos))
+            {
+				R2_3.set_arret_urgence(!R2_3.get_arret_urgence());
+            }
+            if (R2_4.getRepr().getGlobalBounds().contains(mousePos))
+            {
+                R2_4.set_arret_urgence(!R2_4.get_arret_urgence());
+			}
+            if (R2_5.getRepr().getGlobalBounds().contains(mousePos))
+            {
+                R2_5.set_arret_urgence(!R2_5.get_arret_urgence());
+			}
+			if (R2_6.getRepr().getGlobalBounds().contains(mousePos))
+			{
+                R2_6.set_arret_urgence(!R2_6.get_arret_urgence());
             }
         }
     }

@@ -16,8 +16,9 @@ using namespace sf;
 #define WINDOW_X 1900 //largeur de la fenetre
 #define WINDOW_Y 900 //hauteur de la fenetre
 #define WINDOW_NAME "VAL" //nom de la fenetre
-#define FONT "merienda.ttf"
-#define ICON "icon.png"
+#define FONT "merienda.ttf" //police d'ecriture
+#define ICON "icon.png" //icone de la fenetre
+#define GREY Color(119,136,153)
 bool arret_urgence = false;
 
 int main()
@@ -202,18 +203,18 @@ int main()
     //}
 
     //definition des rames (station d'apparition, id)
-    Rame rame1_1(station1_begin, 1,1,false);
-    Rame rame1_2(station1_begin, 2,1,false);
-    Rame rame1_3(station1_begin, 3,1,false);
-    Rame rame1_4(station1_end, 4,1,true);
-    Rame rame1_5(station1_end, 5,1,true);
-    Rame rame1_6(station1_end, 6,1,true);
-    Rame rame2_1(station2_begin, 7,2,false);
-    Rame rame2_2(station2_begin, 8,2,false);
-    Rame rame2_3(station2_begin, 9,2,false);
-    Rame rame2_4(station2_end, 10,2,true);
-    Rame rame2_5(station2_end, 11,2,true);
-    Rame rame2_6(station2_end, 12,2,true);
+    Rame rame1_1(station1_begin, 1,1,false, Color::Blue);
+    Rame rame1_2(station1_begin, 2,1,false, Color::Blue);
+    Rame rame1_3(station1_begin, 3,1,false, Color::Blue);
+    Rame rame1_4(station1_end, 4,1,true, Color::Blue);
+    Rame rame1_5(station1_end, 5,1,true, Color::Blue);
+    Rame rame1_6(station1_end, 6,1,true, Color::Blue);
+    Rame rame2_1(station2_begin, 7,2,false, GREY);
+    Rame rame2_2(station2_begin, 8,2,false, GREY);
+    Rame rame2_3(station2_begin, 9,2,false, GREY);
+    Rame rame2_4(station2_end, 10,2,true, GREY);
+    Rame rame2_5(station2_end, 11,2,true, GREY);
+    Rame rame2_6(station2_end, 12,2,true, GREY);
 
     
     vector<Rame> tabRame_L1 = { rame1_1,rame1_2,rame1_3,rame1_4,rame1_5,rame1_6 };
@@ -257,6 +258,7 @@ int main()
 
             visible(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, event, window, Rame1L1, Rame2L1, Rame3L1, Rame4L1, Rame5L1, Rame6L1, affiche1);
             visible(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6, event, window, Rame1L2, Rame2L2, Rame3L2, Rame4L2, Rame5L2, Rame6L2, affiche2);
+            arret_urgence_window(window, event, rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6);
         }
 
         window.clear(Color::Black); //couleur d'arriere plan

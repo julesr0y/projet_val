@@ -42,4 +42,4 @@ public:
 	bool isVirage();
 };
 
-#endif STATION_H
+#endif

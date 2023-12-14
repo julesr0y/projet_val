@@ -23,11 +23,13 @@ private:
 	float angleRotation = 0.0;
 	ConvexShape representation;
 	bool horizontal = true;
-	bool visible; //rame est visible ou non 
+	bool visible; //rame est visible ou non
+	bool arret_urgence;
+	Color couleur;
 
 public:
 	Rame(Station station_depart);//constructeur
-	Rame(Station station_depart, int numero,int ligen,bool etat);
+	Rame(Station station_depart, int numero,int ligen,bool etat, Color color);
 	Rame();
 	~Rame();//destructeur
 
@@ -43,6 +45,7 @@ public:
 	void set_position_y(int y);
 	void set_passagers(int nb);
 	void set_distance_arret_urgence(float dis);
+	void set_arret_urgence(bool etat);
 	void setRepr();
 	void setArrete(bool etat);
 	void setTerminus(bool etat);
@@ -59,6 +62,7 @@ public:
 	int get_position_y();
 	int get_passagers();
 	float get_distance_arret_urgence();
+	bool get_arret_urgence();
 	int get_poids();
 	bool estArrete();
 	ConvexShape getRepr();
