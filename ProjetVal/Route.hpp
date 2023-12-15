@@ -12,7 +12,7 @@ private:
 	float hauteur;
 	float longueur;
 	RectangleShape representation;
-	int epaisseur = 2;
+	int epaisseur = 4;
 	Station station_depart;
 	Station station_arrivee;
 	float station1_x;

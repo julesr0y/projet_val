@@ -16,8 +16,11 @@ Rame::Rame(Station station_depart,int num , int L,bool etat, Color color) : repr
 	position_x = centre_x;
 	position_y = centre_y;
 	if (etat == true) {
-		position_y += 6;
-		angleRotation += 180.0;
+		position_y += 8;
+		//angleRotation += 180.0;
+	}
+	else {
+		position_y -= 8;
 	}
 	nb_passagers = 0;
 	vitesse = 1;
@@ -85,36 +88,20 @@ void Rame::setRepr() {
 	representation.setPoint(1, Vector2f(centre_rame.x + taille_cote / 2, centre_rame.y));
 	representation.setPoint(2, Vector2f(centre_rame.x - taille_cote / 2, centre_rame.y + taille_cote / 2));
 	representation.setFillColor(couleur);
-	float angleRad = angleRotation * (3.14159 / 180.0);
-
-	// for (int i = 0; i < 3; ++i) {
-	// 	float newX = (representation.getPoint(i).x - centre_x) * cos(angleRad) - (representation.getPoint(i).y - centre_y) * sin(angleRad) + centre_x;
-	// 	float newY = (representation.getPoint(i).x - centre_x) * sin(angleRad) + (representation.getPoint(i).y - centre_y) * cos(angleRad) + centre_y;
-	// 	representation.setPoint(i, Vector2f(newX, newY + 3));
-	// }
 }
 
 void Rame::rotate180() {
-	angleRotation += 180.0;
-	if (angleRotation >= 360.0) {
-		angleRotation -= 360.0;
-	}
+	representation.rotate(180);
 	setRepr();
 }
 
 void Rame::rotateGauche() {
-	angleRotation += 90.0;
-	if (angleRotation >= 360.0) {
-		angleRotation -= 360.0;
-	}
+	representation.rotate(90);
 	setRepr();
 }
 
 void Rame::rotateDroite() {
-	angleRotation -= 90.0;
-	if (angleRotation < 0.0) {
-		angleRotation += 360.0;
-	}
+	representation.rotate(-90);
 	setRepr();
 }
 

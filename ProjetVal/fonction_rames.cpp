@@ -5,8 +5,8 @@
 #include <algorithm>
 #include "fonction_station.hpp"
 
-#define AJUSTEMENT 2
-#define CHGT_VOIE 3
+#define AJUSTEMENT 5
+#define CHGT_VOIE 16
 #define VITESSE_FREINAGE 120
 #define VITESSE_CONSTANTE 40
 #define VITESSE_ACCELERATION 10
@@ -118,6 +118,8 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             reverse(listeStations.begin(), listeStations.end()); //on inverse la liste
         }
 
+        //rame.rotate180();
+
         for (int i = 0; i < listeStations.size(); i++) {
 
             float dist_entre_2_stations_x = 0.0; //initialisation de la distance entre la station en cours et la suivante en x
@@ -223,7 +225,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 }
 
                 //rotation
-                if (NextHAUT && rame.getRetour() && listeStations[i - 1].isVirage()) {
+                /*if (NextHAUT && rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateGauche();
                 }
                 if (NextBAS && rame.getRetour() && listeStations[i - 1].isVirage()) {
@@ -246,7 +248,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 }
                 if (NextDROITE && !rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateDroite();
-                }
+                }*/
             }
 
             //if (GAUCHE && PrevHAUT && rame.getRetour()) {
@@ -414,14 +416,14 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             //monte
             if (rame.estArrete() && i == listeStations.size() - 1 && !rame.getRetour()) {
                 rame.set_position_y(rame.get_position_y() + CHGT_VOIE); //on monte la position y de la rame
-                rame.rotate180(); //on tourne la rame de 180 degres
+                //rame.rotate180(); //on tourne la rame de 180 degres
                 rame.setRetour(true); //on active le mode retour (voie supérieure)
                 reverseOrder = true; //on active l'inversion de la liste des stations
             }
             ////descend
             else if (rame.estArrete() && rame.getRetour()) {
                 rame.set_position_y(rame.get_position_y() - CHGT_VOIE); //on descend la position y de la rame
-                rame.rotate180(); //on tourne la rame de 180 degres
+                //rame.rotate180(); //on tourne la rame de 180 degres
                 rame.setRetour(false); //on enleve le mode retour (voie inférieure)
                 reverseOrder = true; //on active l'inversion de la liste des stations
             }

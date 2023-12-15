@@ -7,7 +7,7 @@ class Rame {
 private:
 	float centre_x;
 	float centre_y;
-	float taille_cote = 12;
+	float taille_cote = 18;
 	int numero;
 	int ligne;
 	float vitesse = 10;
@@ -20,7 +20,6 @@ private:
 	bool retour;
 	bool hasStarted_ = false;
 	bool en_freinage = false;
-	float angleRotation = 0.0;
 	ConvexShape representation;
 	bool horizontal = true;
 	bool visible; //rame est visible ou non
@@ -83,6 +82,7 @@ public:
 	void moveDiagonalBasDroite();
 	void moveDiagonalBasGauche();
 	void rotate180();
+	void rotateHaut();
 	void rotateGauche();
 	void rotateDroite();
 

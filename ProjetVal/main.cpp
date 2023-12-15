@@ -19,6 +19,7 @@ using namespace sf;
 #define FONT "merienda.ttf" //police d'ecriture
 #define ICON "icon.png" //icone de la fenetre
 #define GREY Color(119,136,153)
+#define DIST_STATIONS 70
 bool arret_urgence = false;
 
 int main()
@@ -116,77 +117,68 @@ int main()
 
     //STATIONS (id, nom, position x, position y, nombre de passagers, couleur) 
     //L1
-    Station station1_begin(0, "Station Debut", 405, 645, 0, Color::White, false, false);
-    Station station1_1(1, "Station1", 450, 645, 10, Color::Yellow, true, false);
-    Station station1_2(2, "Station2", 495, 645, 10, Color::Yellow, false, false);
-    Station station1_3(3, "Station3", 540, 645, 10, Color::Yellow, false, false);
-    Station station1_4(4, "Station4", 585, 645, 10, Color::Yellow, false, false);
-    Station station1_5(5, "Station5", 630, 645, 10, Color::Yellow, false, false);
-    Station station1_6(6, "Station6", 675, 645, 10, Color::Yellow, false, false);
-    Station station1_7(7, "Station7", 720, 645, 10, Color::Yellow, false, false);
-    Station station1_8(8, "Station6", 765, 645, 10, Color::Yellow, false, false);
-    Station station1_9(9, "Station6", 810, 645, 10, Color::Yellow, false, false);
-    Station station1_10(10, "Station6", 855, 645, 10, Color::Yellow, false, false);
-    Station station1_11(11, "Station6", 900, 645, 10, Color::Yellow, false, false);
-    Station station1_12(12, "Station6", 945, 645, 10, Color::Yellow, false, false);
-    Station station1_13(13, "Station6", 990, 645, 10, Color::Yellow, false, false);
-    Station station1_14(14, "Station6", 1035, 645, 10, Color::Yellow, false, false);
-    Station station1_15(15, "Station6", 1080, 645, 10, Color::Yellow, false, false);
-    Station station1_16(16, "Station6", 1125, 645, 10, Color::Yellow, false, false);
-    Station station1_17(17, "Station6", 1170, 645, 10, Color::Yellow, false, false);
-    Station station1_18(18, "Station6", 1215, 645, 10, Color::Yellow, true, false);
-    Station station1_end(8, "Station Fin", 1260, 645, 0, Color::White, false, false);
+    int departL1X = 115;
+    int departL1Y = 670;
+    Station station1_begin(0, "Station Debut", departL1X += DIST_STATIONS, departL1Y, 0, Color::White, false, false);
+    Station station1_1(1, "Station1", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, true, false);
+    Station station1_2(2, "Station2", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_3(3, "Station3", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_4(4, "Station4", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_5(5, "Station5", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_6(6, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_7(7, "Station7", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_8(8, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_9(9, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_10(10, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_11(11, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_12(12, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_13(13, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_14(14, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_15(15, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_16(16, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_17(17, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
+    Station station1_18(18, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, true, false);
+    Station station1_end(8, "Station Fin", departL1X += DIST_STATIONS, departL1Y, 0, Color::White, false, false);
 
     //L2
-    Station station2_begin(0, "Station Debut", 45, 600, 0, Color::White, false, false);
-    Station station2_1(1, "Station1", 90, 600, 10, Color::Red, true, false);
-    Station station2_2(2, "Station2", 135, 600, 10, Color::Red, false, false);
-    Station station2_3(3, "Station3", 180, 600, 10, Color::Red, false, false);
-    Station station2_4(4, "Station4", 225, 600, 10, Color::Red, false, false);
-    Station station2_5(5, "Station5", 270, 600, 10, Color::Red, false, false);
-    Station station2_6(6, "Station6", 315, 600, 10, Color::Red, false, false);
-    Station station2_7(7, "Station7", 360, 600, 10, Color::Red, false, false);
-    Station station2_8(8, "Station8", 405, 600, 10, Color::Red, false, false);
-    Station station2_9(9, "Station9", 450, 600, 10, Color::Red, false, false);
-    Station station2_10(10, "Station10", 495, 600, 10, Color::Red, false, false);
-    Station station2_11(3, "Station3", 540, 600, 10, Color::Red, false, true);
-    Station station2_12(4, "Station3", 540, 645, 10, Color::Red, false, false);
-    Station station2_13(5, "Station6", 540, 690, 10, Color::Red, false, true);
-    Station station2_14(6, "Station7", 585, 690, 10, Color::Red, false, false);
-    Station station2_15(7, "Station8", 630, 690, 10, Color::Red, false, false);
-    Station station2_16(8, "Station9", 675, 690, 10, Color::Red, false, false);
-    Station station2_17(1, "Station1", 720, 690, 10, Color::Red, false, true);
-    Station station2_18(2, "Station2", 720, 645, 10, Color::Red, false, false);
-    Station station2_19(3, "Station3", 720, 600, 10, Color::Red, false, true);
-    Station station2_20(4, "Station4", 765, 600, 10, Color::Red, false, false);
-    Station station2_21(5, "Station5", 810, 600, 10, Color::Red, false, false);
-    Station station2_22(6, "Station6", 855, 600, 10, Color::Red, false, false);
-    Station station2_23(7, "Station7", 900, 600, 10, Color::Red, false, false);
-    Station station2_24(8, "Station8", 945, 600, 10, Color::Red, false, false);
-    Station station2_25(9, "Station9", 990, 600, 10, Color::Red, false, true);
-    Station station2_26(1, "Station1", 990, 555, 10, Color::Red, false, false);
-    Station station2_27(3, "Station3", 990, 510, 10, Color::Red, false, true);
-    Station station2_28(4, "Station3", 1035, 510, 10, Color::Red, false, false);
-    Station station2_29(5, "Station6", 1080, 510, 10, Color::Red, false, false);
-    Station station2_30(6, "Station7", 1125, 510, 10, Color::Red, false, false);
-    Station station2_31(7, "Station8", 1170, 510, 10, Color::Red, false, false);
-    Station station2_32(8, "Station9", 1215, 510, 10, Color::Red, false, false);
-    Station station2_33(1, "Station1", 1260, 510, 10, Color::Red, true, false);
-    Station station2_34(2, "Station2", 1305, 510, 10, Color::Red, false, false);
-    Station station2_35(3, "Station3", 1350, 510, 10, Color::Red, false, false);
-    Station station2_36(4, "Station4", 1395, 510, 10, Color::Red, false, false);
-    Station station2_37(5, "Station5", 1440, 510, 10, Color::Red, false, false);
-    Station station2_38(6, "Station6", 1485, 510, 10, Color::Red, false, false);
-    Station station2_39(7, "Station7", 1530, 510, 10, Color::Red, false, false);
-    Station station2_40(8, "Station8", 1575, 510, 10, Color::Red, false, false);
-    Station station2_41(9, "Station9", 1620, 510, 10, Color::Red, false, false);
-    Station station2_42(1, "Station1", 1665, 510, 10, Color::Red, false, false);
-    Station station2_43(3, "Station3", 1710, 510, 10, Color::Red, false, false);
-    Station station2_44(4, "Station3", 1755, 510, 10, Color::Red, true, false);
-    Station station2_end(45, "Station Fin", 1800, 510, 0, Color::White, false, false);
+    int departL2X = -25;
+    int departL2Y = 600;
+    Station station2_begin(0, "Station Debut", departL2X += DIST_STATIONS, departL2Y, 0, Color::White, false, false);
+    Station station2_1(1, "Station1", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, true, false);
+    Station station2_2(2, "Station2", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_3(3, "Station3", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_4(4, "Station4", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_5(5, "Station5", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_9(9, "Station9", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_10(10, "Station10", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_11(3, "Station3", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, true);
+    Station station2_12(4, "Station3", departL2X, departL2Y += DIST_STATIONS, 10, Color::Red, false, false);
+    Station station2_13(5, "Station6", departL2X, departL2Y += DIST_STATIONS, 10, Color::Red, false, true);
+    Station station2_14(6, "Station7", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_15(7, "Station8", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_16(8, "Station9", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_17(1, "Station1", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, true);
+    Station station2_18(2, "Station2", departL2X, departL2Y -= DIST_STATIONS, 10, Color::Red, false, false);
+    Station station2_19(3, "Station3", departL2X, departL2Y -= DIST_STATIONS, 10, Color::Red, false, true);
+    Station station2_20(4, "Station4", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_21(5, "Station5", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_22(6, "Station6", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_23(7, "Station7", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_24(8, "Station8", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_25(9, "Station9", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, true);
+    Station station2_26(1, "Station1", departL2X, departL2Y -= DIST_STATIONS, 10, Color::Red, false, false);
+    Station station2_27(3, "Station3", departL2X, departL2Y -= DIST_STATIONS, 10, Color::Red, false, true);
+    Station station2_28(4, "Station3", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_29(5, "Station6", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_30(6, "Station7", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_31(7, "Station8", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_32(8, "Station9", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_33(1, "Station1", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_34(2, "Station2", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_end(45, "Station Fin", departL2X += DIST_STATIONS, departL2Y, 0, Color::White, false, false);
 
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
-    vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7, station2_8, station2_9, station2_10, station2_11, station2_12, station2_13, station2_14, station2_15, station2_16, station2_17, station2_18, station2_19, station2_20, station2_21, station2_22, station2_23, station2_24, station2_25, station2_26, station2_27, station2_28, station2_29, station2_30, station2_31, station2_32, station2_33, station2_34, station2_35, station2_36, station2_37, station2_38, station2_39, station2_40, station2_41, station2_42, station2_43, station2_44, station2_end };
+    vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_4, station2_5, station2_9, station2_10, station2_11, station2_12, station2_13, station2_14, station2_15, station2_16, station2_17, station2_18, station2_19, station2_20, station2_21, station2_22, station2_23, station2_24, station2_25, station2_26, station2_27, station2_28, station2_29, station2_30, station2_31, station2_32, station2_33, station2_34, station2_end };
     vector<Station> listeRStationsL2 = listeStationsL2;
     reverse(listeRStationsL2.begin(), listeRStationsL2.end());
 
@@ -347,6 +339,8 @@ int main()
 
         window.draw(text);
         window.draw(text2);
+
+        rame1_1.rotateGauche();
 
         affichage(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, window);
         affichage(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6, window);

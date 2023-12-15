@@ -33,17 +33,17 @@ int Route::get_hauteur() {
 void Route::setRepr() {
 	if (hauteur == 0) {
 		representation.setSize(Vector2f(longueur, epaisseur));
-		representation.setPosition(station1_x, station1_y + 2);
+		representation.setPosition(station1_x, station1_y + 6);
 	}
-	if (longueur == 0 && station1_y < station2_y) {
+	if (longueur == 0 && station1_y < station2_y) { //verticale descendante
 		representation.setSize(Vector2f(hauteur, epaisseur));
 		representation.rotate(-90);
-		representation.setPosition(station1_x - 2, station1_y);
+		representation.setPosition(station1_x - 10, station1_y);
 	}
-	if (longueur == 0 && station1_y > station2_y) {
+	if (longueur == 0 && station1_y > station2_y) { //verticale montante
 		representation.setSize(Vector2f(hauteur, epaisseur));
 		representation.rotate(-90);
-		representation.setPosition(station1_x + 2, station1_y);
+		representation.setPosition(station1_x + 6, station1_y);
 	}
 	representation.setFillColor(couleur);
 }
@@ -51,17 +51,17 @@ void Route::setRepr() {
 void Route::setReprRetour() {
 	if (hauteur == 0) {
 		representation.setSize(Vector2f(longueur, epaisseur));
-		representation.setPosition(station1_x, station1_y - 3);
+		representation.setPosition(station1_x, station1_y - 10);
 	}
 	if (longueur == 0 && station1_y < station2_y) {
 		representation.setSize(Vector2f(hauteur, epaisseur));
 		representation.rotate(-90);
-		representation.setPosition(station1_x + 3, station1_y);
+		representation.setPosition(station1_x + 6, station1_y);
 	}
 	if (longueur == 0 && station1_y > station2_y) {
 		representation.setSize(Vector2f(hauteur, epaisseur));
 		representation.rotate(-90);
-		representation.setPosition(station1_x - 3, station1_y);
+		representation.setPosition(station1_x - 10, station1_y);
 	}
 	representation.setFillColor(couleur);
 }
