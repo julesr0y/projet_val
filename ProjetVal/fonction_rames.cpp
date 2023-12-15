@@ -429,57 +429,58 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
     }
 }
 
-void arret_urgence_window(Window& window, Event event, Rame& R1_1, Rame& R1_2, Rame& R1_3, Rame& R1_4, Rame& R1_5, Rame& R1_6, Rame& R2_1, Rame& R2_2, Rame& R2_3, Rame& R2_4, Rame& R2_5, Rame& R2_6) {
+void arret_urgence_window(RenderWindow& window, Event event, Rame& R1_1, Rame& R1_2, Rame& R1_3, Rame& R1_4, Rame& R1_5, Rame& R1_6, Rame& R2_1, Rame& R2_2, Rame& R2_3, Rame& R2_4, Rame& R2_5, Rame& R2_6) {
     if (event.type == Event::MouseButtonPressed) {
-        if (event.mouseButton.button == sf::Mouse::Left)
-        {
-            Vector2f mousePos = Vector2f(Mouse::getPosition(window));
-            if (R1_1.getRepr().getGlobalBounds().contains(mousePos))
+        if (event.mouseButton.button == Mouse::Left) {
+            Vector2i mousePosition = Mouse::getPosition(window);
+            Vector2f convertedMousePosition = window.mapPixelToCoords(mousePosition);
+
+            if (R1_1.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
                 R1_1.set_arret_urgence(!R1_1.get_arret_urgence());
             }
-            if (R1_2.getRepr().getGlobalBounds().contains(mousePos))
+            if (R1_2.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-				R1_2.set_arret_urgence(!R1_2.get_arret_urgence());
-			}
-            if (R1_3.getRepr().getGlobalBounds().contains(mousePos))
+                R1_2.set_arret_urgence(!R1_2.get_arret_urgence());
+            }
+            if (R1_3.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
                 R1_3.set_arret_urgence(!R1_3.get_arret_urgence());
             }
-            if (R1_4.getRepr().getGlobalBounds().contains(mousePos))
+            if (R1_4.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-				R1_4.set_arret_urgence(!R1_4.get_arret_urgence());
-			}
-            if (R1_5.getRepr().getGlobalBounds().contains(mousePos))
+                R1_4.set_arret_urgence(!R1_4.get_arret_urgence());
+            }
+            if (R1_5.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
                 R1_5.set_arret_urgence(!R1_5.get_arret_urgence());
             }
-            if (R1_6.getRepr().getGlobalBounds().contains(mousePos))
+            if (R1_6.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-				R1_6.set_arret_urgence(!R1_6.get_arret_urgence());
-			}
-            if (R2_1.getRepr().getGlobalBounds().contains(mousePos))
+                R1_6.set_arret_urgence(!R1_6.get_arret_urgence());
+            }
+            if (R2_1.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-				R2_1.set_arret_urgence(!R2_1.get_arret_urgence());
-			}
-            if (R2_2.getRepr().getGlobalBounds().contains(mousePos))
+                R2_1.set_arret_urgence(!R2_1.get_arret_urgence());
+            }
+            if (R2_2.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
                 R2_2.set_arret_urgence(!R2_2.get_arret_urgence());
             }
-            if (R2_3.getRepr().getGlobalBounds().contains(mousePos))
+            if (R2_3.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-				R2_3.set_arret_urgence(!R2_3.get_arret_urgence());
+                R2_3.set_arret_urgence(!R2_3.get_arret_urgence());
             }
-            if (R2_4.getRepr().getGlobalBounds().contains(mousePos))
+            if (R2_4.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
                 R2_4.set_arret_urgence(!R2_4.get_arret_urgence());
-			}
-            if (R2_5.getRepr().getGlobalBounds().contains(mousePos))
+            }
+            if (R2_5.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
                 R2_5.set_arret_urgence(!R2_5.get_arret_urgence());
-			}
-			if (R2_6.getRepr().getGlobalBounds().contains(mousePos))
-			{
+            }
+            if (R2_6.getRepr().getGlobalBounds().contains(convertedMousePosition))
+            {
                 R2_6.set_arret_urgence(!R2_6.get_arret_urgence());
             }
         }
