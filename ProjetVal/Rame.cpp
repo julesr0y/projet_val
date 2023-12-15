@@ -87,11 +87,11 @@ void Rame::setRepr() {
 	representation.setFillColor(couleur);
 	float angleRad = angleRotation * (3.14159 / 180.0);
 
-	for (int i = 0; i < 3; ++i) {
-		float newX = (representation.getPoint(i).x - centre_x) * cos(angleRad) - (representation.getPoint(i).y - centre_y) * sin(angleRad) + centre_x;
-		float newY = (representation.getPoint(i).x - centre_x) * sin(angleRad) + (representation.getPoint(i).y - centre_y) * cos(angleRad) + centre_y;
-		representation.setPoint(i, Vector2f(newX, newY + 3));
-	}
+	// for (int i = 0; i < 3; ++i) {
+	// 	float newX = (representation.getPoint(i).x - centre_x) * cos(angleRad) - (representation.getPoint(i).y - centre_y) * sin(angleRad) + centre_x;
+	// 	float newY = (representation.getPoint(i).x - centre_x) * sin(angleRad) + (representation.getPoint(i).y - centre_y) * cos(angleRad) + centre_y;
+	// 	representation.setPoint(i, Vector2f(newX, newY + 3));
+	// }
 }
 
 void Rame::rotate180() {

@@ -92,4 +92,4 @@ public:
 	void set_visible(bool visibilite);
 };
 
-#endif RAME_H
+#endif
