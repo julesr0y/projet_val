@@ -19,7 +19,7 @@ constexpr auto WINDOW_NAME = "VAL"; //nom de la fenetre
 constexpr auto FONT = "merienda.ttf"; //police d'ecriture
 constexpr auto ICON = "icon.png"; //icone de la fenetre
 constexpr auto DIST_STATIONS = 70;
-#define GREY Color(119, 136, 153)
+const Color GREY(119, 136, 153);
 bool arret_urgence = false;
 
 int main()
@@ -66,53 +66,53 @@ int main()
     //DESSAIN DES POINT L1
     CircleShape Rame1L1;
     Rame1L1.setRadius(10);
-    Rame1L1.setPosition(355, 2);
+    Rame1L1.setPosition(270, 2);
     Rame1L1.setFillColor(Color::Yellow);
     CircleShape Rame2L1;
     Rame2L1.setRadius(10);
-    Rame2L1.setPosition(355, 25);
+    Rame2L1.setPosition(270, 25);
     Rame2L1.setFillColor(Color::Yellow);
     CircleShape Rame3L1;
     Rame3L1.setRadius(10);
-    Rame3L1.setPosition(355, 50);
+    Rame3L1.setPosition(270, 50);
     Rame3L1.setFillColor(Color::Yellow);
     CircleShape Rame4L1;
     Rame4L1.setRadius(10);
-    Rame4L1.setPosition(355, 75);
+    Rame4L1.setPosition(270, 75);
     Rame4L1.setFillColor(Color::Yellow);
     CircleShape Rame5L1;
     Rame5L1.setRadius(10);
-    Rame5L1.setPosition(355, 100);
+    Rame5L1.setPosition(270, 100);
     Rame5L1.setFillColor(Color::Yellow);
     CircleShape Rame6L1;
     Rame6L1.setRadius(10);
-    Rame6L1.setPosition(355, 125);
+    Rame6L1.setPosition(270, 125);
     Rame6L1.setFillColor(Color::Yellow);
 
     //DESSIN DES POINTS L2
     CircleShape Rame1L2;
     Rame1L2.setRadius(10);
-    Rame1L2.setPosition(855, 2);
+    Rame1L2.setPosition(780, 2);
     Rame1L2.setFillColor(Color::Red);
     CircleShape Rame2L2;
     Rame2L2.setRadius(10);
-    Rame2L2.setPosition(855, 25);
+    Rame2L2.setPosition(780, 25);
     Rame2L2.setFillColor(Color::Red);
     CircleShape Rame3L2;
     Rame3L2.setRadius(10);
-    Rame3L2.setPosition(855, 50);
+    Rame3L2.setPosition(780, 50);
     Rame3L2.setFillColor(Color::Red);
     CircleShape Rame4L2;
     Rame4L2.setRadius(10);
-    Rame4L2.setPosition(855, 75);
+    Rame4L2.setPosition(780, 75);
     Rame4L2.setFillColor(Color::Red);
     CircleShape Rame5L2;
     Rame5L2.setRadius(10);
-    Rame5L2.setPosition(855, 100);
+    Rame5L2.setPosition(780, 100);
     Rame5L2.setFillColor(Color::Red);
     CircleShape Rame6L2;
     Rame6L2.setRadius(10);
-    Rame6L2.setPosition(855, 125);
+    Rame6L2.setPosition(780, 125);
     Rame6L2.setFillColor(Color::Red);
 
     //STATIONS (id, nom, position x, position y, nombre de passagers, couleur) 
