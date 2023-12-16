@@ -1,4 +1,5 @@
 #include "Rame.hpp"
+#include <cmath>
 
 using namespace std;
 using namespace sf;
