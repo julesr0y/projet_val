@@ -40,9 +40,8 @@ Rame::Rame(Station station_depart) : representation(3) {
 	position_y = centre_y;
 	nb_passagers = 0;
 	vitesse = 1;
-	distance_arret_urgence = 3.4;//� voir 
+	distance_arret_urgence = 3.4; //a voir 
 	visible = true;
-
 }
 
 //methodes de la classe

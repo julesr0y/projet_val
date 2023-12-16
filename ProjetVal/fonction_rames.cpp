@@ -5,30 +5,30 @@
 #include <algorithm>
 #include "fonction_station.hpp"
 
-#define AJUSTEMENT 8
-#define CHGT_VOIE 16
-#define VITESSE_FREINAGE 120
-#define VITESSE_CONSTANTE 40
-#define VITESSE_ACCELERATION 10
+constexpr auto AJUSTEMENT = 8;
+constexpr auto CHGT_VOIE = 16;
+constexpr auto VITESSE_FREINAGE = 120;
+constexpr auto VITESSE_CONSTANTE = 40;
+constexpr auto VITESSE_ACCELERATION = 10;
 
 using namespace std;
 
-void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x) {
+void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x, int pos_y) {
     string tableauTexte;
     for (size_t i = 0; i < tabRame.size(); i++) {
         if (rame.get_numero() == tabRame[i].get_numero())
         {
             tabRame[i].set_passagers(rame.get_passagers());
-            tableauTexte += "ligne N° : "+ to_string(rame.get_ligne()) + " Rame N° : " + to_string(tabRame[i].get_numero()) + " nb passager : " + to_string(rame.get_passagers()) + "\n";
+            tableauTexte += "Ligne "+ to_string(rame.get_ligne()) + " Rame " + to_string(tabRame[i].get_numero()) + "; Passagers : " + to_string(rame.get_passagers()) + "\n";
         }
         else
         {
-            tableauTexte += "ligne N° : " + to_string(rame.get_ligne()) + " Rame N° : " + to_string(tabRame[i].get_numero()) + " nb passager : " + to_string(tabRame[i].get_passagers()) + "\n";
+            tableauTexte += "Ligne " + to_string(rame.get_ligne()) + " Rame " + to_string(tabRame[i].get_numero()) + "; Passagers : " + to_string(tabRame[i].get_passagers()) + "\n";
         }
 
     }
     text.setString(tableauTexte);
-    text.setPosition(pos_x, 0);
+    text.setPosition(pos_x, pos_y);
 }
 
 bool aGauche(Station actuelle, Station prochaine) {

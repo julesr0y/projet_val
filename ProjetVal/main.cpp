@@ -13,20 +13,20 @@
 using namespace std;
 using namespace sf;
 
-#define WINDOW_X 1900 //largeur de la fenetre
-#define WINDOW_Y 900 //hauteur de la fenetre
-#define WINDOW_NAME "VAL" //nom de la fenetre
-#define FONT "merienda.ttf" //police d'ecriture
-#define ICON "icon.png" //icone de la fenetre
-#define GREY Color(119,136,153)
-#define DIST_STATIONS 70
+constexpr auto WINDOW_X = 1900; //largeur de la fenetre
+constexpr auto WINDOW_Y = 900; //hauteur de la fenetre
+constexpr auto WINDOW_NAME = "VAL"; //nom de la fenetre
+constexpr auto FONT = "merienda.ttf"; //police d'ecriture
+constexpr auto ICON = "icon.png"; //icone de la fenetre
+constexpr auto DIST_STATIONS = 70;
+#define GREY Color(119, 136, 153)
 bool arret_urgence = false;
 
 int main()
 {
     Font font;
     if (!font.loadFromFile(FONT)) {
-        // Gestion de l'erreur si la police ne peut pas etre charg�e
+        // Gestion de l'erreur si la police ne peut pas etre chargee
         return -1;
     }
     Text text;
@@ -280,12 +280,12 @@ int main()
 
             }
 
-            updateRameText(text, tabRame_L1, rame1_1,0);
-            updateRameText(text, tabRame_L1, rame1_2,0);
-            updateRameText(text, tabRame_L1, rame1_3,0);
-            updateRameText(text, tabRame_L1, rame1_4,0);
-            updateRameText(text, tabRame_L1, rame1_5,0);
-            updateRameText(text, tabRame_L1, rame1_6,0);
+            updateRameText(text, tabRame_L1, rame1_1,0,0);
+            updateRameText(text, tabRame_L1, rame1_2,0,0);
+            updateRameText(text, tabRame_L1, rame1_3,0,0);
+            updateRameText(text, tabRame_L1, rame1_4,0,0);
+            updateRameText(text, tabRame_L1, rame1_5,0,0);
+            updateRameText(text, tabRame_L1, rame1_6,0,0);
             Text text_S;
             text_S.setFont(font);
             text_S.setCharacterSize(15);
@@ -320,12 +320,12 @@ int main()
 
             }
 
-            updateRameText(text2, tabRame_L2, rame2_1,500);
-            updateRameText(text2, tabRame_L2, rame2_2,500);
-            updateRameText(text2, tabRame_L2, rame2_3,500);
-            updateRameText(text2, tabRame_L2, rame2_4,500);
-            updateRameText(text2, tabRame_L2, rame2_5,500);
-            updateRameText(text2, tabRame_L2, rame2_6,500);
+            updateRameText(text2, tabRame_L2, rame2_1,500,0);
+            updateRameText(text2, tabRame_L2, rame2_2,500,0);
+            updateRameText(text2, tabRame_L2, rame2_3,500,0);
+            updateRameText(text2, tabRame_L2, rame2_4,500,0);
+            updateRameText(text2, tabRame_L2, rame2_5,500,0);
+            updateRameText(text2, tabRame_L2, rame2_6,500,0);
             Text text_S;
             text_S.setFont(font);
             text_S.setCharacterSize(15);
