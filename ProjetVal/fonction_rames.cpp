@@ -5,7 +5,7 @@
 #include <algorithm>
 #include "fonction_station.hpp"
 
-#define AJUSTEMENT 5
+#define AJUSTEMENT 8
 #define CHGT_VOIE 16
 #define VITESSE_FREINAGE 120
 #define VITESSE_CONSTANTE 40
@@ -118,8 +118,6 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             reverse(listeStations.begin(), listeStations.end()); //on inverse la liste
         }
 
-        //rame.rotate180();
-
         for (int i = 0; i < listeStations.size(); i++) {
 
             float dist_entre_2_stations_x = 0.0; //initialisation de la distance entre la station en cours et la suivante en x
@@ -141,7 +139,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 dist_entre_2_stations_y = abs(listeStations[i + 1].getPositionY() - listeStations[i].getPositionY());
             }
             float end_pos_x = listeStations[i].getPositionX(); //position x à atteindre (station suivante)
-            float end_pos_y = listeStations[i].getPositionY(); //position y à atteindre (station suivante)
+            float end_pos_y = listeStations[i].getPositionY() - 3; //position y à atteindre (station suivante)
 
             //gestion de la position d'arret si virage
             bool NextHAUT = false;
@@ -172,33 +170,28 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     //exterieur gauche
                     if (PrevBAS && listeStations[i - 1].isVirage()) {
                         end_pos_x += AJUSTEMENT;
-                        cout << "2" << endl;
+                        end_pos_y -= AJUSTEMENT;
                     }
                     //interieur droite
                     if (PrevGAUCHE && NextBAS) {
                         end_pos_x -= AJUSTEMENT;
-                        cout << "3" << endl;
                     }
                     //descente après intérieur droite
                     if (PrevHAUT && listeStations[i - 1].isVirage()) {
                         end_pos_x -= AJUSTEMENT;
                         end_pos_y -= AJUSTEMENT;
-                        cout << "4" << endl;
                     }
                     //continue descente
                     if (PrevHAUT && !listeStations[i - 1].isVirage()) {
                         end_pos_x -= AJUSTEMENT;
-                        cout << "5" << endl;
+                    }
+                    //continue montee
+                    if (PrevBAS && !listeStations[i - 1].isVirage()) {
+                        end_pos_x += AJUSTEMENT;
                     }
                 }
 
                 if (rame.getRetour()) {
-                    if (NextBAS && listeStations[i - 1].isVirage()) {
-                        end_pos_x -= AJUSTEMENT;
-                    }
-                    if (PrevHAUT && listeStations[i - 1].isVirage()) {
-                        end_pos_y += AJUSTEMENT;
-                    }
                     if (PrevBAS && (!NextGAUCHE && !NextDROITE)) {
                         end_pos_y += AJUSTEMENT;
                     }
@@ -211,53 +204,47 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     //exterieur gauche
                     if (PrevHAUT && listeStations[i - 1].isVirage()) {
                         end_pos_x -= AJUSTEMENT;
-                        cout << "1" << endl;
+                        end_pos_y += AJUSTEMENT;
                     }
                     if (PrevHAUT && !listeStations[i - 1].isVirage()) {
                         end_pos_x -= AJUSTEMENT;
-                        cout << "2" << endl;
-                    }
-                    //interieur gauche
-                    if (PrevHAUT && listeStations[i].isVirage()) {
-                        end_pos_y -= AJUSTEMENT;
-                        cout << "3" << endl;
                     }
                 }
 
                 //rotation
-                /*if (NextHAUT && rame.getRetour() && listeStations[i - 1].isVirage()) {
-                    rame.rotateGauche();
+                if (NextHAUT && rame.getRetour() && listeStations[i - 1].isVirage()) {
+                    rame.rotateDroite();
                 }
                 if (NextBAS && rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateGauche();
-                }
-                if (NextGAUCHE && rame.getRetour() && listeStations[i - 1].isVirage()) {
-                    rame.rotateDroite();
                 }
                 if (NextDROITE && rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateDroite();
                 }
                 if (NextHAUT && !rame.getRetour() && listeStations[i - 1].isVirage()) {
-                    rame.rotateDroite();
+                    rame.rotateGauche();
                 }
                 if (NextBAS && !rame.getRetour() && listeStations[i - 1].isVirage()) {
-                    rame.rotateGauche();
+                    rame.rotateDroite();
                 }
                 if (NextGAUCHE && !rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateDroite();
                 }
-                if (NextDROITE && !rame.getRetour() && listeStations[i - 1].isVirage()) {
-                    rame.rotateDroite();
-                }*/
+                if (i >= 2) {
+                    if (listeStations[i - 2].getPositionY() > listeStations[i - 1].getPositionY() && NextGAUCHE && rame.getRetour() && listeStations[i - 1].isVirage()) {
+                        rame.rotateGauche();
+                    }
+                    if (listeStations[i - 2].getPositionY() < listeStations[i - 1].getPositionY() && NextGAUCHE && rame.getRetour() && listeStations[i - 1].isVirage()) {
+                        rame.rotateDroite();
+                    }
+                    if (listeStations[i - 2].getPositionY() > listeStations[i - 1].getPositionY() && NextDROITE && !rame.getRetour() && listeStations[i - 1].isVirage()) {
+                        rame.rotateDroite();
+                    }
+                    if (listeStations[i - 2].getPositionY() < listeStations[i - 1].getPositionY() && NextDROITE && !rame.getRetour() && listeStations[i - 1].isVirage()) {
+                        rame.rotateGauche();
+                    }
+                }
             }
-
-            //if (GAUCHE && PrevHAUT && rame.getRetour()) {
-            //    end_pos_x -= 15;
-            //}
-
-            //if (DROITE && PrevBAS && !rame.getRetour()) {
-            //    end_pos_x += 15;
-            //}
 
             if (i != 0) {
                 if(listeStations[i].getPositionY() == listeStations[i - 1].getPositionY()) {
@@ -416,14 +403,14 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             //monte
             if (rame.estArrete() && i == listeStations.size() - 1 && !rame.getRetour()) {
                 rame.set_position_y(rame.get_position_y() + CHGT_VOIE); //on monte la position y de la rame
-                //rame.rotate180(); //on tourne la rame de 180 degres
+                rame.rotate180(); //on tourne la rame de 180 degres
                 rame.setRetour(true); //on active le mode retour (voie supérieure)
                 reverseOrder = true; //on active l'inversion de la liste des stations
             }
             ////descend
             else if (rame.estArrete() && rame.getRetour()) {
                 rame.set_position_y(rame.get_position_y() - CHGT_VOIE); //on descend la position y de la rame
-                //rame.rotate180(); //on tourne la rame de 180 degres
+                rame.rotate180(); //on tourne la rame de 180 degres
                 rame.setRetour(false); //on enleve le mode retour (voie inférieure)
                 reverseOrder = true; //on active l'inversion de la liste des stations
             }

@@ -262,8 +262,8 @@ int main()
                 if (i == 0 || i == listeStationsL1.size() - 2) {
                     Route route(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::White); //on cree une route de cette station e la suivante
                     Route route_r(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::White); //on cree une route de retour
-                    route.setRepr(); //on set la repr�sentation de la route
-                    route_r.setReprRetour(); //on set la repr�sentation de la route de retour
+                    route.setRepr(); //on set la representation de la route
+                    route_r.setReprRetour(); //on set la representation de la route de retour
                     window.draw(route.getRepr()); //on dessine la route
                     window.draw(route_r.getRepr()); //on dessine la route de retour
 
@@ -271,7 +271,7 @@ int main()
                 else {
                     Route route(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::Yellow); //on cree une route de cette station a la suivante
                     Route route_r(i + 1, listeStationsL1[i], listeStationsL1[i + 1], Color::Yellow); //on cree une route de retour
-                    route.setRepr(); //on set la repr�sentation de la route
+                    route.setRepr(); //on set la representation de la route
                     route_r.setReprRetour(); //on set la representation de la route de retour
                     window.draw(route.getRepr()); //on dessine la route
                     window.draw(route_r.getRepr()); //on dessine la route de retour
@@ -304,7 +304,7 @@ int main()
                 if (i == 0 || i == listeStationsL2.size() - 2) {
                     Route route(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::White); //on cree une route de cette station a la suivante
                     Route route_r(i + 1, listeStationsL2[i], listeStationsL2[i + 1], Color::White); //on cree une route de retour
-                    route.setRepr(); //on set la repr�sentation de la route
+                    route.setRepr(); //on set la representation de la route
                     route_r.setReprRetour(); //on set la representation de la route de retour
                     window.draw(route.getRepr()); //on dessine la route
                     window.draw(route_r.getRepr()); //on dessine la route de retour
@@ -339,8 +339,6 @@ int main()
 
         window.draw(text);
         window.draw(text2);
-
-        rame1_1.rotateGauche();
 
         affichage(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, window);
         affichage(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6, window);

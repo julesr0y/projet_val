@@ -25,6 +25,7 @@ private:
 	bool visible; //rame est visible ou non
 	bool arret_urgence;
 	Color couleur;
+	int rotation = 0;
 
 public:
 	Rame(Station station_depart);//constructeur
@@ -82,7 +83,6 @@ public:
 	void moveDiagonalBasDroite();
 	void moveDiagonalBasGauche();
 	void rotate180();
-	void rotateHaut();
 	void rotateGauche();
 	void rotateDroite();
 
