@@ -1,6 +1,6 @@
 #pragma once
-#include"Rame.hpp"
-#include"Station.hpp"
+#include "Rame.hpp"
+#include "Station.hpp"
 
-int  remplire_rame(Rame& rame, Station& station);
-int sortire(Rame& rame);
+int remplir_rame(Rame& rame, Station& station);
+int sortir(Rame& rame);

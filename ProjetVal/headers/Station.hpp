@@ -10,7 +10,6 @@ private:
 	string nom;
 	float position[2];
 	int nb_passagers;
-	//float temps;
 	CircleShape representation;
 	float rayon = 10;
 	Color couleur;
@@ -30,7 +29,6 @@ public:
 	float getPositionX();
 	float getPositionY();
 	int getNbPassagers();
-	//bool estVide();
 	void setRepr();
 	CircleShape getRepr();
 	void setNbPassagers(int nb);

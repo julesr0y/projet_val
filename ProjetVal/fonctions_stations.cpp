@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int remplire_rame(Rame& rame, Station& station) {
+int remplir_rame(Rame& rame, Station& station) {
     int nb_max = 100;
     default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
     uniform_int_distribution<int> randomNum{ 0, 50};
@@ -29,7 +29,7 @@ int remplire_rame(Rame& rame, Station& station) {
     
 }
 
-int sortire(Rame& rame) {
+int sortir(Rame& rame) {
     default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
     uniform_int_distribution<int> randomNum{ 0, 20 };
     int nb = randomNum(re);
