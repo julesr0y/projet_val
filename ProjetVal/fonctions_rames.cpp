@@ -1,9 +1,9 @@
-#include "fonction_rames.hpp"
+#include "headers/fonctions_rames.hpp"
 #include <iostream>
 #include <random>
 #include <ctime>
 #include <algorithm>
-#include "fonction_station.hpp"
+#include "headers/fonctions_stations.hpp"
 
 constexpr auto AJUSTEMENT = 8;
 constexpr auto CHGT_VOIE = 16;

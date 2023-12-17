@@ -1,6 +1,4 @@
-#ifndef RAME_H
-#define RAME_H
-
+#pragma once
 #include "Station.hpp"
 
 class Rame {
@@ -91,5 +89,3 @@ public:
 	bool isVisible();
 	void set_visible(bool visibilite);
 };
-
-#endif

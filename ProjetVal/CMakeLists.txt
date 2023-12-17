@@ -1,1 +1,1 @@
-add_executable(ProjetVal main main.cpp "Station.cpp" "Rame.cpp" "Route.cpp" "fonction_rames.cpp" "fonction_station.cpp" "visible.cpp")
+add_executable(ProjetVal main main.cpp "Station.cpp" "Rame.cpp" "Route.cpp" "fonctions_rames.cpp" "fonctions_stations.cpp" "visible.cpp")

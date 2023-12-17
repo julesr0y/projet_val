@@ -1,6 +1,4 @@
-#ifndef ROUTE_H
-#define ROUTE_H
-
+#pragma once
 #include "Rame.hpp"
 
 using namespace std;
@@ -30,5 +28,3 @@ public:
 	void setReprRetour();
 	RectangleShape getRepr();
 };
-
-#endif

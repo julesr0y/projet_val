@@ -1,8 +1,8 @@
-#include "fonction_station.hpp"
-#include<iostream>
+#include "headers/fonctions_stations.hpp"
+#include <iostream>
 #include <random>
 #include <ctime>
-#include<chrono>
+#include <chrono>
 
 using namespace std;
 

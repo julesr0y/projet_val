@@ -1,5 +1,4 @@
 #pragma once
-
 #include"Rame.hpp"
 #include"Station.hpp"
 

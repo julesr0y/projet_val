@@ -1,6 +1,4 @@
-#ifndef STATION_H
-#define STATION_H
-
+#pragma once
 #include <SFML/Graphics.hpp>
 
 using namespace std;
@@ -41,5 +39,3 @@ public:
 	string get_nom();
 	bool isVirage();
 };
-
-#endif

@@ -4,11 +4,11 @@
 #include <thread>
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include "Station.hpp"
-#include "Rame.hpp"
-#include "Route.hpp"
-#include "fonction_rames.hpp"
-#include "visible.hpp"
+#include "headers/Station.hpp"
+#include "headers/Rame.hpp"
+#include "headers/Route.hpp"
+#include "headers/fonctions_rames.hpp"
+#include "headers/visible.hpp"
 
 using namespace std;
 using namespace sf;
@@ -20,7 +20,6 @@ constexpr auto FONT = "merienda.ttf"; //police d'ecriture
 constexpr auto ICON = "icon.png"; //icone de la fenetre
 constexpr auto DIST_STATIONS = 70;
 const Color GREY(119, 136, 153);
-bool arret_urgence = false;
 
 int main()
 {
