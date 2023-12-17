@@ -13,6 +13,7 @@ constexpr auto VITESSE_ACCELERATION = 10;
 
 using namespace std;
 
+//fonction de mise a jour du texte donnant le nombre de passagers dans chaque rame
 void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x, int pos_y) {
     string tableauTexte;
     for (size_t i = 0; i < tabRame.size(); i++) {
@@ -31,6 +32,7 @@ void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x, int
     text.setPosition(pos_x, pos_y);
 }
 
+//fonction qui determine si la prochaine station est a gauche de la station actuelle
 bool nextGauche(Station actuelle, Station prochaine) {
     if (actuelle.getPositionX() > prochaine.getPositionX()) {
         return true;
@@ -40,6 +42,7 @@ bool nextGauche(Station actuelle, Station prochaine) {
     }
 }
 
+//fonction qui determine si la prochaine station est a droite de la station actuelle
 bool nextDroite(Station actuelle, Station prochaine) {
     if (actuelle.getPositionX() < prochaine.getPositionX()) {
         return true;
@@ -49,6 +52,7 @@ bool nextDroite(Station actuelle, Station prochaine) {
     }
 }
 
+//fonction qui determine si la prochaine station est plus haute que la station actuelle
 bool nextHaut(Station actuelle, Station prochaine) {
     if (actuelle.getPositionY() > prochaine.getPositionY()) {
         return true;
@@ -58,6 +62,7 @@ bool nextHaut(Station actuelle, Station prochaine) {
     }
 }
 
+//fonction qui determine si la prochaine station est plus basse que la station actuelle
 bool nextBas(Station actuelle, Station prochaine) {
     if (actuelle.getPositionY() < prochaine.getPositionY()) {
         return true;
@@ -67,6 +72,7 @@ bool nextBas(Station actuelle, Station prochaine) {
     }
 }
 
+//fonction qui determine si la station precedente est a gauche de la station actuelle
 bool previousGauche(Station previous, Station actuelle) {
     if (previous.getPositionX() < actuelle.getPositionX()) {
         return true;
@@ -76,6 +82,7 @@ bool previousGauche(Station previous, Station actuelle) {
     }
 }
 
+//fonction qui determine si la station precedente est a droite de la station actuelle
 bool previousDroite(Station previous, Station actuelle) {
     if (previous.getPositionX() > actuelle.getPositionX()) {
         return true;
@@ -85,6 +92,7 @@ bool previousDroite(Station previous, Station actuelle) {
     }
 }
 
+//fonction qui determine si la station precedente est plus haute que la station actuelle
 bool previousHaut(Station previous, Station actuelle) {
     if (previous.getPositionY() < actuelle.getPositionY()) {
         return true;
@@ -94,6 +102,7 @@ bool previousHaut(Station previous, Station actuelle) {
     }
 }
 
+//fonction qui determine si la station precedente est plus basse que la station actuelle
 bool previousBas(Station previous, Station actuelle) {
     if (previous.getPositionY() > actuelle.getPositionY()) {
         return true;
@@ -103,11 +112,12 @@ bool previousBas(Station previous, Station actuelle) {
     }
 }
 
+//fonction permettant le mouvement des rames, elle est utilisees avec les threads
 void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool beginning, vector<Rame>& tabRame, Text& text) {
-    if (!beginning) {
-        default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
-        uniform_int_distribution<int> randomNum{ 4, 10 };
-        this_thread::sleep_for(chrono::seconds(randomNum(re)));
+    if (!beginning) { //si ce n'est pas la premiere rame a demarrer sur sa voie, on attend un temps aleatoire
+        default_random_engine re(chrono::system_clock::now().time_since_epoch().count()); //initialisation du generateur de nombres aleatoires
+        uniform_int_distribution<int> randomNum{ 4, 10 }; //distribution aleatoire entre 4 et 10 secondes
+        this_thread::sleep_for(chrono::seconds(randomNum(re))); //pause avant le demarrage de la rame
     }
 
     bool reverseOrder = false; //par defaut, on inverse pas la liste des stations de la ligne
@@ -141,23 +151,26 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             float end_pos_x = listeStations[i].getPositionX(); //position x a atteindre (station suivante)
             float end_pos_y = listeStations[i].getPositionY() - 3; //position y a atteindre (station suivante)
 
-            //gestion de la position d'arret si virage
+            //initialisation des booleens de direction pour les stations suivantes
             bool NextHAUT = false;
             bool NextBAS = false;
             bool NextGAUCHE = false;
             bool NextDROITE = false;
-            if (i < listeStations.size() - 1) {
+            if (i < listeStations.size() - 1) { //si on est pas a la derniere station
+                //alors on verifie la direction de la station suivante
                 NextHAUT = nextHaut(listeStations[i], listeStations[i + 1]);
                 NextBAS = nextBas(listeStations[i], listeStations[i + 1]);
                 NextGAUCHE = nextGauche(listeStations[i], listeStations[i + 1]);
                 NextDROITE = nextDroite(listeStations[i], listeStations[i + 1]);
             }
 
+            //initialisation des booleens de direction pour les stations precedentes
             bool PrevGAUCHE = false;
             bool PrevDROITE = false;
             bool PrevHAUT = false;
             bool PrevBAS = false;
-            if (i != 0) {
+            if (i != 0) { //si on est pas a la premiere station
+                //alors on verifie la direction de la station precedente
                 PrevHAUT = previousHaut(listeStations[i-1], listeStations[i]);
                 PrevBAS = previousBas(listeStations[i-1], listeStations[i]);
                 PrevGAUCHE = previousGauche(listeStations[i-1], listeStations[i]);
@@ -211,7 +224,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                     }
                 }
 
-                //rotation
+                //rotation de la rame en fonction de la direction precedente et suivante (virages)
                 if (NextHAUT && rame.getRetour() && listeStations[i - 1].isVirage()) {
                     rame.rotateDroite();
                 }
@@ -246,18 +259,18 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 }
             }
 
-            if (i != 0) {
-                if(listeStations[i].getPositionY() == listeStations[i - 1].getPositionY()) {
-                    rame.setHorizontal(true);
+            if (i != 0) { //si on est pas a la premiere station
+                if(listeStations[i].getPositionY() == listeStations[i - 1].getPositionY()) { //si la station actuelle et la precedente sont sur la meme position y
+                    rame.setHorizontal(true); //on set la rame en mode horizontal
                 }
-                if (listeStations[i].getPositionX() == listeStations[i - 1].getPositionX()) {
-                    rame.setHorizontal(false);
+                if (listeStations[i].getPositionX() == listeStations[i - 1].getPositionX()) { //si la station actuelle et la precedente sont sur la meme position x
+                    rame.setHorizontal(false); //on set la rame en mode vertical
                 }
             }
 
             int v; //initialisation de la vitesse
 
-            while ((rame.get_position_x() != end_pos_x) || (rame.get_position_y() != end_pos_y)) {
+            while ((rame.get_position_x() != end_pos_x) || (rame.get_position_y() != end_pos_y)) { //tant que la rame n'est pas arrivee a la station suivante
                 float distanceToStation_x = abs(end_pos_x - rame.get_position_x()); //distance x jusqu'a la prochaine station par rapport a la position x actuelle de la rame
                 float distanceToStation_y = abs(end_pos_y - rame.get_position_y()); //distance x jusqu'a la prochaine station par rapport a la position x actuelle de la rame
                 bool authorize_move = true; //on autorise le deplacement
@@ -265,7 +278,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 int dist_entre_rames_x = abs(rame_apres.get_position_x() - rame.get_position_x()); //distance entre la rame actuelle et celle devant
                 int dist_entre_rames_y = abs(rame_apres.get_position_y() - rame.get_position_y()); //distance entre la rame actuelle et celle devant
 
-                if (rame.getHorizontal()) {
+                if (rame.getHorizontal()) { //si la rame est en mode horizontal
                     if (dist_entre_rames_x == 0 && beginning == false) { //evite que des rames partent dans le mauvais ordre lors de la generation des threads
                         authorize_move = false;
                     }
@@ -293,11 +306,11 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                         //si 2 rames se suivant sur une meme voie ont une distance trop faible, on interdit le deplacement de la rame derriere
                         authorize_move = false;
                     }
-                    else if (rame.get_arret_urgence() == true) {
-                        authorize_move = false;
+                    else if (rame.get_arret_urgence() == true) { //si la rame est en etat d'arret d'urgence
+                        authorize_move = false; //on interdit le deplacement de la rame
                     }
                 }
-                if(!rame.getHorizontal()) {
+                if(!rame.getHorizontal()) { //si la rame est en mode vertical
                     if (dist_entre_rames_y == 0 && beginning == false) { //evite que des rames partent dans le mauvais ordre lors de la generation des threads
                         authorize_move = false;
                     }
@@ -321,12 +334,12 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                         //si 2 rames se suivant sur une meme voie ont une distance trop faible, on interdit le deplacement de la rame derriere
                         authorize_move = false;
                     }
-                    else if (rame.get_arret_urgence() == true) {
-                        authorize_move = false;
+                    else if (rame.get_arret_urgence() == true) { //si la rame est en etat d'arret d'urgence
+                        authorize_move = false; //on interdit le deplacement de la rame
                     }
                 }
 
-                if (authorize_move) {
+                if (authorize_move) { //si le deplacement est autorise
                     rame.setStarted(true); // on set la rame comme demarree
 
                     // deplacement horizontal
@@ -360,38 +373,38 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 this_thread::sleep_for(chrono::milliseconds(v)); //reglage de la vitesse de la rame
             }
             if (i > 1 && i < listeStations.size() - 2) { //si on ne se situe pas sur un terminus
-                int nb_entrant = remplir_rame(rame, listeStations[i]);
-                int nb_sortant = sortir(rame);
+                int nb_entrant = remplir_rame(rame, listeStations[i]); //on fait monter des passagers dans la rame
+                int nb_sortant = sortir(rame); //on fait descendre des passagers de la rame
 
-                int temp_attente = (int)(nb_entrant + nb_sortant) / 10;
+                int temp_attente = (int)(nb_entrant + nb_sortant) / 10; //calcul du temps d'attente en fonction du nombre de passagers montes et descendus
                 if (temp_attente < 2)
                 {
-                    temp_attente = 2;
+                    temp_attente = 2; //si le temps d'attente est inferieur a 2 secondes, on le met a 2 secondes
                 }
                 
                 //si on est sur une station blanche
                 if (i == 0 || i == listeStations.size() - 1) {
-                    temp_attente = 2;
+                    temp_attente = 2; //on met le temps d'attente a 2 secondes
                 }
                 this_thread::sleep_for(chrono::seconds(temp_attente)); //pause dans les stations
             }
-            else if (i == 1) {
-                int nb_entrant = remplir_rame(rame, listeStations[i]);
-                int temp_attente = (int)(nb_entrant) / 10;
+            else if (i == 1) { //si on est a la premiere station
+                int nb_entrant = remplir_rame(rame, listeStations[i]); //on fait monter des passagers dans la rame
+                int temp_attente = (int)(nb_entrant) / 10; //calcul du temps d'attente en fonction du nombre de passagers montes
                
                 if (temp_attente < 2)
                 {
-                    temp_attente = 2;
+                    temp_attente = 2; //si le temps d'attente est inferieur a 2 secondes, on le met a 2 secondes
                 }
                 
                 this_thread::sleep_for(chrono::seconds(temp_attente)); //pause dans les stations
             }
-            else if (i == listeStations.size() - 2) {
-                int nb_attente = (int)(rame.get_passagers()) / 10;
-                rame.set_passagers(0);
+            else if (i == listeStations.size() - 2) { //si on est a la derniere station (hors station blanche)
+                int nb_attente = (int)(rame.get_passagers()) / 10; //calcul du temps d'attente en fonction du nombre de passagers dans la rame
+                rame.set_passagers(0); //on vide la rame
                 if (nb_attente < 2)
                 {
-                    nb_attente = 2;
+                    nb_attente = 2; //si le temps d'attente est inferieur a 2 secondes, on le met a 2 secondes
                 }
 
                 this_thread::sleep_for(chrono::seconds(nb_attente)); //pause dans les stations
@@ -421,56 +434,56 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
 void arret_urgence_window(RenderWindow& window, Event event, Rame& R1_1, Rame& R1_2, Rame& R1_3, Rame& R1_4, Rame& R1_5, Rame& R1_6, Rame& R2_1, Rame& R2_2, Rame& R2_3, Rame& R2_4, Rame& R2_5, Rame& R2_6) {
     if (event.type == Event::MouseButtonPressed) {
         if (event.mouseButton.button == Mouse::Left) {
-            Vector2i mousePosition = Mouse::getPosition(window);
-            Vector2f convertedMousePosition = window.mapPixelToCoords(mousePosition);
+            Vector2i mousePosition = Mouse::getPosition(window); //recuperation de la position de la souris
+            Vector2f convertedMousePosition = window.mapPixelToCoords(mousePosition); //conversion de la position de la souris en coordonnees de la fenetre
 
             if (R1_1.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R1_1.set_arret_urgence(!R1_1.get_arret_urgence());
+                R1_1.set_arret_urgence(!R1_1.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
             if (R1_2.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R1_2.set_arret_urgence(!R1_2.get_arret_urgence());
+                R1_2.set_arret_urgence(!R1_2.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
             if (R1_3.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R1_3.set_arret_urgence(!R1_3.get_arret_urgence());
+                R1_3.set_arret_urgence(!R1_3.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
             if (R1_4.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R1_4.set_arret_urgence(!R1_4.get_arret_urgence());
+                R1_4.set_arret_urgence(!R1_4.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
             if (R1_5.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R1_5.set_arret_urgence(!R1_5.get_arret_urgence());
+                R1_5.set_arret_urgence(!R1_5.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
             if (R1_6.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R1_6.set_arret_urgence(!R1_6.get_arret_urgence());
+                R1_6.set_arret_urgence(!R1_6.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
             if (R2_1.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R2_1.set_arret_urgence(!R2_1.get_arret_urgence());
+                R2_1.set_arret_urgence(!R2_1.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
             if (R2_2.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R2_2.set_arret_urgence(!R2_2.get_arret_urgence());
+                R2_2.set_arret_urgence(!R2_2.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
             if (R2_3.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R2_3.set_arret_urgence(!R2_3.get_arret_urgence());
+                R2_3.set_arret_urgence(!R2_3.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
             if (R2_4.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R2_4.set_arret_urgence(!R2_4.get_arret_urgence());
+                R2_4.set_arret_urgence(!R2_4.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
             if (R2_5.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R2_5.set_arret_urgence(!R2_5.get_arret_urgence());
+                R2_5.set_arret_urgence(!R2_5.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
             if (R2_6.getRepr().getGlobalBounds().contains(convertedMousePosition))
             {
-                R2_6.set_arret_urgence(!R2_6.get_arret_urgence());
+                R2_6.set_arret_urgence(!R2_6.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
         }
     }
