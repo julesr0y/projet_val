@@ -70,8 +70,10 @@ public:
 	bool hasStarted();
 	bool isFreinage();
 	bool getHorizontal();
+	Color getColor();
+	void setColor(Color color);
 
-	//gestion des d�placements
+	//gestion des deplacements
 	void moveDroite();
 	void moveGauche();
 	void moveHaut();

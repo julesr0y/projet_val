@@ -13,6 +13,20 @@ constexpr auto VITESSE_ACCELERATION = 10;
 
 using namespace std;
 
+//definition des clocks pour le clignotement des rames en arret d'urgence
+Clock clock1_1;
+Clock clock1_2;
+Clock clock1_3;
+Clock clock1_4;
+Clock clock1_5;
+Clock clock1_6;
+Clock clock2_1;
+Clock clock2_2;
+Clock clock2_3;
+Clock clock2_4;
+Clock clock2_5;
+Clock clock2_6;
+
 //fonction de mise a jour du texte donnant le nombre de passagers dans chaque rame
 void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x, int pos_y) {
     string tableauTexte;
@@ -486,5 +500,247 @@ void arret_urgence_window(RenderWindow& window, Event event, Rame& R1_1, Rame& R
                 R2_6.set_arret_urgence(!R2_6.get_arret_urgence()); //on inverse l'etat d'arret d'urgence de la rame par rapport a son etat actuel
             }
         }
+    }
+}
+
+void clignotement_rame(Rame& R1_1, Rame& R1_2, Rame& R1_3, Rame& R1_4, Rame& R1_5, Rame& R1_6, Rame& R2_1, Rame& R2_2, Rame& R2_3, Rame& R2_4, Rame& R2_5, Rame& R2_6) {
+    if (R1_1.get_arret_urgence()) {
+        if (clock1_1.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R1_1.getColor() == Color::Blue) {
+                R1_1.setColor(Color(255, 165, 0));  // Orange
+                R1_1.setRepr(); //maj de l'element
+            }
+            else {
+                R1_1.setColor(Color::Blue);
+                R1_1.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock1_1.restart();
+        }
+    }
+    else {
+        R1_1.setColor(Color::Blue);
+        R1_1.setRepr(); //maj de l'element
+    }
+
+    if (R1_2.get_arret_urgence()) {
+        if (clock1_2.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R1_2.getColor() == Color::Blue) {
+                R1_2.setColor(Color(255, 165, 0));  // Orange
+                R1_2.setRepr(); //maj de l'element
+            }
+            else {
+                R1_2.setColor(Color::Blue);
+                R1_2.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock1_2.restart();
+        }
+    }
+    else {
+        R1_2.setColor(Color::Blue);
+        R1_2.setRepr(); //maj de l'element
+    }
+
+    if (R1_3.get_arret_urgence()) {
+        if (clock1_3.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R1_3.getColor() == Color::Blue) {
+                R1_3.setColor(Color(255, 165, 0));  // Orange
+                R1_3.setRepr(); //maj de l'element
+            }
+            else {
+                R1_3.setColor(Color::Blue);
+                R1_3.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock1_3.restart();
+        }
+    }
+    else {
+        R1_3.setColor(Color::Blue);
+        R1_3.setRepr(); //maj de l'element
+    }
+
+    if (R1_4.get_arret_urgence()) {
+        if (clock1_4.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R1_4.getColor() == Color::Blue) {
+                R1_4.setColor(Color(255, 165, 0));  // Orange
+                R1_4.setRepr(); //maj de l'element
+            }
+            else {
+                R1_4.setColor(Color::Blue);
+                R1_4.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock1_4.restart();
+        }
+    }
+    else {
+        R1_4.setColor(Color::Blue);
+        R1_4.setRepr(); //maj de l'element
+    }
+
+    if (R1_5.get_arret_urgence()) {
+        if (clock1_5.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R1_5.getColor() == Color::Blue) {
+                R1_5.setColor(Color(255, 165, 0));  // Orange
+                R1_5.setRepr(); //maj de l'element
+            }
+            else {
+                R1_5.setColor(Color::Blue);
+                R1_5.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock1_5.restart();
+        }
+    }
+    else {
+        R1_5.setColor(Color::Blue);
+        R1_5.setRepr(); //maj de l'element
+    }
+
+    if (R1_6.get_arret_urgence()) {
+        if (clock1_6.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R1_6.getColor() == Color::Blue) {
+                R1_6.setColor(Color(255, 165, 0));  // Orange
+                R1_6.setRepr(); //maj de l'element
+            }
+            else {
+                R1_6.setColor(Color::Blue);
+                R1_6.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock1_6.restart();
+        }
+    }
+    else {
+        R1_6.setColor(Color::Blue);
+        R1_6.setRepr(); //maj de l'element
+    }
+
+    if (R2_1.get_arret_urgence()) {
+        if (clock2_1.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R2_1.getColor() == Color(119, 136, 153)) {
+                R2_1.setColor(Color(255, 165, 0));  // Orange
+                R2_1.setRepr(); //maj de l'element
+            }
+            else {
+                R2_1.setColor(Color(119, 136, 153));
+                R2_1.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock2_1.restart();
+        }
+    }
+    else {
+        R2_1.setColor(Color(119, 136, 153));
+        R2_1.setRepr(); //maj de l'element
+    }
+
+    if (R2_2.get_arret_urgence()) {
+        if (clock2_2.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R2_2.getColor() == Color(119, 136, 153)) {
+                R2_2.setColor(Color(255, 165, 0));  // Orange
+                R2_2.setRepr(); //maj de l'element
+            }
+            else {
+                R2_2.setColor(Color(119, 136, 153));
+                R2_2.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock2_2.restart();
+        }
+    }
+    else {
+        R2_2.setColor(Color(119, 136, 153));
+        R2_2.setRepr(); //maj de l'element
+    }
+
+    if (R2_3.get_arret_urgence()) {
+        if (clock2_3.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R2_3.getColor() == Color(119, 136, 153)) {
+                R2_3.setColor(Color(255, 165, 0));  // Orange
+                R2_3.setRepr(); //maj de l'element
+            }
+            else {
+                R2_3.setColor(Color(119, 136, 153));
+                R2_3.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock2_3.restart();
+        }
+    }
+    else {
+        R2_3.setColor(Color(119, 136, 153));
+        R2_3.setRepr(); //maj de l'element
+    }
+
+    if (R2_4.get_arret_urgence()) {
+        if (clock2_4.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R2_4.getColor() == Color(119, 136, 153)) {
+                R2_4.setColor(Color(255, 165, 0));  // Orange
+                R2_4.setRepr(); //maj de l'element
+            }
+            else {
+                R2_4.setColor(Color(119, 136, 153));
+                R2_4.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock2_4.restart();
+        }
+    }
+    else {
+        R2_4.setColor(Color(119, 136, 153));
+        R2_4.setRepr(); //maj de l'element
+    }
+
+    if (R2_5.get_arret_urgence()) {
+        if (clock2_5.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R2_5.getColor() == Color(119, 136, 153)) {
+                R2_5.setColor(Color(255, 165, 0));  // Orange
+                R2_5.setRepr(); //maj de l'element
+            }
+            else {
+                R2_5.setColor(Color(119, 136, 153));
+                R2_5.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock2_5.restart();
+        }
+    }
+    else {
+        R2_5.setColor(Color(119, 136, 153));
+        R2_5.setRepr(); //maj de l'element
+    }
+
+    if (R2_6.get_arret_urgence()) {
+        if (clock2_6.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (R2_6.getColor() == Color(119, 136, 153)) {
+                R2_6.setColor(Color(255, 165, 0));  // Orange
+                R2_6.setRepr(); //maj de l'element
+            }
+            else {
+                R2_6.setColor(Color(119, 136, 153));
+                R2_6.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock2_6.restart();
+        }
+    }
+    else {
+        R2_6.setColor(Color(119, 136, 153));
+        R2_6.setRepr(); //maj de l'element
     }
 }

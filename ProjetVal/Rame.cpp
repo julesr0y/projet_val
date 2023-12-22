@@ -149,6 +149,14 @@ int Rame::get_vitesse_int() {
 	return (int)vitesse;
 }
 
+Color Rame::getColor() {
+	return couleur;
+}
+
+void Rame::setColor(Color color) {
+	couleur = color;
+}
+
 //les moves 
 void Rame::moveDroite() {
 	representation.move(vitesse, 0);

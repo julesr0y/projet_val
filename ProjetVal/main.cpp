@@ -3,6 +3,7 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <chrono>
 #include <SFML/Graphics.hpp>
 #include "headers/Station.hpp"
 #include "headers/Rame.hpp"
@@ -20,6 +21,8 @@ constexpr auto FONT = "merienda.ttf"; //police d'ecriture
 constexpr auto ICON = "icon.png"; //icone de la fenetre
 constexpr auto DIST_STATIONS = 70;
 const Color GREY(119, 136, 153);
+
+//Clock clock1;
 
 int main()
 {
@@ -253,6 +256,8 @@ int main()
 
         window.clear(Color::Black); //couleur d'arriere plan
 
+        clignotement_rame(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6); //clignotement en cas d'arret d'urgence
+
         //partie affichage des stations et des routes
         for (int i = 0; i < listeStationsL1.size(); i++) { //pour la L1
             listeStationsL1[i].setRepr(); //on set la representation de la station en cours
@@ -337,6 +342,28 @@ int main()
         //on affiche le nombre de passager dans chaque rame de la ligne 1 et 2
         window.draw(text);
         window.draw(text2);
+
+        //if (rame1_1.get_arret_urgence()) {
+        //    if (clock1.getElapsedTime().asSeconds() >= 1.0f) {
+        //        // Alternez entre jaune et orange
+        //        if (rame1_1.getColor() == Color::Blue) {
+        //            cout << "orange" << endl;
+        //            rame1_1.setColor(Color(255, 165, 0));  // Orange
+        //            rame1_1.setRepr(); //maj de l'element
+        //        }
+        //        else {
+        //            cout << "bleu" << endl;
+        //            rame1_1.setColor(Color::Blue);
+        //            rame1_1.setRepr(); //maj de l'element
+        //        }
+        //        // Réinitialisez la minuterie
+        //        clock1.restart();
+        //    }
+        //}
+        //else {
+        //    rame1_1.setColor(Color::Blue);
+        //    rame1_1.setRepr(); //maj de l'element
+        //}
 
         //on affiche les rames de la ligne 1 et 2 en fonction de leur visibilite
         affichage(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, window);
