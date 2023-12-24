@@ -50,7 +50,7 @@ int main()
 
     //definition des boutons (rectangles) qui permettent de repasser au mode de vue de toutes les rames
     RectangleShape affiche1(Vector2f(150, 50));
-    affiche1.setPosition(100.0f, 150.0f);
+    affiche1.setPosition(50.0f, 150.0f);
     affiche1.setFillColor(Color::Yellow);
     RectangleShape affiche2(Vector2f(150, 50));
     affiche2.setPosition(600.0f, 150.0f);
@@ -61,7 +61,7 @@ int main()
     re1.setFont(font);
     re1.setCharacterSize(25);
     re1.setFillColor(Color::Black);
-    re1.setPosition(145.0f, 160.0f);
+    re1.setPosition(95.0f, 160.0f);
     re1.setString(reset);
     re2.setFont(font);
     re2.setCharacterSize(25);
@@ -123,8 +123,8 @@ int main()
 
     //definition des stations des lignes
     //L1
-    int departL1X = 115; //coordonnees de la premiere station
-    int departL1Y = 670; //coordonnees de la premiere station
+    int departL1X = 325; //coordonnees de la premiere station
+    int departL1Y = 570; //coordonnees de la premiere station
     Station station1_begin(0, "Station Debut", departL1X += DIST_STATIONS, departL1Y, 0, Color::White, false, false);
     Station station1_1(1, "Station1", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, true, false);
     Station station1_2(2, "Station2", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
@@ -148,7 +148,7 @@ int main()
 
     //L2
     int departL2X = -25; //coordonnees de la premiere station
-    int departL2Y = 600; //coordonnees de la premiere station
+    int departL2Y = 500; //coordonnees de la premiere station
     Station station2_begin(0, "Station Debut", departL2X += DIST_STATIONS, departL2Y, 0, Color::White, false, false);
     Station station2_1(1, "Station1", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, true, false);
     Station station2_2(2, "Station2", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
@@ -164,9 +164,9 @@ int main()
     Station station2_15(7, "Station8", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
     Station station2_16(8, "Station9", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
     Station station2_17(1, "Station1", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, true);
-    Station station2_18(2, "Station2", departL2X, departL2Y -= DIST_STATIONS, 10, Color::Red, false, false);
+    Station station2_18(2, "Station2", departL2X += DIST_STATIONS, departL2Y , 10, Color::Red, false, false);
     Station station2_19(3, "Station3", departL2X, departL2Y -= DIST_STATIONS, 10, Color::Red, false, true);
-    Station station2_20(4, "Station4", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
+    Station station2_20(4, "Station4", departL2X , departL2Y -= DIST_STATIONS, 10, Color::Red, false, false);
     Station station2_21(5, "Station5", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
     Station station2_22(6, "Station6", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
     Station station2_23(7, "Station7", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
@@ -193,13 +193,17 @@ int main()
     vector<Station> listeRStationsL2 = listeStationsL2; //liste des stations de retour
     reverse(listeRStationsL2.begin(), listeRStationsL2.end()); //on inverse l'ordre des stations pour avoir les stations de retour
 
-    //vector<string> nom_station_L2 = { " ", "","lomme St Philibert","Bourg","Maison des Enfant","Mitterie","Pont Sup�rieur","Lomme_Lambersant","Canteleu","Bois Blancs","Port de Lille","Cormontainge","Montebello","Porte des Postes","","","","","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" ,"","","" };
-    //vector<string> nom_station_L1 = {" ", "Lille-CHR B-Calmette","CHR Oscar Lambret","Porte des Postes","Wazemmes","Gambetta","R�publique Beaux Arts","Rihour","Gare Lille Flandres","Caulier","Fives","Marberie","Hellemmes","Lezennes","Pont de Bois","Villeneuve d'Ascq Hotel de Ville","Triolo","Cit� Scientifique Professeur Gabillard","4 Cantons",""};
+    vector<string> nom_station_L2 = { " ","lomme St Philibert","Bourg","Maison des Enfant","Pont Superieur","Lomme_Lambersant","Canteleu","Cormontainge","Montebello","Porte des Postes","Porte d'Arras","Porte de Douai","Porte de Valenciennes","Lille-Grand Palais","Bois Blancs","Mairie de Lille","Gare Lille Flandre" ,"Gare Lille Europe","ST-Maurcie Pellevoisin","Mons Sarts" ,"Maire de Mons","Fort de mons","Les Pres" ,"Jean Jaures","Wasquehal Hotel\n de Ville" ,"Croix-Centre","Epeule Montesquieu" ,"Roubaix Charles\n de Gaulle","Roubaix Grand Place" ,"Pontde Neuville","Bourgogne","CH Dron","" };
+    vector<string> nom_station_L1 = {" ", "Lille-CHR \nB-Calmette","CHR Oscar\n Lambret","Porte des\n Postes","Wazemmes","Gambetta","Republique \nBeaux Arts","Rihour","Gare Lille Flandres","Caulier","Fives","Marberie","Hellemmes","Lezennes","Pont de Bois","Villeneuve d'Ascq \nHotel de Ville","Triolo","Cite Scientifique \nProfesseur Gabillard","4 Cantons",""};
 
-    //for (size_t i = 1; i < listeStationsL1.size()-1; i++)
-    //{
-        //listeStationsL1[i].set_nom(nom_station_L1[i-1]);
-    //}
+    for (size_t i = 1; i < listeStationsL1.size()-1; i++)
+    {
+        listeStationsL1[i].set_nom(nom_station_L1[i-1]);
+    }
+    for (size_t i = 1; i < listeStationsL2.size() - 1; i++)
+    {
+        listeStationsL2[i].set_nom(nom_station_L2[i - 1]);
+    }
 
     //definition des rames
     Rame rame1_1(station1_begin, 1,1,false, Color::Blue);
@@ -293,9 +297,18 @@ int main()
             text_S.setFont(font);
             text_S.setCharacterSize(15);
             text_S.setFillColor(Color::White);
-            text_S.setPosition(listeStationsL1[i].getPositionX()+5, listeStationsL1[i].getPositionY() + 30);
-            text_S.setRotation(45.0f);
-            //text_S.setString(nom_station_L1[i]);
+            //text_S.setPosition(listeStationsL1[i].getPositionX()+5, listeStationsL1[i].getPositionY() + 30);
+            if (i<3 || i>=8)
+            {
+                text_S.setRotation(45.0f);
+                text_S.setPosition(listeStationsL1[i].getPositionX() + 5, listeStationsL1[i].getPositionY() + 15);
+            }
+            if(i>=3 && i<8)
+            {
+                text_S.setRotation(295.0f);
+                text_S.setPosition(listeStationsL1[i].getPositionX() + 5, listeStationsL1[i].getPositionY() - 20);
+            }
+            text_S.setString(nom_station_L1[i]);
             window.draw(listeStationsL1[i].getRepr());//on dessine la station
             window.draw(text_S);
         }
@@ -328,15 +341,34 @@ int main()
             updateRameText(text2, tabRame_L2, rame2_4, 500, 0);
             updateRameText(text2, tabRame_L2, rame2_5, 500, 0);
             updateRameText(text2, tabRame_L2, rame2_6, 500, 0);
-            Text text_S;
-            text_S.setFont(font);
-            text_S.setCharacterSize(15);
-            text_S.setFillColor(Color::White);
-            text_S.setPosition(listeStationsL2[i].getPositionX() + 5, listeStationsL2[i].getPositionY() + 30);
-            text_S.setRotation(45.0f);
-            //text_S.setString(nom_station_L2[i]);
+            Text text_S1;
+            text_S1.setFont(font);
+            text_S1.setCharacterSize(15);
+            text_S1.setFillColor(Color::White);
+            if ((i >= 10 && i < 16))
+            {
+                text_S1.setRotation(45.0f);
+                text_S1.setPosition(listeStationsL2[i].getPositionX() + 5, listeStationsL2[i].getPositionY() + 15);
+                text_S1.setString(nom_station_L2[i]);
+            }
+
+            if ((i <= 8)||(i>=17 && i<22)||i>=24)
+            {
+                text_S1.setRotation(295.0f);
+                text_S1.setPosition(listeStationsL2[i].getPositionX() + 5, listeStationsL2[i].getPositionY() - 20);
+                text_S1.setString(nom_station_L2[i]);
+            }
+
+            if ((i >= 22 && i < 24))
+            {
+                text_S1.setRotation(0.0f);
+                text_S1.setPosition(listeStationsL2[i].getPositionX() + 20, listeStationsL2[i].getPositionY()-10);
+                text_S1.setString(nom_station_L2[i]);
+            }
+
+
             window.draw(listeStationsL2[i].getRepr());//on dessine la station
-            window.draw(text_S);
+            window.draw(text_S1);
         }
 
         //on affiche le nombre de passager dans chaque rame de la ligne 1 et 2
