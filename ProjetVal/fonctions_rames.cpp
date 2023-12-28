@@ -185,10 +185,10 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             bool PrevBAS = false;
             if (i != 0) { //si on est pas a la premiere station
                 //alors on verifie la direction de la station precedente
-                PrevHAUT = previousHaut(listeStations[i-1], listeStations[i]);
-                PrevBAS = previousBas(listeStations[i-1], listeStations[i]);
-                PrevGAUCHE = previousGauche(listeStations[i-1], listeStations[i]);
-                PrevDROITE = previousDroite(listeStations[i-1], listeStations[i]);
+                PrevHAUT = previousHaut(listeStations[i - 1], listeStations[i]);
+                PrevBAS = previousBas(listeStations[i - 1], listeStations[i]);
+                PrevGAUCHE = previousGauche(listeStations[i - 1], listeStations[i]);
+                PrevDROITE = previousDroite(listeStations[i - 1], listeStations[i]);
             }
 
             //position d'arret a la station en fonction de direction precedente et suivante
@@ -274,7 +274,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             }
 
             if (i != 0) { //si on est pas a la premiere station
-                if(listeStations[i].getPositionY() == listeStations[i - 1].getPositionY()) { //si la station actuelle et la precedente sont sur la meme position y
+                if (listeStations[i].getPositionY() == listeStations[i - 1].getPositionY()) { //si la station actuelle et la precedente sont sur la meme position y
                     rame.setHorizontal(true); //on set la rame en mode horizontal
                 }
                 if (listeStations[i].getPositionX() == listeStations[i - 1].getPositionX()) { //si la station actuelle et la precedente sont sur la meme position x
@@ -324,7 +324,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                         authorize_move = false; //on interdit le deplacement de la rame
                     }
                 }
-                if(!rame.getHorizontal()) { //si la rame est en mode vertical
+                if (!rame.getHorizontal()) { //si la rame est en mode vertical
                     if (dist_entre_rames_y == 0 && beginning == false) { //evite que des rames partent dans le mauvais ordre lors de la generation des threads
                         authorize_move = false;
                     }
@@ -395,7 +395,7 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
                 {
                     temp_attente = 2; //si le temps d'attente est inferieur a 2 secondes, on le met a 2 secondes
                 }
-                
+
                 //si on est sur une station blanche
                 if (i == 0 || i == listeStations.size() - 1) {
                     temp_attente = 2; //on met le temps d'attente a 2 secondes
@@ -405,12 +405,12 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
             else if (i == 1) { //si on est a la premiere station
                 int nb_entrant = remplir_rame(rame, listeStations[i]); //on fait monter des passagers dans la rame
                 int temp_attente = (int)(nb_entrant) / 10; //calcul du temps d'attente en fonction du nombre de passagers montes
-               
+
                 if (temp_attente < 2)
                 {
                     temp_attente = 2; //si le temps d'attente est inferieur a 2 secondes, on le met a 2 secondes
                 }
-                
+
                 this_thread::sleep_for(chrono::seconds(temp_attente)); //pause dans les stations
             }
             else if (i == listeStations.size() - 2) { //si on est a la derniere station (hors station blanche)

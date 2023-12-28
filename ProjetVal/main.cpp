@@ -124,64 +124,64 @@ int main()
     //definition des stations des lignes
     //L1
     int departL1X = 325; //coordonnees de la premiere station
-    int departL1Y = 570; //coordonnees de la premiere station
-    Station station1_begin(0, "Station Debut", departL1X += DIST_STATIONS, departL1Y, 0, Color::White, false, false);
-    Station station1_1(1, "Station1", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, true, false);
-    Station station1_2(2, "Station2", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_3(3, "Station3", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_4(4, "Station4", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_5(5, "Station5", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_6(6, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_7(7, "Station7", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_8(8, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_9(9, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_10(10, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_11(11, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_12(12, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_13(13, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_14(14, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_15(15, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_16(16, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_17(17, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, false, false);
-    Station station1_18(18, "Station6", departL1X += DIST_STATIONS, departL1Y, 10, Color::Yellow, true, false);
-    Station station1_end(8, "Station Fin", departL1X += DIST_STATIONS, departL1Y, 0, Color::White, false, false);
+    int departL1Y = 670; //coordonnees de la premiere station
+    Station station1_begin(0, departL1X += DIST_STATIONS, departL1Y, Color::White, false, false);
+    Station station1_1(1, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, true, false);
+    Station station1_2(2, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_3(3, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_4(4, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_5(5, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_6(6, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_7(7, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_8(8, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_9(9, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_10(10, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_11(11, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_12(12, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_13(13, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_14(14, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_15(15, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_16(16, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_17(17, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, false, false);
+    Station station1_18(18, departL1X += DIST_STATIONS, departL1Y, Color::Yellow, true, false);
+    Station station1_end(19, departL1X += DIST_STATIONS, departL1Y, Color::White, false, false);
 
     //L2
     int departL2X = -25; //coordonnees de la premiere station
-    int departL2Y = 500; //coordonnees de la premiere station
-    Station station2_begin(0, "Station Debut", departL2X += DIST_STATIONS, departL2Y, 0, Color::White, false, false);
-    Station station2_1(1, "Station1", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, true, false);
-    Station station2_2(2, "Station2", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_3(3, "Station3", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_4(4, "Station4", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_5(5, "Station5", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_9(9, "Station9", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_10(10, "Station10", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_11(3, "Station3", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, true);
-    Station station2_12(4, "Station3", departL2X, departL2Y += DIST_STATIONS, 10, Color::Red, false, false);
-    Station station2_13(5, "Station6", departL2X, departL2Y += DIST_STATIONS, 10, Color::Red, false, true);
-    Station station2_14(6, "Station7", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_15(7, "Station8", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_16(8, "Station9", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_17(1, "Station1", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, true);
-    Station station2_18(2, "Station2", departL2X += DIST_STATIONS, departL2Y , 10, Color::Red, false, false);
-    Station station2_19(3, "Station3", departL2X, departL2Y -= DIST_STATIONS, 10, Color::Red, false, true);
-    Station station2_20(4, "Station4", departL2X , departL2Y -= DIST_STATIONS, 10, Color::Red, false, false);
-    Station station2_21(5, "Station5", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_22(6, "Station6", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_23(7, "Station7", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_24(8, "Station8", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_25(9, "Station9", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, true);
-    Station station2_26(1, "Station1", departL2X, departL2Y -= DIST_STATIONS, 10, Color::Red, false, false);
-    Station station2_27(3, "Station3", departL2X, departL2Y -= DIST_STATIONS, 10, Color::Red, false, true);
-    Station station2_28(4, "Station3", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_29(5, "Station6", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_30(6, "Station7", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_31(7, "Station8", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_32(8, "Station9", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_33(1, "Station1", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_34(2, "Station2", departL2X += DIST_STATIONS, departL2Y, 10, Color::Red, false, false);
-    Station station2_end(45, "Station Fin", departL2X += DIST_STATIONS, departL2Y, 0, Color::White, false, false);
+    int departL2Y = 600; //coordonnees de la premiere station
+    Station station2_begin(20, departL2X += DIST_STATIONS, departL2Y, Color::White, false, false);
+    Station station2_1(21, departL2X += DIST_STATIONS, departL2Y, Color::Red, true, false);
+    Station station2_2(22, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_3(23, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_4(24, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_5(25, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_6(26, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_7(27, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_8(28, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, true);
+    Station station2_9(29, departL2X, departL2Y += DIST_STATIONS, Color::Red, false, false);
+    Station station2_10(30, departL2X, departL2Y += DIST_STATIONS, Color::Red, false, true);
+    Station station2_11(31, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_12(32, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_13(33, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_14(34, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_15(35, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, true);
+    Station station2_16(36, departL2X, departL2Y -= DIST_STATIONS, Color::Red, false, false);
+    Station station2_17(37, departL2X, departL2Y -= DIST_STATIONS, Color::Red, false, true);
+    Station station2_18(38, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_19(39, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_20(40, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_21(41, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_22(42, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, true);
+    Station station2_23(43, departL2X, departL2Y -= DIST_STATIONS, Color::Red, false, false);
+    Station station2_24(44, departL2X, departL2Y -= DIST_STATIONS, Color::Red, false, true);
+    Station station2_25(45, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_26(46, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_27(47, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_28(48, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_29(49, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_30(50, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_31(51, departL2X += DIST_STATIONS, departL2Y, Color::Red, false, false);
+    Station station2_end(52, departL2X += DIST_STATIONS, departL2Y, Color::White, false, false);
 
     //on regroupe les stations des lignes dans des tableau, chaque tableau vaut une ligne
 
@@ -189,16 +189,17 @@ int main()
     vector<Station> listeRStationsL1 = listeStationsL1; //liste des stations de retour
     reverse(listeRStationsL1.begin(), listeRStationsL1.end()); //on inverse l'ordre des stations pour avoir les stations de retour
 
-    vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_4, station2_5, station2_9, station2_10, station2_11, station2_12, station2_13, station2_14, station2_15, station2_16, station2_17, station2_18, station2_19, station2_20, station2_21, station2_22, station2_23, station2_24, station2_25, station2_26, station2_27, station2_28, station2_29, station2_30, station2_31, station2_32, station2_33, station2_34, station2_end };
+    vector<Station> listeStationsL2 = { station2_begin, station2_1, station2_2, station2_3, station2_4, station2_5, station2_6, station2_7, station2_8, station2_9, station2_10, station2_11, station2_12, station2_13, station2_14, station2_15, station2_16, station2_17, station2_18, station2_19, station2_20, station2_21, station2_22, station2_23, station2_24, station2_25, station2_26, station2_27, station2_28, station2_29, station2_30, station2_31, station2_end };
     vector<Station> listeRStationsL2 = listeStationsL2; //liste des stations de retour
     reverse(listeRStationsL2.begin(), listeRStationsL2.end()); //on inverse l'ordre des stations pour avoir les stations de retour
 
-    vector<string> nom_station_L2 = { " ","lomme St Philibert","Bourg","Maison des Enfant","Pont Superieur","Lomme_Lambersant","Canteleu","Cormontainge","Montebello","Porte des Postes","Porte d'Arras","Porte de Douai","Porte de Valenciennes","Lille-Grand Palais","Bois Blancs","Mairie de Lille","Gare Lille Flandre" ,"Gare Lille Europe","ST-Maurcie Pellevoisin","Mons Sarts" ,"Maire de Mons","Fort de mons","Les Pres" ,"Jean Jaures","Wasquehal Hotel\n de Ville" ,"Croix-Centre","Epeule Montesquieu" ,"Roubaix Charles\n de Gaulle","Roubaix Grand Place" ,"Pontde Neuville","Bourgogne","CH Dron","" };
-    vector<string> nom_station_L1 = {" ", "Lille-CHR \nB-Calmette","CHR Oscar\n Lambret","Porte des\n Postes","Wazemmes","Gambetta","Republique \nBeaux Arts","Rihour","Gare Lille Flandres","Caulier","Fives","Marberie","Hellemmes","Lezennes","Pont de Bois","Villeneuve d'Ascq \nHotel de Ville","Triolo","Cite Scientifique \nProfesseur Gabillard","4 Cantons",""};
+    vector<string> nom_station_L1 = { "", "Lille-CHR\nB-Calmette", "CHR Oscar\nLambret","Porte des Postes","Wazemmes","Gambetta","Republique \nBeaux Arts","Rihour", "Gare Lille Flandres", "Caulier", "Fives", "Marbreie", "Hellemmes", "Lezennes", "Pont de Bois", "Villeneuve d'Ascq \nHotel de Ville", "Triolo", "Cite Scientifique \nProfesseur Gabillard", "4 Cantons", "" };
+    vector<string> nom_station_L2 = { "", "Lomme St-Philibert", "Bourg", "Maison des Enfant", "Pont Superieur", "Lomme-Lambersart", "Canteleu", "Cormontaigne", "Montebello", "Porte des Postes", "Porte Arras", "Porte de Douai", "Porte de Valenciennes", "Lille-Grand Palais", "Bois Blancs", "Mairie de Lille", "", "Gare Lille Europe", "St-Maurice Pellevoisin", "Mons Sarts", "Maire de Mons", "Fort de Mons", "Les Pres", "Jean Jaures", "Wasquehal Hotel\n de Ville", "Croix-Centre", "Epeule Montesquieu", "Roubaix Charles\n de Gaulle", "Roubaix Grand Place", "Pont de Neuville", "Bourgogne", "CH Dron", "" };
 
-    for (size_t i = 1; i < listeStationsL1.size()-1; i++)
+    //on défini le nom des stations
+    for (size_t i = 1; i < listeStationsL1.size() - 1; i++)
     {
-        listeStationsL1[i].set_nom(nom_station_L1[i-1]);
+        listeStationsL1[i].set_nom(nom_station_L1[i - 1]);
     }
     for (size_t i = 1; i < listeStationsL2.size() - 1; i++)
     {
@@ -206,20 +207,20 @@ int main()
     }
 
     //definition des rames
-    Rame rame1_1(station1_begin, 1,1,false, Color::Blue);
-    Rame rame1_2(station1_begin, 2,1,false, Color::Blue);
-    Rame rame1_3(station1_begin, 3,1,false, Color::Blue);
-    Rame rame1_4(station1_end, 4,1,true, Color::Blue);
-    Rame rame1_5(station1_end, 5,1,true, Color::Blue);
-    Rame rame1_6(station1_end, 6,1,true, Color::Blue);
-    Rame rame2_1(station2_begin, 7,2,false, GREY);
-    Rame rame2_2(station2_begin, 8,2,false, GREY);
-    Rame rame2_3(station2_begin, 9,2,false, GREY);
-    Rame rame2_4(station2_end, 10,2,true, GREY);
-    Rame rame2_5(station2_end, 11,2,true, GREY);
-    Rame rame2_6(station2_end, 12,2,true, GREY);
+    Rame rame1_1(station1_begin, 1, 1, false, Color::Blue);
+    Rame rame1_2(station1_begin, 2, 1, false, Color::Blue);
+    Rame rame1_3(station1_begin, 3, 1, false, Color::Blue);
+    Rame rame1_4(station1_end, 4, 1, true, Color::Blue);
+    Rame rame1_5(station1_end, 5, 1, true, Color::Blue);
+    Rame rame1_6(station1_end, 6, 1, true, Color::Blue);
+    Rame rame2_1(station2_begin, 7, 2, false, GREY);
+    Rame rame2_2(station2_begin, 8, 2, false, GREY);
+    Rame rame2_3(station2_begin, 9, 2, false, GREY);
+    Rame rame2_4(station2_end, 10, 2, true, GREY);
+    Rame rame2_5(station2_end, 11, 2, true, GREY);
+    Rame rame2_6(station2_end, 12, 2, true, GREY);
 
-    
+
     vector<Rame> tabRame_L1 = { rame1_1,rame1_2,rame1_3,rame1_4,rame1_5,rame1_6 }; //on regroupe les rames de la ligne 1 dans un tableau
     vector<Rame> tabRame_L2 = { rame2_1,rame2_2,rame2_3,rame2_4,rame2_5,rame2_6 }; //on regroupe les rames de la ligne 2 dans un tableau
 
@@ -297,16 +298,24 @@ int main()
             text_S.setFont(font);
             text_S.setCharacterSize(15);
             text_S.setFillColor(Color::White);
-            //text_S.setPosition(listeStationsL1[i].getPositionX()+5, listeStationsL1[i].getPositionY() + 30);
-            if (i<3 || i>=8)
+            if (i < 3 || i > 8)
             {
                 text_S.setRotation(45.0f);
-                text_S.setPosition(listeStationsL1[i].getPositionX() + 5, listeStationsL1[i].getPositionY() + 15);
+                text_S.setPosition(listeStationsL1[i].getPositionX(), listeStationsL1[i].getPositionY() + 25);
             }
-            if(i>=3 && i<8)
+            else if (i == 3)
             {
                 text_S.setRotation(295.0f);
-                text_S.setPosition(listeStationsL1[i].getPositionX() + 5, listeStationsL1[i].getPositionY() - 20);
+                text_S.setPosition(listeStationsL1[i].getPositionX() + 10, listeStationsL1[i].getPositionY() - 25);
+            }
+            else if (i == 8) {
+                text_S.setRotation(45.0f);
+                text_S.setPosition(listeStationsL1[i].getPositionX() + 25, listeStationsL1[i].getPositionY() + 25);
+            }
+            else
+            {
+                text_S.setRotation(295.0f);
+                text_S.setPosition(listeStationsL1[i].getPositionX(), listeStationsL1[i].getPositionY() - 25);
             }
             text_S.setString(nom_station_L1[i]);
             window.draw(listeStationsL1[i].getRepr());//on dessine la station
@@ -345,28 +354,24 @@ int main()
             text_S1.setFont(font);
             text_S1.setCharacterSize(15);
             text_S1.setFillColor(Color::White);
-            if ((i >= 10 && i < 16))
-            {
-                text_S1.setRotation(45.0f);
-                text_S1.setPosition(listeStationsL2[i].getPositionX() + 5, listeStationsL2[i].getPositionY() + 15);
-                text_S1.setString(nom_station_L2[i]);
-            }
-
-            if ((i <= 8)||(i>=17 && i<22)||i>=24)
+            if (i < 9 || (i > 16 && i < 22) || i > 23)
             {
                 text_S1.setRotation(295.0f);
-                text_S1.setPosition(listeStationsL2[i].getPositionX() + 5, listeStationsL2[i].getPositionY() - 20);
+                text_S1.setPosition(listeStationsL2[i].getPositionX() - 5, listeStationsL2[i].getPositionY() - 25);
                 text_S1.setString(nom_station_L2[i]);
             }
-
-            if ((i >= 22 && i < 24))
+            else if ((i > 9 && i < 16))
+            {
+                text_S1.setRotation(45.0f);
+                text_S1.setPosition(listeStationsL2[i].getPositionX() + 5, listeStationsL2[i].getPositionY() + 20);
+                text_S1.setString(nom_station_L2[i]);
+            }
+            else if ((i == 22 || i == 23))
             {
                 text_S1.setRotation(0.0f);
-                text_S1.setPosition(listeStationsL2[i].getPositionX() + 20, listeStationsL2[i].getPositionY()-10);
+                text_S1.setPosition(listeStationsL2[i].getPositionX() + 20, listeStationsL2[i].getPositionY() - 10);
                 text_S1.setString(nom_station_L2[i]);
             }
-
-
             window.draw(listeStationsL2[i].getRepr());//on dessine la station
             window.draw(text_S1);
         }
@@ -374,28 +379,6 @@ int main()
         //on affiche le nombre de passager dans chaque rame de la ligne 1 et 2
         window.draw(text);
         window.draw(text2);
-
-        //if (rame1_1.get_arret_urgence()) {
-        //    if (clock1.getElapsedTime().asSeconds() >= 1.0f) {
-        //        // Alternez entre jaune et orange
-        //        if (rame1_1.getColor() == Color::Blue) {
-        //            cout << "orange" << endl;
-        //            rame1_1.setColor(Color(255, 165, 0));  // Orange
-        //            rame1_1.setRepr(); //maj de l'element
-        //        }
-        //        else {
-        //            cout << "bleu" << endl;
-        //            rame1_1.setColor(Color::Blue);
-        //            rame1_1.setRepr(); //maj de l'element
-        //        }
-        //        // Réinitialisez la minuterie
-        //        clock1.restart();
-        //    }
-        //}
-        //else {
-        //    rame1_1.setColor(Color::Blue);
-        //    rame1_1.setRepr(); //maj de l'element
-        //}
 
         //on affiche les rames de la ligne 1 et 2 en fonction de leur visibilite
         affichage(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, window);

@@ -22,7 +22,7 @@ private:
 
 public:
 	Station();
-	Station(int id, string name, float x, float y, int nbpassagers, Color color, bool terminus_, bool virage);
+	Station(int id, float x, float y, Color color, bool terminus_, bool virage);
 	//Stations ~Stations();
 	int getIdStation();
 	string getNom();
