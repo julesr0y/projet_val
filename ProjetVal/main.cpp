@@ -10,6 +10,14 @@
 #include "headers/Route.hpp"
 #include "headers/fonctions_rames.hpp"
 #include "headers/visible.hpp"
+#include <iomanip>
+#include <map>
+
+#define RESET   "\033[0m"
+#define YELLOW  "\033[33m"
+#define RED     "\033[31m"
+#define WHITE   "\033[37m"
+
 
 using namespace std;
 using namespace sf;
@@ -23,6 +31,29 @@ constexpr auto DIST_STATIONS = 70;
 const Color GREY(119, 136, 153);
 
 //Clock clock1;
+
+
+void affichage_joli(const string& titre, const map<string, int>& myMap) {
+    // Affichage du titre
+    cout <<string(30, '*') << RESET << endl;
+    cout << setw(20) << titre << RESET << endl;
+    cout <<string(30, '*') << RESET << endl << endl;
+
+    // Affichage de la carte (map)
+    for (const auto& entry : myMap) {
+        string couleur = WHITE;  // Par défaut, couleur blanche
+
+        // Vérifier si la ligne contient "ligne 1" ou "ligne 2"
+        if (entry.first.find("Ligne 1") != string::npos) {
+            couleur = YELLOW;  // Ligne 1 en jaune
+        }
+        else if (entry.first.find("Ligne 2") != string::npos) {
+            couleur = RED;  // Ligne 2 en rouge
+        }
+
+        cout << couleur << setw(20) << entry.first << " : " << entry.second << RESET << endl;
+    }
+}
 
 int main()
 {
@@ -242,6 +273,22 @@ int main()
 
     // Definir l'icone de la fenetre
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    int nb_suivie_l1 = 0;
+    int nb_suivie_l2 = 0;
+
+    int nb_urgence = 0;
+    int nb_max_rame1L1 = 0;
+    int nb_max_rame2L1 = 0;
+    int nb_max_rame3L1 = 0;
+    int nb_max_rame4L1 = 0;
+    int nb_max_rame5L1 = 0;
+    int nb_max_rame6L1 = 0;
+    int nb_max_rame1L2 = 0;
+    int nb_max_rame2L2 = 0;
+    int nb_max_rame3L2 = 0;
+    int nb_max_rame4L2 = 0;
+    int nb_max_rame5L2 = 0;
+    int nb_max_rame6L2 = 0;
 
     while (window.isOpen())
     {
@@ -251,16 +298,99 @@ int main()
         {
             if (event.type == Event::Closed) {
                 window.close();
+                string titre ="simulation  finis";
+                map<string, int> myMap = {
+                                            {"nombre de suivie ligne 1:",nb_suivie_l1},
+                                            {"nombre de suivie ligne 2:",nb_suivie_l2},
+                                            {"nombre d'arret d'urgence totale ", nb_urgence},
+                                            {"nombre maximum de passaget attainte dans la rame 1 Ligne 1",nb_max_rame1L1},
+                                            {"nombre maximum de passaget attainte dans la rame 2 Ligne 1",nb_max_rame2L1},
+                                            {"nombre maximum de passaget attainte dans la rame 3 Ligne 1",nb_max_rame3L1},
+                                            {"nombre maximum de passaget attainte dans la rame 4 Ligne 1",nb_max_rame4L1},
+                                            {"nombre maximum de passaget attainte dans la rame 5 Ligne 1",nb_max_rame5L1},
+                                            {"nombre maximum de passaget attainte dans la rame 6 Ligne 1",nb_max_rame6L1},
+                                            {"nombre maximum de passaget attainte dans la rame 1 Ligne 2",nb_max_rame1L2},
+                                            {"nombre maximum de passaget attainte dans la rame 2 Ligne 2",nb_max_rame2L2},
+                                            {"nombre maximum de passaget attainte dans la rame 3 Ligne 2",nb_max_rame3L2},
+                                            {"nombre maximum de passaget attainte dans la rame 4 Ligne 2",nb_max_rame4L2},
+                                            {"nombre maximum de passaget attainte dans la rame 5 Ligne 2",nb_max_rame5L2},
+                                            {"nombre maximum de passaget attainte dans la rame 6 Ligne 2",nb_max_rame6L2}
+
+                                          };
+
+                affichage_joli(titre, myMap);
+
+                //cout <<"nombre d'arret d'urgence : "<< (int)(nb_urgence/2) << endl;
+                //cout << "nombre de suivie ligne 1: " << nb_suivie_l1 << endl;
+                //cout << "nombre de suivie linge 2: " << nb_suivie_l1 << endl;
+                //cout << "nombre max dans la rame1L1: " << nb_max_rame1L1 << endl;
+                //cout << "nombre max dans la rame2L1: " << nb_max_rame2L1 << endl;
+                //cout << "nombre max dans la rame3L1: " << nb_max_rame3L1 << endl;
+                //cout << "nombre max dans la rame4L1: " << nb_max_rame4L1 << endl;
+
+
+
+
             }
             //on gere les clics sur les boutons ou sur les rames
-            visible(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, event, window, Rame1L1, Rame2L1, Rame3L1, Rame4L1, Rame5L1, Rame6L1, affiche1); //on gere la visibilite des rames de la ligne 1
-            visible(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6, event, window, Rame1L2, Rame2L2, Rame3L2, Rame4L2, Rame5L2, Rame6L2, affiche2); //on gere la visibilite des rames de la ligne 2
-            arret_urgence_window(window, event, rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6); //on gere l'arret d'urgence pour chaque rame
+            nb_suivie_l1+= visible(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, event, window, Rame1L1, Rame2L1, Rame3L1, Rame4L1, Rame5L1, Rame6L1, affiche1); //on gere la visibilite des rames de la ligne 1
+            nb_suivie_l2 += visible(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6, event, window, Rame1L2, Rame2L2, Rame3L2, Rame4L2, Rame5L2, Rame6L2, affiche2); //on gere la visibilite des rames de la ligne 2
+            nb_urgence +=arret_urgence_window(window, event, rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6); //on gere l'arret d'urgence pour chaque rame
         }
 
         window.clear(Color::Black); //couleur d'arriere plan
 
         clignotement_rame(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6); //clignotement en cas d'arret d'urgence
+
+        if (rame1_1.get_passagers()>nb_max_rame1L1)
+        {
+            nb_max_rame1L1 = rame1_1.get_passagers();
+        }
+        if (rame1_2.get_passagers() > nb_max_rame2L1)
+        {
+            nb_max_rame2L1 = rame1_2.get_passagers();
+        }
+        if (rame1_3.get_passagers() > nb_max_rame3L1)
+        {
+            nb_max_rame3L1 = rame1_3.get_passagers();
+        }
+        if (rame1_4.get_passagers() > nb_max_rame4L1)
+        {
+            nb_max_rame4L1 = rame1_4.get_passagers();
+        }
+        if (rame1_5.get_passagers() > nb_max_rame5L1)
+        {
+            nb_max_rame5L1 = rame1_5.get_passagers();
+        }
+        if (rame1_6.get_passagers() > nb_max_rame6L1)
+        {
+            nb_max_rame6L1 = rame1_6.get_passagers();
+        }
+
+        if (rame2_1.get_passagers() > nb_max_rame1L2)
+        {
+            nb_max_rame1L2 = rame2_1.get_passagers();
+        }
+        if (rame2_2.get_passagers() > nb_max_rame2L2)
+        {
+            nb_max_rame2L2 = rame2_2.get_passagers();
+        }
+        if (rame2_3.get_passagers() > nb_max_rame3L2)
+        {
+            nb_max_rame3L2 = rame2_3.get_passagers();
+        }
+        if (rame2_4.get_passagers() > nb_max_rame4L2)
+        {
+            nb_max_rame4L2 = rame2_4.get_passagers();
+        }
+        if (rame2_5.get_passagers() > nb_max_rame5L2)
+        {
+            nb_max_rame5L2 = rame2_5.get_passagers();
+        }
+        if (rame2_6.get_passagers() > nb_max_rame6L2)
+        {
+            nb_max_rame6L2 = rame2_6.get_passagers();
+        }
 
         //partie affichage des stations et des routes
         for (int i = 0; i < listeStationsL1.size(); i++) { //pour la L1
@@ -424,6 +554,7 @@ int main()
         window.draw(re2);
 
         window.display(); //affichage de la fenetre
+
     }
 
     //destruction des threads
@@ -439,6 +570,7 @@ int main()
     thread2_4.join();
     thread2_5.join();
     thread2_6.join();
+
 
     return 0;
 }
