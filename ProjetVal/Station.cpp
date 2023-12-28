@@ -5,12 +5,10 @@ using namespace sf;
 
 Station::Station() {};
 
-Station::Station(int id, string name, float x, float y, int nbpassagers, Color color, bool terminus_, bool vir) {
+Station::Station(int id, float x, float y, Color color, bool terminus_, bool vir) {
 	id_station = id;
-	nom = name;
 	position[0] = x;
 	position[1] = y;
-	nb_passagers = nbpassagers;
 	couleur = color;
 	terminus = terminus_;
 	virage = vir;

@@ -11,6 +11,7 @@ int visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event ev
         if (event.mouseButton.button == Mouse::Left) {
             Vector2i mousePosition = Mouse::getPosition(window);
             Vector2f convertedMousePosition = window.mapPixelToCoords(mousePosition);
+
             int id;
             if (C1.getGlobalBounds().contains(convertedMousePosition)) {
                 N1.set_visible(true); 
@@ -19,8 +20,7 @@ int visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event ev
                 N4.set_visible(!N1.isVisible());
                 N5.set_visible(!N1.isVisible());
                 N6.set_visible(!N1.isVisible());
-                nb_suivie += 1;
-
+                nb_suivie++;
             }
 
             if (C2.getGlobalBounds().contains(convertedMousePosition)) {
@@ -30,8 +30,7 @@ int visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event ev
                 N4.set_visible(!N2.isVisible());
                 N5.set_visible(!N2.isVisible());
                 N6.set_visible(!N2.isVisible());
-                nb_suivie += 1;
-
+                nb_suivie++;
             }
 
             if (C3.getGlobalBounds().contains(convertedMousePosition)) {
@@ -41,8 +40,7 @@ int visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event ev
                 N4.set_visible(!N3.isVisible());
                 N5.set_visible(!N3.isVisible());
                 N6.set_visible(!N3.isVisible());
-                nb_suivie += 1;
-
+                nb_suivie++;
             }
 
             if (C4.getGlobalBounds().contains(convertedMousePosition)) {
@@ -52,8 +50,7 @@ int visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event ev
                 N1.set_visible(!N4.isVisible());
                 N5.set_visible(!N4.isVisible());
                 N6.set_visible(!N4.isVisible());
-                nb_suivie += 1;
-
+                nb_suivie++;
             }
 
             if (C5.getGlobalBounds().contains(convertedMousePosition)) {
@@ -63,8 +60,7 @@ int visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event ev
                 N4.set_visible(!N5.isVisible());
                 N1.set_visible(!N5.isVisible());
                 N6.set_visible(!N5.isVisible());
-                nb_suivie += 1;
-
+                nb_suivie++;
             }
 
             if (C6.getGlobalBounds().contains(convertedMousePosition)) {
@@ -74,17 +70,15 @@ int visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event ev
                 N4.set_visible(!N6.isVisible());
                 N5.set_visible(!N6.isVisible());
                 N1.set_visible(!N6.isVisible());
-                nb_suivie += 1;
+                nb_suivie++;
             }
             reset(N1, N2, N3, N4, N5, N6, affiche1, mousePosition);
-
-
         }
     }
     return nb_suivie;
 }
 
-void reset(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6,RectangleShape  affiche1, Vector2i mousePosition) {
+void reset(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6,RectangleShape affiche1, Vector2i mousePosition) {
     if (affiche1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
         N5.set_visible(true); 
         N2.set_visible(true);
@@ -98,7 +92,6 @@ void reset(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6,RectangleS
 void affichage(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, RenderWindow& window) {
     if (N1.isVisible()) {
         window.draw(N1.getRepr());
-
     }
     if (N2.isVisible()) {
         window.draw(N2.getRepr());
