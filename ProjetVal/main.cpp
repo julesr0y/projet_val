@@ -65,6 +65,14 @@ int main()
         return -1;
     }
 
+    //titre au dessus des donnes des rames
+    Text Titre_data;
+    Titre_data.setFont(font);
+    Titre_data.setCharacterSize(28);
+    Titre_data.setFillColor(Color::White);
+    Titre_data.setPosition(510.0f, 15.0f);
+    Titre_data.setString("Donnees des rames:");
+
     //definition des carré de textes qui contiendront le nombre de passager dans les rames
     Text text;
     text.setFont(font);
@@ -77,10 +85,10 @@ int main()
 
     //definition des boutons (rectangles) qui permettent de repasser au mode de vue de toutes les rames
     RectangleShape affiche1(Vector2f(150, 50));
-    affiche1.setPosition(50.0f, 150.0f);
+    affiche1.setPosition(300.0f, 235.0f);
     affiche1.setFillColor(Color::Yellow);
     RectangleShape affiche2(Vector2f(150, 50));
-    affiche2.setPosition(600.0f, 150.0f);
+    affiche2.setPosition(810.0f, 235.0f);
     affiche2.setFillColor(Color::Red);
     string reset = "Reset";
     Text re1;
@@ -88,65 +96,135 @@ int main()
     re1.setFont(font);
     re1.setCharacterSize(25);
     re1.setFillColor(Color::Black);
-    re1.setPosition(95.0f, 160.0f);
+    re1.setPosition(345.0f, 245.0f);
     re1.setString(reset);
     re2.setFont(font);
     re2.setCharacterSize(25);
     re2.setFillColor(Color::Black);
-    re2.setPosition(645.0f, 160.0f);
+    re2.setPosition(855.0f, 245.0f);
     re2.setString(reset);
 
     //definition des boutons (cercles) qui permettent d'avoir la vue sur une rame en particulier sur la L1
     CircleShape Rame1L1;
     Rame1L1.setRadius(10);
-    Rame1L1.setPosition(280, 2);
+    Rame1L1.setPosition(530, 72);
     Rame1L1.setFillColor(Color::Yellow);
     CircleShape Rame2L1;
     Rame2L1.setRadius(10);
-    Rame2L1.setPosition(280, 25);
+    Rame2L1.setPosition(530, 95);
     Rame2L1.setFillColor(Color::Yellow);
     CircleShape Rame3L1;
     Rame3L1.setRadius(10);
-    Rame3L1.setPosition(280, 50);
+    Rame3L1.setPosition(530, 120);
     Rame3L1.setFillColor(Color::Yellow);
     CircleShape Rame4L1;
     Rame4L1.setRadius(10);
-    Rame4L1.setPosition(280, 75);
+    Rame4L1.setPosition(530, 145);
     Rame4L1.setFillColor(Color::Yellow);
     CircleShape Rame5L1;
     Rame5L1.setRadius(10);
-    Rame5L1.setPosition(280, 100);
+    Rame5L1.setPosition(530, 170);
     Rame5L1.setFillColor(Color::Yellow);
     CircleShape Rame6L1;
     Rame6L1.setRadius(10);
-    Rame6L1.setPosition(280, 125);
+    Rame6L1.setPosition(530, 195);
     Rame6L1.setFillColor(Color::Yellow);
 
     //definition des boutons (cercles) qui permettent d'avoir la vue sur une rame en particulier sur la L2
     CircleShape Rame1L2;
     Rame1L2.setRadius(10);
-    Rame1L2.setPosition(790, 2);
+    Rame1L2.setPosition(1040, 72);
     Rame1L2.setFillColor(Color::Red);
     CircleShape Rame2L2;
     Rame2L2.setRadius(10);
-    Rame2L2.setPosition(790, 25);
+    Rame2L2.setPosition(1040, 95);
     Rame2L2.setFillColor(Color::Red);
     CircleShape Rame3L2;
     Rame3L2.setRadius(10);
-    Rame3L2.setPosition(790, 50);
+    Rame3L2.setPosition(1040, 120);
     Rame3L2.setFillColor(Color::Red);
     CircleShape Rame4L2;
     Rame4L2.setRadius(10);
-    Rame4L2.setPosition(790, 75);
+    Rame4L2.setPosition(1040, 145);
     Rame4L2.setFillColor(Color::Red);
     CircleShape Rame5L2;
     Rame5L2.setRadius(10);
-    Rame5L2.setPosition(790, 100);
+    Rame5L2.setPosition(1040, 170);
     Rame5L2.setFillColor(Color::Red);
     CircleShape Rame6L2;
     Rame6L2.setRadius(10);
-    Rame6L2.setPosition(790, 125);
+    Rame6L2.setPosition(1040, 195);
     Rame6L2.setFillColor(Color::Red);
+
+    //creation de la legende (explications)
+    Text Titre_legende;
+    Titre_legende.setFont(font);
+    Titre_legende.setCharacterSize(28);
+    Titre_legende.setFillColor(Color::White);
+    Titre_legende.setPosition(1550.0f, 15.0f);
+    Titre_legende.setString("Legende:");
+    Text Station_retour_t;
+    Station_retour_t.setFont(font);
+    Station_retour_t.setCharacterSize(20);
+    Station_retour_t.setFillColor(Color::White);
+    Station_retour_t.setPosition(1420.0f, 73.0f);
+    Station_retour_t.setString("Station de changement de voie:");
+    CircleShape Station_retour;
+    Station_retour.setRadius(10);
+    Station_retour.setFillColor(Color::White);
+    Station_retour.setPosition(1750.0f, 75.0f);
+    Text Station_exemple_t;
+    Station_exemple_t.setFont(font);
+    Station_exemple_t.setCharacterSize(20);
+    Station_exemple_t.setFillColor(Color::White);
+    Station_exemple_t.setPosition(1420.0f, 98.0f);
+    Station_exemple_t.setString("Station de metro:");
+    CircleShape Station_l1;
+    Station_l1.setRadius(10);
+    Station_l1.setFillColor(Color::Yellow);
+    Station_l1.setPosition(1610.0f, 100.0f);
+    CircleShape Station_l2;
+    Station_l2.setRadius(10);
+    Station_l2.setFillColor(Color::Red);
+    Station_l2.setPosition(1635.0f, 100.0f);
+    Text Rames_t;
+    Rames_t.setFont(font);
+    Rames_t.setCharacterSize(20);
+    Rames_t.setFillColor(Color::White);
+    Rames_t.setPosition(1420.0f, 123.0f);
+    Rames_t.setString("Rames L1 et L2:");
+    float taille_cote = 18;
+    ConvexShape Rame_l1(3);
+    Vector2f centre_rame1(1595.0f, 135.0f);
+    Rame_l1.setPoint(0, Vector2f(centre_rame1.x - taille_cote / 2, centre_rame1.y - taille_cote / 2));
+    Rame_l1.setPoint(1, Vector2f(centre_rame1.x + taille_cote / 2, centre_rame1.y));
+    Rame_l1.setPoint(2, Vector2f(centre_rame1.x - taille_cote / 2, centre_rame1.y + taille_cote / 2));
+    Rame_l1.setFillColor(Color::Blue);
+    ConvexShape Rame_l2(3);
+    Vector2f centre_rame2(1620.0f, 135.0f);
+    Rame_l2.setPoint(0, Vector2f(centre_rame2.x - taille_cote / 2, centre_rame2.y - taille_cote / 2));
+    Rame_l2.setPoint(1, Vector2f(centre_rame2.x + taille_cote / 2, centre_rame2.y));
+    Rame_l2.setPoint(2, Vector2f(centre_rame2.x - taille_cote / 2, centre_rame2.y + taille_cote / 2));
+    Rame_l2.setFillColor(GREY);
+    Text Rames_arret_t;
+    Rames_arret_t.setFont(font);
+    Rames_arret_t.setCharacterSize(20);
+    Rames_arret_t.setFillColor(Color::White);
+    Rames_arret_t.setPosition(1420.0f, 148.0f);
+    Rames_arret_t.setString("Rame en arret d'urgence:");
+    ConvexShape Rame_arret(3);
+    Vector2f centre_rame3(1695.0f, 162.0f);
+    Rame_arret.setPoint(0, Vector2f(centre_rame3.x - taille_cote / 2, centre_rame3.y - taille_cote / 2));
+    Rame_arret.setPoint(1, Vector2f(centre_rame3.x + taille_cote / 2, centre_rame3.y));
+    Rame_arret.setPoint(2, Vector2f(centre_rame3.x - taille_cote / 2, centre_rame3.y + taille_cote / 2));
+    Rame_arret.setFillColor(Color::Blue);
+    Clock clock_arret;
+    Text developers;
+    developers.setFont(font);
+    developers.setCharacterSize(18);
+    developers.setFillColor(Color::White);
+    developers.setPosition(10.0f, 870.0f);
+    developers.setString("Projet VAL 2024 - HALILA Nada - HU Lucas - ROY Jules");
 
     //definition des stations des lignes
     //L1
@@ -301,19 +379,19 @@ int main()
                 {
                     {"Nombre de suivie ligne 1:", nb_suivie_l1},
                     {"Nombre de suivie ligne 2:", nb_suivie_l2},
-                    {"Nombre d'arret d'urgence totale ", nb_urgence},
-                    {"Nombre maximum de passagers atteinte dans la rame 1 Ligne 1", nb_max_rame1L1},
-                    {"Nombre maximum de passagers atteinte dans la rame 2 Ligne 1", nb_max_rame2L1},
-                    {"Nombre maximum de passagers atteinte dans la rame 3 Ligne 1", nb_max_rame3L1},
-                    {"Nombre maximum de passagers atteinte dans la rame 4 Ligne 1", nb_max_rame4L1},
-                    {"Nombre maximum de passagers atteinte dans la rame 5 Ligne 1", nb_max_rame5L1},
-                    {"Nombre maximum de passagers atteinte dans la rame 6 Ligne 1", nb_max_rame6L1},
-                    {"Nombre maximum de passagers atteinte dans la rame 1 Ligne 2", nb_max_rame1L2},
-                    {"Nombre maximum de passagers atteinte dans la rame 2 Ligne 2", nb_max_rame2L2},
-                    {"Nombre maximum de passagers atteinte dans la rame 3 Ligne 2", nb_max_rame3L2},
-                    {"Nombre maximum de passagers atteinte dans la rame 4 Ligne 2", nb_max_rame4L2},
-                    {"Nombre maximum de passagers atteinte dans la rame 5 Ligne 2", nb_max_rame5L2},
-                    {"Nombre maximum de passagers atteinte dans la rame 6 Ligne 2", nb_max_rame6L2}
+                    {"Nombre d'arrets d'urgence total ", nb_urgence},
+                    {"Nombre maximum de passagers atteint dans la rame 1 Ligne 1", nb_max_rame1L1},
+                    {"Nombre maximum de passagers atteint dans la rame 2 Ligne 1", nb_max_rame2L1},
+                    {"Nombre maximum de passagers atteint dans la rame 3 Ligne 1", nb_max_rame3L1},
+                    {"Nombre maximum de passagers atteint dans la rame 4 Ligne 1", nb_max_rame4L1},
+                    {"Nombre maximum de passagers atteint dans la rame 5 Ligne 1", nb_max_rame5L1},
+                    {"Nombre maximum de passagers atteint dans la rame 6 Ligne 1", nb_max_rame6L1},
+                    {"Nombre maximum de passagers atteint dans la rame 7 Ligne 2", nb_max_rame1L2},
+                    {"Nombre maximum de passagers atteint dans la rame 8 Ligne 2", nb_max_rame2L2},
+                    {"Nombre maximum de passagers atteint dans la rame 9 Ligne 2", nb_max_rame3L2},
+                    {"Nombre maximum de passagers atteint dans la rame 10 Ligne 2", nb_max_rame4L2},
+                    {"Nombre maximum de passagers atteint dans la rame 11 Ligne 2", nb_max_rame5L2},
+                    {"Nombre maximum de passagers atteint dans la rame 12 Ligne 2", nb_max_rame6L2}
                 };
                 affichage_joli(titre, myMap);
             }
@@ -321,6 +399,20 @@ int main()
             nb_suivie_l1 += visible(rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, event, window, Rame1L1, Rame2L1, Rame3L1, Rame4L1, Rame5L1, Rame6L1, affiche1); //on gere la visibilite des rames de la ligne 1
             nb_suivie_l2 += visible(rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6, event, window, Rame1L2, Rame2L2, Rame3L2, Rame4L2, Rame5L2, Rame6L2, affiche2); //on gere la visibilite des rames de la ligne 2
             nb_urgence += arret_urgence_window(window, event, rame1_1, rame1_2, rame1_3, rame1_4, rame1_5, rame1_6, rame2_1, rame2_2, rame2_3, rame2_4, rame2_5, rame2_6); //on gere l'arret d'urgence pour chaque rame
+        }
+
+        if (clock_arret.getElapsedTime().asSeconds() >= 1.0f) {
+            // Alterne entre couleur de base et orange
+            if (Rame_arret.getFillColor() == Color::Blue) {
+                Rame_arret.setFillColor(Color(255, 165, 0));  // Orange
+                //R1_6.setRepr(); //maj de l'element
+            }
+            else {
+                Rame_arret.setFillColor(Color::Blue);
+                //R1_6.setRepr(); //maj de l'element
+            }
+            // Réinitialisez la minuterie
+            clock_arret.restart();
         }
 
         window.clear(Color::Black); //couleur d'arriere plan
@@ -402,12 +494,12 @@ int main()
             }
 
             //on affiche le nombre de passager dans chaque rame de la ligne 1
-            updateRameText(text, tabRame_L1, rame1_1, 0, 0);
-            updateRameText(text, tabRame_L1, rame1_2, 0, 0);
-            updateRameText(text, tabRame_L1, rame1_3, 0, 0);
-            updateRameText(text, tabRame_L1, rame1_4, 0, 0);
-            updateRameText(text, tabRame_L1, rame1_5, 0, 0);
-            updateRameText(text, tabRame_L1, rame1_6, 0, 0);
+            updateRameText(text, tabRame_L1, rame1_1, 250, 70);
+            updateRameText(text, tabRame_L1, rame1_2, 250, 70);
+            updateRameText(text, tabRame_L1, rame1_3, 250, 70);
+            updateRameText(text, tabRame_L1, rame1_4, 250, 70);
+            updateRameText(text, tabRame_L1, rame1_5, 250, 70);
+            updateRameText(text, tabRame_L1, rame1_6, 250, 70);
 
             //regalges de l'affichage du nom des stations
             Text text_S;
@@ -460,12 +552,12 @@ int main()
             }
 
             //on affiche le nombre de passager dans chaque rame de la ligne 2
-            updateRameText(text2, tabRame_L2, rame2_1, 500, 0);
-            updateRameText(text2, tabRame_L2, rame2_2, 500, 0);
-            updateRameText(text2, tabRame_L2, rame2_3, 500, 0);
-            updateRameText(text2, tabRame_L2, rame2_4, 500, 0);
-            updateRameText(text2, tabRame_L2, rame2_5, 500, 0);
-            updateRameText(text2, tabRame_L2, rame2_6, 500, 0);
+            updateRameText(text2, tabRame_L2, rame2_1, 750, 70);
+            updateRameText(text2, tabRame_L2, rame2_2, 750, 70);
+            updateRameText(text2, tabRame_L2, rame2_3, 750, 70);
+            updateRameText(text2, tabRame_L2, rame2_4, 750, 70);
+            updateRameText(text2, tabRame_L2, rame2_5, 750, 70);
+            updateRameText(text2, tabRame_L2, rame2_6, 750, 70);
 
             //regalges de l'affichage du nom des stations
             Text text_S1;
@@ -493,6 +585,9 @@ int main()
             window.draw(listeStationsL2[i].getRepr());//on dessine la station
             window.draw(text_S1);
         }
+
+        //on affiche le titre de la partie donnees des rames
+        window.draw(Titre_data);
 
         //on affiche le nombre de passager dans chaque rame de la ligne 1 et 2
         window.draw(text);
@@ -523,6 +618,20 @@ int main()
         window.draw(re1);
         window.draw(affiche2);
         window.draw(re2);
+
+        //on affiche les elements de la legende
+        window.draw(Titre_legende);
+        window.draw(Station_retour_t);
+        window.draw(Station_retour);
+        window.draw(Station_exemple_t);
+        window.draw(Station_l1);
+        window.draw(Station_l2);
+        window.draw(Rames_t);
+        window.draw(Rame_l1);
+        window.draw(Rame_l2);
+        window.draw(Rames_arret_t);
+        window.draw(Rame_arret);
+        window.draw(developers);
 
         window.display(); //affichage de la fenetre
     }
