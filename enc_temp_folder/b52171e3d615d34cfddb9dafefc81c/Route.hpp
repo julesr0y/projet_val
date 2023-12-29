@@ -6,7 +6,6 @@ using namespace sf;
 
 class Route {
 private:
-	// implémentation des variables
 	int id_voie;
 	float hauteur;
 	float longueur;
@@ -20,7 +19,6 @@ private:
 	float station2_y;
 	Color couleur;
 public:
-	// introduction du constructeur et des méthodes 
 	Route();
 	Route(int id, Station station1, Station station2, Color color);
 	int get_id_voie();
