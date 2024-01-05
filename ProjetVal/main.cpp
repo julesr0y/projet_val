@@ -84,25 +84,22 @@ int main()
     text2.setFillColor(Color::White); // Definir la couleur du texte
 
     //definition des boutons (rectangles) qui permettent de repasser au mode de vue de toutes les rames
+    Texture t1;
+    Texture t2;
+
+    if ((!t1.loadFromFile("Reset1.png")) || (!t2.loadFromFile("Reset2.png")))
+    {
+        cout << "upload faild "<<endl;
+    }
     RectangleShape affiche1(Vector2f(150, 50));
     affiche1.setPosition(300.0f, 235.0f);
     affiche1.setFillColor(Color::Yellow);
+    affiche1.setTexture(&t1);
+
     RectangleShape affiche2(Vector2f(150, 50));
     affiche2.setPosition(810.0f, 235.0f);
     affiche2.setFillColor(Color::Red);
-    string reset = "Reset";
-    Text re1;
-    Text re2;
-    re1.setFont(font);
-    re1.setCharacterSize(25);
-    re1.setFillColor(Color::Black);
-    re1.setPosition(345.0f, 245.0f);
-    re1.setString(reset);
-    re2.setFont(font);
-    re2.setCharacterSize(25);
-    re2.setFillColor(Color::Black);
-    re2.setPosition(855.0f, 245.0f);
-    re2.setString(reset);
+    affiche2.setTexture(&t2);
 
     //definition des boutons (cercles) qui permettent d'avoir la vue sur une rame en particulier sur la L1
     CircleShape Rame1L1;
@@ -615,9 +612,7 @@ int main()
 
         //on affiche les boutons de reset de la visibilite des rames de la ligne 1 et 2
         window.draw(affiche1);
-        window.draw(re1);
         window.draw(affiche2);
-        window.draw(re2);
 
         //on affiche les elements de la legende
         window.draw(Titre_legende);
