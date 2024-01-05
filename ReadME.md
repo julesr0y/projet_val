@@ -1,22 +1,22 @@
 # Projet VAL
 
-##### Auteurs: ROY Jules - HU Lucas - HALILA Nada
+## Auteurs: ROY Jules - HU Lucas - HALILA Nada
 
-##### Technologies utilisées:
+### Technologies utilisées:
 
 ![C++](https://a11ybadges.com/badge?logo=cplusplus) ![CMake](https://a11ybadges.com/badge?logo=cmake) ![SFML](https://a11ybadges.com/badge?logo=sfml)
 
 Notre projet utilise C++ 20 et CMake 3.15.
 
-##### Compilation:
+### Compilation:
 
 Nous n'avons pas inclus dans ce repo l'exécutable permettant de lancer le projet, il est donc nécessaire de le compiler.
 
-##### Documentation:
+### Documentation:
 
 Afin de produire une documentation claire, nous avons utilisé l'outil Doxygen. Pour la consulter, il faut ouvrir le fichier html disponible à Documentation/html/index.html
 
-##### Compatibilité:
+### Compatibilité:
 
 ![Windows](https://a11ybadges.com/badge?logo=windows) ![Linux](https://a11ybadges.com/badge?logo=linux) ![macOS](https://a11ybadges.com/badge?logo=macos)
 
