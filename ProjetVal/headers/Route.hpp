@@ -1,3 +1,7 @@
+/**
+	* @file Route.hpp
+	* @brief Header de la classe Route
+*/
 #pragma once
 #include "Rame.hpp"
 
@@ -19,14 +23,19 @@ private:
 	float station2_x;
 	float station2_y;
 	Color couleur;
+
 public:
-	// introduction du constructeur et des méthodes 
+	//constructeurs
 	Route();
 	Route(int id, Station station1, Station station2, Color color);
+
+	//setters
+	void setRepr();
+	void setReprRetour();
+
+	//getters
 	int get_id_voie();
 	int get_longueur();
 	int get_hauteur();
-	void setRepr();
-	void setReprRetour();
 	RectangleShape getRepr();
 };

@@ -1,3 +1,7 @@
+/**
+    * @file fonctions_rames.cpp
+    * @brief Fonction associees a la manipulation des rames
+*/
 #include "headers/fonctions_rames.hpp"
 #include <iostream>
 #include <random>
@@ -5,7 +9,7 @@
 #include <algorithm>
 #include "headers/fonctions_stations.hpp"
 
-constexpr auto AJUSTEMENT = 8;
+constexpr auto AJUSTEMENT = 8; //ajustement en pixels pour recentrer la rame sur sa voie
 constexpr auto CHGT_VOIE = 16;
 constexpr auto VITESSE_FREINAGE = 120;
 constexpr auto VITESSE_CONSTANTE = 40;
@@ -27,7 +31,13 @@ Clock clock2_4;
 Clock clock2_5;
 Clock clock2_6;
 
-//fonction de mise a jour du texte donnant le nombre de passagers dans chaque rame
+/**
+    * @brief Met a jour le texte donnant le nombre de passagers dans chaque rame
+    * @param[in] text Element de texte a mettre a jour
+    * @param[in] tabRame Tableau des rames
+    * @param[in] pos_x Position x du texte
+    * @param[in] pos_y Position y du texte
+*/
 void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x, int pos_y) {
     string tableauTexte;
     for (size_t i = 0; i < tabRame.size(); i++) {
@@ -46,7 +56,12 @@ void updateRameText(Text& text, vector<Rame>& tabRame, Rame rame, int pos_x, int
     text.setPosition(pos_x, pos_y);
 }
 
-//fonction qui determine si la prochaine station est a gauche de la station actuelle
+/**
+    * @brief Determine si la prochaine station est a gauche de la station actuelle
+    * param[in] actuelle Station actuelle, on se refere a celle ci pour determiner la position de la suivante
+    * param[in] prochaine Prochaine station
+    * @return Booleen
+*/
 bool nextGauche(Station actuelle, Station prochaine) {
     if (actuelle.getPositionX() > prochaine.getPositionX()) {
         return true;
@@ -56,7 +71,12 @@ bool nextGauche(Station actuelle, Station prochaine) {
     }
 }
 
-//fonction qui determine si la prochaine station est a droite de la station actuelle
+/**
+    * @brief Determine si la prochaine station est a droite de la station actuelle
+    * param[in] actuelle Station actuelle, on se refere a celle ci pour determiner la position de la suivante
+    * param[in] prochaine Prochaine station
+    * @return Booleen
+*/
 bool nextDroite(Station actuelle, Station prochaine) {
     if (actuelle.getPositionX() < prochaine.getPositionX()) {
         return true;
@@ -66,7 +86,12 @@ bool nextDroite(Station actuelle, Station prochaine) {
     }
 }
 
-//fonction qui determine si la prochaine station est plus haute que la station actuelle
+/**
+    * @brief Determine si la prochaine station est plus haute que la station actuelle
+    * param[in] actuelle Station actuelle, on se refere a celle ci pour determiner la position de la suivante
+    * param[in] prochaine Prochaine station
+    * @return Booleen
+*/
 bool nextHaut(Station actuelle, Station prochaine) {
     if (actuelle.getPositionY() > prochaine.getPositionY()) {
         return true;
@@ -76,7 +101,12 @@ bool nextHaut(Station actuelle, Station prochaine) {
     }
 }
 
-//fonction qui determine si la prochaine station est plus basse que la station actuelle
+/**
+    * @brief Determine si la prochaine station est plus basse que la station actuelle
+    * param[in] actuelle Station actuelle, on se refere a celle ci pour determiner la position de la suivante
+    * param[in] prochaine Prochaine station
+    * @return Booleen
+*/
 bool nextBas(Station actuelle, Station prochaine) {
     if (actuelle.getPositionY() < prochaine.getPositionY()) {
         return true;
@@ -86,7 +116,12 @@ bool nextBas(Station actuelle, Station prochaine) {
     }
 }
 
-//fonction qui determine si la station precedente est a gauche de la station actuelle
+/**
+    * @brief Determine si la station precedente est a gauche de la station actuelle
+    * param[in] previous Station precedente
+    * param[in] actuelle Station actuelle, on se refere a celle ci pour determiner la position de la precedente
+    * @return Booleen
+*/
 bool previousGauche(Station previous, Station actuelle) {
     if (previous.getPositionX() < actuelle.getPositionX()) {
         return true;
@@ -96,7 +131,12 @@ bool previousGauche(Station previous, Station actuelle) {
     }
 }
 
-//fonction qui determine si la station precedente est a droite de la station actuelle
+/**
+    * @brief Determine si la station precedente est a droite de la station actuelle
+    * param[in] previous Station precedente
+    * param[in] actuelle Station actuelle, on se refere a celle ci pour determiner la position de la precedente
+    * @return Booleen
+*/
 bool previousDroite(Station previous, Station actuelle) {
     if (previous.getPositionX() > actuelle.getPositionX()) {
         return true;
@@ -106,7 +146,12 @@ bool previousDroite(Station previous, Station actuelle) {
     }
 }
 
-//fonction qui determine si la station precedente est plus haute que la station actuelle
+/**
+    * @brief Determine si la station precedente est plus haute que la station actuelle
+    * param[in] previous Station precedente
+    * param[in] actuelle Station actuelle, on se refere a celle ci pour determiner la position de la precedente
+    * @return Booleen
+*/
 bool previousHaut(Station previous, Station actuelle) {
     if (previous.getPositionY() < actuelle.getPositionY()) {
         return true;
@@ -116,7 +161,12 @@ bool previousHaut(Station previous, Station actuelle) {
     }
 }
 
-//fonction qui determine si la station precedente est plus basse que la station actuelle
+/**
+    * @brief Determine si la station precedente est plus basse que la station actuelle
+    * param[in] previous Station precedente
+    * param[in] actuelle Station actuelle, on se refere a celle ci pour determiner la position de la precedente
+    * @return Booleen
+*/
 bool previousBas(Station previous, Station actuelle) {
     if (previous.getPositionY() > actuelle.getPositionY()) {
         return true;
@@ -126,7 +176,14 @@ bool previousBas(Station previous, Station actuelle) {
     }
 }
 
-//fonction permettant le mouvement des rames, elle est utilisees avec les threads
+/**
+    * @brief Fonction permettant le mouvement des rames, elle est utilisee avec les threads
+    * @param[in] rame Rame que l'on deplace
+    * @param[in] rame_apres Rame precedent la rame que l'on deplace
+    * @param[in] listeStations Liste des stations que la rame doit parcourir
+    * @param[in] beginning Booleen qui indique (si true) que la rame est la premiere de son groupe
+    * @param[in] tabRame Tableau des rames de la ligne
+*/
 void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool beginning, vector<Rame>& tabRame, Text& text) {
     if (!beginning) { //si ce n'est pas la premiere rame a demarrer sur sa voie, on attend un temps aleatoire
         default_random_engine re(chrono::system_clock::now().time_since_epoch().count()); //initialisation du generateur de nombres aleatoires
@@ -445,6 +502,13 @@ void moveRame(Rame& rame, Rame& rame_apres, vector<Station> listeStations, bool 
     }
 }
 
+/**
+    * @brief Permet l'arret d'urgence d'une rame lorsque l'on clique dessus
+    * @param[in] window Fenetre
+    * @param[in] event Evenement
+    * @param[in] R1_1... Ensemble des rames
+    * @return Le nombre d'arret d'urgences ayant ete effectue
+*/
 int arret_urgence_window(RenderWindow& window, Event event, Rame& R1_1, Rame& R1_2, Rame& R1_3, Rame& R1_4, Rame& R1_5, Rame& R1_6, Rame& R2_1, Rame& R2_2, Rame& R2_3, Rame& R2_4, Rame& R2_5, Rame& R2_6) {
     int nb_urgence = 0;
     if (event.type == Event::MouseButtonPressed) {
@@ -517,6 +581,10 @@ int arret_urgence_window(RenderWindow& window, Event event, Rame& R1_1, Rame& R1
     return nb_urgence;
 }
 
+/**
+    * @brief Gere le clignotement d'une rame si elle est en arret d'urgence
+    * @param[in] R1_1... Ensemble des rames
+*/
 void clignotement_rame(Rame& R1_1, Rame& R1_2, Rame& R1_3, Rame& R1_4, Rame& R1_5, Rame& R1_6, Rame& R2_1, Rame& R2_2, Rame& R2_3, Rame& R2_4, Rame& R2_5, Rame& R2_6) {
     if (R1_1.get_arret_urgence()) {
         if (clock1_1.getElapsedTime().asSeconds() >= 1.0f) {
