@@ -1,3 +1,7 @@
+/**
+    * @file fonctions_stations.cpp
+    * @brief Fonction associees a la manipulation des stations
+*/
 #include "headers/fonctions_stations.hpp"
 #include <iostream>
 #include <random>
@@ -6,6 +10,11 @@
 
 using namespace std;
 
+/**
+    * @brief Rempli une rame
+    * @param[in] rame Rame a remplir
+    * @param[in] station Station dans laquelle le remplissage de la rame a lieu
+*/
 int remplir_rame(Rame& rame, Station& station) {
     int nb_max = 100;
     default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
@@ -26,9 +35,12 @@ int remplir_rame(Rame& rame, Station& station) {
 
         return nb_a_entrer;
     }
-    
 }
 
+/**
+    * @brief Vide en partie une rame
+    * @param[in] rame Rame a vider
+*/
 int sortir(Rame& rame) {
     default_random_engine re(chrono::system_clock::now().time_since_epoch().count());
     uniform_int_distribution<int> randomNum{ 0, 20 };
@@ -40,6 +52,5 @@ int sortir(Rame& rame) {
     else {
         rame.set_passagers(0);
     }
-
     return nb;
 }

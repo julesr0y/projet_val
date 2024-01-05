@@ -1,5 +1,8 @@
-/* HALILA Nada - HU Lucas - ROY Jules */
-
+/**
+    * @author HALILA Nada - HU Lucas - ROY Jules
+    * @file main.cpp
+    * @brief Fonction main et affichage des opérations dans la console
+ */
 #include <iostream>
 #include <thread>
 #include <vector>
@@ -13,11 +16,6 @@
 #include <iomanip>
 #include <map>
 
-#define RESET   "\033[0m"
-#define YELLOW  "\033[33m"
-#define RED     "\033[31m"
-#define WHITE   "\033[37m"
-
 using namespace std;
 using namespace sf;
 
@@ -26,9 +24,20 @@ constexpr auto WINDOW_Y = 900; //hauteur de la fenetre
 constexpr auto WINDOW_NAME = "VAL"; //nom de la fenetre
 constexpr auto FONT = "merienda.ttf"; //police d'ecriture
 constexpr auto ICON = "icon.png"; //icone de la fenetre
-constexpr auto DIST_STATIONS = 70;
-const Color GREY(119, 136, 153);
+constexpr auto DIST_STATIONS = 70; //distance (en pixels) entre les stations
+const Color GREY(119, 136, 153); //definition de la couleur grise
 
+//elements de couleur pour l'affichage de la console a la fin de l'execution
+constexpr auto RESET = "\033[0m";
+constexpr auto YELLOW = "\033[33m";
+constexpr auto RED = "\033[31m";
+constexpr auto WHITE = "\033[37m";
+
+/**
+     * @brief Affichage des operations dans la console
+     * @param[in] titre Le titre à afficher
+     * @param[in] myMap L'élément Map sur lequel on affiche les lignes de texte
+ */
 void affichage_joli(const string& titre, const map<string, int>& myMap) {
     // Affichage du titre
     cout << string(30, '*') << RESET << endl;
@@ -51,6 +60,10 @@ void affichage_joli(const string& titre, const map<string, int>& myMap) {
     }
 }
 
+/**
+     * @brief Entrée du programme
+     * @return 0 à la fin de l'éxécution
+ */
 int main()
 {
     //importation de l'icone
@@ -89,13 +102,12 @@ int main()
 
     if ((!t1.loadFromFile("Reset1.png")) || (!t2.loadFromFile("Reset2.png")))
     {
-        cout << "upload faild "<<endl;
+        cout << "upload faild " << endl;
     }
     RectangleShape affiche1(Vector2f(150, 50));
     affiche1.setPosition(300.0f, 235.0f);
     affiche1.setFillColor(Color::Yellow);
     affiche1.setTexture(&t1);
-
     RectangleShape affiche2(Vector2f(150, 50));
     affiche2.setPosition(810.0f, 235.0f);
     affiche2.setFillColor(Color::Red);

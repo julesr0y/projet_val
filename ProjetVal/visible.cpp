@@ -1,6 +1,17 @@
+/**
+    * @file visible.cpp
+    * @brief Fonction associees a la visibilite des rames
+*/
 #include "headers/visible.hpp"
 
-
+/**
+    * @brief Permet l'arret d'urgence d'une rame lorsque l'on clique dessus
+    * @param[in] N1... Ensemble des rames
+    * @param[in] event Evenement
+    * @param[in] window Fenetre
+    * @param[in] C1... Ensemble des boutons
+    * @return Le nombre de fois ou une rame seule a ete suivie par le superviseur
+*/
 int visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event event, RenderWindow& window, CircleShape C1, CircleShape C2, CircleShape C3, CircleShape C4, CircleShape C5, CircleShape C6, RectangleShape  affiche1)
 {
     int nb_suivie = 0;
@@ -78,6 +89,12 @@ int visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event ev
     return nb_suivie;
 }
 
+/**
+    * @brief Permet de reafficher toutes les rames lors du clic
+    * @param[in] N1... Ensemble des rames
+    * @param[in] affiche1 Bouton de reset (rectangle)
+    * @param[in] mousPosition Position du clic
+*/
 void reset(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6,RectangleShape affiche1, Vector2i mousePosition) {
     if (affiche1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
         N5.set_visible(true); 
@@ -89,6 +106,11 @@ void reset(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6,RectangleS
     }
 }
 
+/**
+    * @brief Affiche les rames sur la fenetre en fonction de leur visibilite
+    * @param[in] N1... Ensemble des rames
+    * @param[in] window Fenetre
+*/
 void affichage(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, RenderWindow& window) {
     if (N1.isVisible()) {
         window.draw(N1.getRepr());

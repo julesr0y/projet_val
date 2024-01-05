@@ -1,3 +1,7 @@
+/**
+	* @file visible.hpp
+	* @brief Header des fonctions de visibilite des rames
+*/
 #pragma once
 #include "Rame.hpp"
 
