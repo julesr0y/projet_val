@@ -8,6 +8,10 @@
 
 Notre projet utilise C++ 20 et CMake 3.15.
 
+### Capsule Vidéo:
+
+La capsule vidéo demandée dans les consignes du projet se trouve à la racine du repo, au format mp4 (Projet_VAL_Capsule_Video_HALILA_HU_ROY.mp4).
+
 ### Compilation:
 
 Nous n'avons pas inclus dans ce repo l'exécutable permettant de lancer le projet, il est donc nécessaire de le compiler.
