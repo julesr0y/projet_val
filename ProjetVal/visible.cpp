@@ -83,7 +83,7 @@ int visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event ev
                 N1.set_visible(!N6.isVisible());
                 nb_suivie++;
             }
-            reset(N1, N2, N3, N4, N5, N6, affiche1, mousePosition);
+            reset(N1, N2, N3, N4, N5, N6, affiche1, mousePosition, window);
         }
     }
     return nb_suivie;
@@ -95,8 +95,9 @@ int visible(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6, Event ev
     * @param[in] affiche1 Bouton de reset (rectangle)
     * @param[in] mousPosition Position du clic
 */
-void reset(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6,RectangleShape affiche1, Vector2i mousePosition) {
-    if (affiche1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+void reset(Rame& N1, Rame& N2, Rame& N3, Rame& N4, Rame& N5, Rame& N6,RectangleShape affiche1, Vector2i mousePosition, RenderWindow &window) {
+    Vector2f convertedMousePosition = window.mapPixelToCoords(mousePosition);
+    if (affiche1.getGlobalBounds().contains(convertedMousePosition)) {
         N5.set_visible(true); 
         N2.set_visible(true);
         N3.set_visible(true);
