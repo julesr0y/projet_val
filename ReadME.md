@@ -16,6 +16,17 @@ La capsule vidéo demandée dans les consignes du projet se trouve à la racine 
 
 Nous n'avons pas inclus dans ce repo l'exécutable permettant de lancer le projet, il est donc nécessaire de le compiler.
 
+Exemple de compilation, on se base à la racine du projet:
+
+```bash
+mkdir build
+cd build
+cmake ..
+cd ProjetVal
+make
+./ProjetVal
+```
+
 ### Documentation:
 
 Afin de produire une documentation claire, nous avons utilisé l'outil Doxygen. Pour la consulter, il faut ouvrir le fichier html disponible à Documentation/html/index.html
