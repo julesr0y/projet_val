@@ -1,22 +1,22 @@
 # Projet VAL
 
-## Auteurs: ROY Jules - HU Lucas - HALILA Nada
+## Authors: ROY Jules - HU Lucas - HALILA Nada
 
-### Technologies utilisées:
+### Technologies used:
 
 ![C++](https://a11ybadges.com/badge?logo=cplusplus) ![CMake](https://a11ybadges.com/badge?logo=cmake) ![SFML](https://a11ybadges.com/badge?logo=sfml)
 
-Notre projet utilise C++ 20 et CMake 3.15.
+Our project uses C++ 20 and CMake 3.15.
 
-### Capsule Vidéo:
+### Video clip:
 
-La capsule vidéo demandée dans les consignes du projet se trouve à la racine du repo, au format mp4 (Projet_VAL_Capsule_Video_HALILA_HU_ROY.mp4).
+The video capsule requested in the project instructions can be found at the root of the repo, in mp4 format (Projet_VAL_Capsule_Video_HALILA_HU_ROY.mp4).
 
 ### Compilation:
 
-Nous n'avons pas inclus dans ce repo l'exécutable permettant de lancer le projet, il est donc nécessaire de le compiler.
+We haven't included the executable to launch the project in this repo, so it needs to be compiled.
 
-Exemple de compilation, on se base à la racine du projet:
+Example of compilation, based on the project root:
 
 ```bash
 mkdir build
@@ -29,10 +29,10 @@ make
 
 ### Documentation:
 
-Afin de produire une documentation claire, nous avons utilisé l'outil Doxygen. Pour la consulter, il faut ouvrir le fichier html disponible à Documentation/html/index.html
+To produce clear documentation, we've used the Doxygen tool. To consult it, open the html file available at Documentation/html/index.html
 
-### Compatibilité:
+### Compatibility:
 
 ![Windows](https://a11ybadges.com/badge?logo=windows) ![Linux](https://a11ybadges.com/badge?logo=linux) ![macOS](https://a11ybadges.com/badge?logo=macos)
 
-Avec l'utilisation de CMake, et après tests, nous pouvons affirmer que ce projet, à condition de disposer des outils nécessaires à la compilation de programmes C++, peut s'exécuter sous Windows, Linux, et MacOS.
+With the use of CMake, and after testing, we can confirm that this project, provided you have the necessary tools for compiling C++ programs, can run on Windows, Linux and MacOS.
